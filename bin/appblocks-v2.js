@@ -8,13 +8,15 @@ import {
   formatDiagnostics,
   getBlock,
   getCatalog,
-  normalizeCompactSource,
+  normalizeSource,
+  resolveMotion,
+  resolveMotionRecipe,
   resolveRecipe,
   resolveVirtualBlock
 } from "../src/index.js";
 
 function usage() {
-  return `AppBlocks Web generation 2
+  return `AppBlocks Web generation 2 + motion engine 3
 
 Usage:
   appblocks-v2 build <input.ab> [--out <directory>] [--base <path>] [--strict]
@@ -23,10 +25,13 @@ Usage:
   appblocks-v2 catalog [name] [--extended] [--json]
   appblocks-v2 recipe <r0000-r9999>
   appblocks-v2 virtual <block-id>
+  appblocks-v2 motion <x000-x999|preset> [block]
 
 Examples:
-  appblocks-v2 build examples/generation2-showcase.ab --out dist --strict
-  appblocks-v2 build examples/generation2-showcase.ab --out dist --base /product/ --strict
+  appblocks-v2 build examples/motion-showcase.ab --out dist --strict
+  appblocks-v2 build examples/motion-showcase.ab --out dist --base /product/ --strict
+  appblocks-v2 motion x731
+  appblocks-v2 motion cinematic hero
   appblocks-v2 catalog carousel --json
   appblocks-v2 recipe r7314
   appblocks-v2 virtual b203
@@ -92,7 +97,7 @@ async function normalize(args) {
   const [input] = positional(args);
   if (!input) throw new Error("normalize requires an input .ab file");
   const source = await readFile(resolve(input), "utf8");
-  const result = normalizeCompactSource(source);
+  const result = normalizeSource(source);
   process.stdout.write(result.source.endsWith("\n") ? result.source : `${result.source}\n`);
 }
 
@@ -127,6 +132,14 @@ function virtual(args) {
   writeJson(value);
 }
 
+function motion(args) {
+  const [id, block = "section"] = positional(args);
+  if (!id) throw new Error("motion requires an ID such as x731 or a preset such as cinematic");
+  const value = resolveMotionRecipe(id) ?? resolveMotion(id, block);
+  if (!value) throw new Error(`Unknown motion recipe or preset: ${id}`);
+  writeJson(value);
+}
+
 async function main(argv) {
   const [command, ...args] = argv;
   if (!command || ["help", "--help", "-h"].includes(command)) {
@@ -139,6 +152,7 @@ async function main(argv) {
   if (command === "catalog") return catalog(args);
   if (command === "recipe") return recipe(args);
   if (command === "virtual") return virtual(args);
+  if (command === "motion") return motion(args);
   throw new Error(`Unknown command: ${command}\n\n${usage()}`);
 }
 
