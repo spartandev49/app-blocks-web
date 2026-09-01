@@ -1,9 +1,9 @@
 # AppBlocks Web compact contract
 
-GOAL: emit the smallest valid .ab source that still contains real product content and behavior requirements. The compiler supplies tested layout, design, accessibility and browser interaction.
+GOAL: emit the smallest valid .ab source that still contains real product content and behavior requirements. The compiler supplies tested layout, design, accessibility, browser interaction and motion.
 
 START
-st "Project" r=r0000
+st "Project" r=r0000 fx=polished
   pg "/" title="Project"
     hr000
       ttl "Concrete promise" lvl=1
@@ -12,6 +12,7 @@ st "Project" r=r0000
 
 ADDRESS SPACE
 - Site designs: r0000-r9999.
+- Motion recipes: x000-x999.
 - Buttons: b000-b999. Headers: h000-h999. Footers: ft000-ft999.
 - Heroes: hr000-hr999. Frames: fr000-fr999. Cards: cd000-cd999.
 - Sections: sc000-sc999. Forms: fm000-fm999. Tables: tb000-tb999. Navigation: nv000-nv999.
@@ -39,6 +40,41 @@ Overrides: p=p12 f=f084 s=s07 sf=u03 mo=m11 dn=d2 sd=z4
 Custom safe values: primary="#5b5cf0" background="#f8fafc" foreground="#111827"
 Custom loaded/local fonts: font-display="Avenir, system-ui" font-body="Inter, system-ui"
 
+MOTION
+Set one global profile on the site. It gives role-aware defaults to heroes, sections, collections, cards, buttons, navigation and application surfaces:
+
+st "Project" r=r7314 fx=cinematic
+
+Profiles: off quiet polished dynamic cinematic playful editorial application commerce dramatic
+
+Use an exact deterministic recipe on one block:
+
+cd203 fx=x731
+
+Override only the needed axes:
+
+b203 "Start" h="/start" hx=magnetic px=ripple
+sc247 sx=parallax-y en=clip-up cx=cascade du=slow ix=strong
+hr017 fx="hero sx:depth hx:spotlight"
+
+Motion aliases:
+- fx=profile, preset or x000-x999 recipe
+- en=entrance, sx=scroll, hx=hover, px=press, lx=loop
+- cx=child choreography, ez=easing, du=duration, dl=delay
+- sg=stagger, og=origin, ix=intensity, rp=repeat
+
+Entrance: none fade rise fall slide-left slide-right scale-up scale-down blur flip-x flip-y rotate clip-up clip-left clip-right wipe-up pop spring zoom bounce
+Scroll: none reveal parallax-y parallax-x scale rotate fade blur tilt skew clip depth progress pin
+Hover: none lift glow shine fill underline arrow magnetic tilt spotlight border-draw icon-slide jelly bounce pulse soften
+Press: none compress push depress ripple bounce rubber pulse
+Loop: none float breathe pulse bob sway wiggle shimmer gradient spin glow dash
+Choreography: none children cascade grid stack hero wave radial list
+Ease: standard smooth snappy spring expo back linear elastic
+Duration: instant quick fast normal slow cinematic
+Intensity: subtle normal strong extreme
+
+Use motion to improve hierarchy, feedback or spatial understanding. Prefer one site profile plus a few meaningful overrides. Do not animate every element independently. Reduced-motion behavior is generated automatically.
+
 SEMANTIC MACROS
 browser-frame phone-frame laptop-frame glass-card gradient-card hover-card
 carousel masonry-grid marquee ticker drawer sheet modal command-palette
@@ -54,7 +90,7 @@ RULES
 4. Use ln/link for destinations and bt/button for local actions.
 5. Never output raw HTML, CSS, JavaScript or executable URL schemes.
 6. Write real labels and content. Do not invent customers, metrics or integrations.
-7. A recipe selects visual defaults; add product-specific structure and content.
+7. A design recipe selects visual defaults; a motion profile selects coordinated behavior.
 8. Use the largest semantic block that matches the requested result.
 9. Backend operations require real adapters, authorization and server validation.
 10. Run: appblocks-v2 check file.ab --strict
@@ -62,5 +98,7 @@ RULES
 QUERY ONLY WHAT IS NEEDED
 appblocks-v2 recipe r7314
 appblocks-v2 virtual b203
+appblocks-v2 motion x731
+appblocks-v2 motion cinematic hero
 appblocks-v2 catalog carousel --json
 appblocks-v2 normalize file.ab
