@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { compile, VERSION } from "../src/index.js";
+import { compile, formatDiagnostics, VERSION } from "../src/index.js";
 
 const root = new URL("../", import.meta.url);
 
@@ -21,7 +21,13 @@ test("generation 2 is exposed as a coherent 0.2 package release", async () => {
 
 test("the shipped compact example passes strict compilation and runtime safety checks", async () => {
   const source = await readFile(new URL("examples/generation2-showcase.ab", root), "utf8");
-  const result = await compile(source, { filename: "generation2-showcase.ab", strict: true });
+  let result;
+  try {
+    result = await compile(source, { filename: "generation2-showcase.ab", strict: true });
+  } catch (error) {
+    const diagnostics = error?.diagnostics?.length ? `\n${formatDiagnostics(error.diagnostics, source)}` : "";
+    assert.fail(`${error?.message ?? String(error)}${diagnostics}`);
+  }
   assert.equal(result.capabilities?.generation, 2);
   assert.equal(result.manifest.engine, VERSION);
   assert(result.files.has("appblocks.design.json"));
