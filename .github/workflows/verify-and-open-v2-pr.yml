@@ -1,0 +1,178 @@
+name: Verify and open v2 pull request
+
+on:
+  push:
+    branches:
+      - feature/combinatorial-design-engine
+    paths:
+      - .github/workflows/verify-and-open-v2-pr.yml
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: install-combinatorial-engine
+  cancel-in-progress: true
+
+jobs:
+  verify-integrate-and-open:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Check out feature branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up integration runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install or refresh the final overlay
+        shell: bash
+        run: |
+          if [[ -f src/v2-runtime-browser.js ]]; then
+            cp src/v2-runtime-browser.js src/v2-runtime.js
+          fi
+          if [[ ! -f src/index-legacy.js ]]; then
+            test -f scripts/install-v2-overlay.mjs
+            node ./scripts/install-v2-overlay.mjs
+          fi
+          if [[ -f scripts/finalize-v2.mjs ]]; then
+            node ./scripts/finalize-v2.mjs
+          fi
+          cp src/v2-index-final.js src/index.js
+
+      - name: Refresh lockfile when present
+        shell: bash
+        run: |
+          if [[ -f package-lock.json ]]; then
+            npm install --package-lock-only --ignore-scripts
+          fi
+
+      - name: Check all repository JavaScript
+        shell: bash
+        run: |
+          find src scripts bin test -type f \( -name '*.js' -o -name '*.mjs' \) -print0 | xargs -0 -n1 node --check
+
+      - name: Test on Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run tests on Node.js 20
+        run: node --test
+
+      - name: Test on Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run tests on Node.js 22
+        run: node --test
+
+      - name: Test on Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Run tests on Node.js 24
+        run: node --test
+
+      - name: Run generated-output security audit
+        run: node ./scripts/static-audit.js
+
+      - name: Build compact showcase strictly
+        run: node ./bin/appblocks.js build ./examples/combinatorial.appblocks --out ./.tmp-combinatorial --strict
+
+      - name: Parse-check compact browser runtime
+        run: node --check ./.tmp-combinatorial/appblocks.js
+
+      - name: Build original showcase strictly
+        run: node ./bin/appblocks.js build ./examples/showcase.appblocks --out ./.tmp-showcase --strict
+
+      - name: Parse-check original showcase runtime
+        run: node --check ./.tmp-showcase/appblocks.js
+
+      - name: Run existing expansion benchmark
+        run: node ./scripts/benchmark.js --min-ratio 10
+
+      - name: Generate exact version 0.2 benchmark
+        run: node ./scripts/write-v2-benchmark.mjs
+
+      - name: Inspect packed release
+        run: npm pack --dry-run
+
+      - name: Audit production dependency tree
+        run: npm audit --omit=dev
+
+      - name: Remove migration-only scaffolding
+        shell: bash
+        run: |
+          rm -f \
+            .github/workflows/install-combinatorial-engine.yml \
+            .github/workflows/repair-and-integrate-v2.yml \
+            .github/workflows/finalize-v2.yml \
+            .github/workflows/verify-and-open-v2-pr.yml \
+            scripts/install-v2-overlay.mjs \
+            scripts/finalize-v2.mjs \
+            src/v2-index.js \
+            src/v2-index-final.js \
+            src/v2-runtime-browser.js
+          rm -rf .tmp-combinatorial .tmp-showcase
+
+      - name: Check final patch integrity
+        run: git diff --check
+
+      - name: Commit verified integration
+        shell: bash
+        run: |
+          git config user.name "app-blocks automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Integrate combinatorial design engine"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Open or refresh pull request
+        shell: bash
+        run: |
+          BODY_FILE="$(mktemp)"
+          cat > "$BODY_FILE" <<'EOF'
+          ## What changed
+
+          - adds 10,000 deterministic complete-site design recipes
+          - adds 20,000 virtual semantic block IDs across 20 families
+          - adds compact block and attribute aliases for lower model output
+          - adds 32 palettes, 30 font pairings, 18 visual systems and combinatorial shape, surface, motion, density and shadow axes
+          - adds advanced frames, carousels, drawers, dropdowns, command palettes, ranges, file drops, segmented controls, counters and application patterns
+          - preserves the 0.1 compiler as the parser/validator/renderer compatibility core
+          - emits only the design CSS required by recipes used in a build
+          - adds a compact two-route showcase, model contract, schemas and reproducible benchmark artifacts
+
+          ## Verification
+
+          - complete test suite on Node.js 20, 22 and 24
+          - strict compact showcase build
+          - strict original showcase build
+          - generated JavaScript parse checks
+          - generated-output security audit
+          - existing minimum-expansion benchmark
+          - exact v2 benchmark generation
+          - npm package inspection
+          - production dependency audit
+
+          Exact current measurements are committed in `docs/BENCHMARK_V2.md` and `benchmarks/v2.json`.
+          EOF
+          PR_URL="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$GITHUB_REF_NAME" --base main --state open --json url --jq '.[0].url')"
+          if [[ -z "$PR_URL" ]]; then
+            PR_URL="$(gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$GITHUB_REF_NAME" --title "Add combinatorial design engine and compact authoring" --body-file "$BODY_FILE")"
+          else
+            gh pr edit "$PR_URL" --title "Add combinatorial design engine and compact authoring" --body-file "$BODY_FILE"
+          fi
+          echo "Pull request: $PR_URL" >> "$GITHUB_STEP_SUMMARY"
