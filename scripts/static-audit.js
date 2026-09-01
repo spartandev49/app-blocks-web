@@ -30,7 +30,7 @@ function auditCss(label, contents) {
   if (/transition\s*:\s*all\b/i.test(contents)) failures.push(`${label} contains an unrestricted transition declaration`);
   if (!contents.includes("prefers-reduced-motion")) failures.push(`${label} lacks reduced-motion handling`);
   if (!contents.includes("focus-visible")) failures.push(`${label} lacks focus-visible treatment`);
-  if (contents.includes("AppBlocks Web motion engine 3") && !contents.includes("ab-press-ripple")) failures.push(`${label} lacks motion microinteraction styles`);
+  if (contents.includes("AppBlocks Web motion engine 3") && !contents.includes("ab-m3-ripple")) failures.push(`${label} lacks motion microinteraction styles`);
 }
 
 for (const example of examples) {
