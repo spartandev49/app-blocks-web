@@ -158,7 +158,15 @@ test("combined compact and motion source emits safe responsive motion assets", a
 
 test("invalid motion tokens remain visible to strict validation", async () => {
   const source = `site "Invalid motion"\n  page "/" title="Invalid motion"\n    hero fx=teleport\n      title "Invalid" level=1\n`;
-  await assert.rejects(() => compile(source, { strict: true }), /teleport|fx|Unknown|attribute/i);
+  await assert.rejects(
+    () => compile(source, { strict: true }),
+    (error) => {
+      assert.equal(error?.name, "AppBlocksError");
+      assert.equal(Array.isArray(error?.diagnostics), true);
+      assert.equal(error.diagnostics.some((item) => /fx|teleport|attribute/i.test(`${item.message} ${item.hint}`)), true);
+      return true;
+    }
+  );
 });
 
 test("canonical generation-1 source remains byte-for-byte isolated from motion engine 3", async () => {
