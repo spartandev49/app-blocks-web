@@ -22,13 +22,15 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Syntax check
-        run: node --check bin/appblocks.js && for file in src/*.js; do node --check "$file"; done
+        run: node --check bin/appblocks.js && node --check bin/appblocks-v2.js && for file in src/*.js; do node --check "$file"; done
       - name: Unit and integration tests
         run: node --test
       - name: Generated-output audit
         run: node scripts/static-audit.js
-      - name: Strict showcase build
-        run: node bin/appblocks.js build examples/showcase.appblocks --out public --strict
+      - name: Strict canonical showcase build
+        run: node bin/appblocks.js build examples/showcase.appblocks --out .verification/canonical --strict
+      - name: Strict Motion Engine showcase build
+        run: node bin/appblocks-v2.js build examples/motion-showcase.ab --out .verification/motion --strict
       - name: Compression benchmark
         run: node scripts/benchmark.js
       - name: Package inspection
