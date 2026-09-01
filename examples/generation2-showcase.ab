@@ -10,9 +10,8 @@ st "Northstar" r=r7314 p=p12 f=f084 s=s07 sf=u03 mo=m11
       eye "Operations platform"
       ttl "Operate without the busywork" lvl=1
       txt "A complete responsive interface from a compact, deterministic source file."
-      stk a=center
-        b203 "Start now" h="/start"
-        b118 "See the system" h="#system"
+      b203 "Start now" h="/start"
+      b118 "See the system" h="#system"
     sc247 id="system"
       ttl "A broader interface vocabulary" lvl=2
       txt "Generated choices normalize into the same canonical contracts used by generation 1."
@@ -39,7 +38,7 @@ st "Northstar" r=r7314 p=p12 f=f084 s=s07 sf=u03 mo=m11
         cd907
           ttl "Motion-safe" lvl=3
           txt "Reveal, stagger and parallax respond to reduced-motion preferences."
-    call v=split
+    call v=ink
       ttl "Spend tokens on product logic" lvl=2
       txt "Use recipes for interface expression, then focus the model on the behavior that makes the application valuable."
       b907 "Create a project" h="/start"
