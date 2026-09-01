@@ -1,20 +1,24 @@
 {
   "name": "app-blocks-web",
-  "version": "0.2.1",
-  "description": "An LLM-native compact language and zero-dependency compiler for complete websites and web applications.",
+  "version": "0.3.0",
+  "description": "An LLM-native compact language and zero-dependency compiler for complete animated websites and web applications.",
   "type": "module",
-  "types": "./src/index.d.ts",
+  "types": "./src/index-v3.d.ts",
   "bin": {
     "appblocks": "./bin/appblocks.js",
     "appblocks-v2": "./bin/appblocks-v2.js"
   },
   "exports": {
     ".": {
-      "types": "./src/index.d.ts",
+      "types": "./src/index-v3.d.ts",
       "import": "./src/index.js"
     },
     "./catalog": "./src/generation2.js",
     "./generation2": "./src/generation2.js",
+    "./motion": {
+      "types": "./src/motion3.d.ts",
+      "import": "./src/motion3.js"
+    },
     "./runtime": "./src/runtime.js",
     "./styles": "./src/appblocks.css"
   },
@@ -34,12 +38,14 @@
   "scripts": {
     "build:showcase": "node ./bin/appblocks.js build ./examples/showcase.appblocks --out ./public",
     "build:generation2": "node ./bin/appblocks-v2.js build ./examples/generation2-showcase.ab --out ./.appblocks-generation2 --strict",
+    "build:motion": "node ./bin/appblocks-v2.js build ./examples/motion-showcase.ab --out ./.appblocks-motion --strict",
     "check": "node ./scripts/check-syntax.js",
     "test": "node --test",
-    "test:generation2": "node --test ./test/generation2.test.js ./test/generation2-token-budget.test.js ./test/generation2-cli.test.js ./test/generation2-release.test.js",
+    "test:generation2": "node --test ./test/generation2.test.js ./test/generation2-token-budget.test.js ./test/generation2-cli.test.js ./test/generation2-release.test.js ./test/motion3.test.js",
+    "test:motion": "node --test ./test/motion3.test.js",
     "benchmark": "node ./scripts/benchmark.js",
     "audit": "node ./scripts/static-audit.js",
-    "verify": "npm run check && npm test && npm run audit && npm run build:showcase && npm run build:generation2 && npm run benchmark",
+    "verify": "npm run check && npm test && npm run audit && npm run build:showcase && npm run build:generation2 && npm run build:motion && npm run benchmark",
     "prepack": "npm run verify"
   },
   "keywords": [
@@ -48,6 +54,8 @@
     "dsl",
     "design-system",
     "component-library",
+    "animation",
+    "motion-design",
     "website-builder",
     "static-site-generator",
     "code-generation"
@@ -64,7 +72,7 @@
   "bugs": {
     "url": "https://github.com/spartandev49/app-blocks-web/issues"
   },
-  "homepage": "https://github.com/spartandev49/app-blocks-web#readme",
+  "homepage": "https://spartandev49.github.io/app-blocks-web/",
   "publishConfig": {
     "access": "public"
   }

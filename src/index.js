@@ -26,7 +26,33 @@ export {
   resolveVirtualBlock
 } from "./generation2.js";
 export { normalizeCompactSource } from "./normalizer-v2.js";
+export { normalizeSource } from "./normalizer-v3.js";
 export { ADVANCED_CSS, ADVANCED_RUNTIME, buildDesignCss } from "./generation2-assets.js";
+export {
+  CHOREOGRAPHIES,
+  ENTER_EFFECTS,
+  HOVER_EFFECTS,
+  LOOP_EFFECTS,
+  MOTION3_CSS,
+  MOTION3_RUNTIME,
+  MOTION_DELAYS,
+  MOTION_DURATIONS,
+  MOTION_EASINGS,
+  MOTION_ENGINE_VERSION,
+  MOTION_INTENSITIES,
+  MOTION_ORIGINS,
+  MOTION_PRESETS,
+  MOTION_PROFILES,
+  MOTION_RECIPE_COUNT,
+  MOTION_STAGGERS,
+  PRESS_EFFECTS,
+  SCROLL_EFFECTS,
+  buildMotionProfileCss,
+  motionManifest,
+  normalizeMotionSource,
+  resolveMotion,
+  resolveMotionRecipe
+} from "./motion3.js";
 export { buildFile, compile, normalizeBase, writeBuild } from "./compiler-v3.js";
 export { AppBlocksError, formatDiagnostic, formatDiagnostics } from "./diagnostics.js";
 export { parse } from "./parser-v2.js";

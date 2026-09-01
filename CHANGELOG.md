@@ -2,13 +2,28 @@
 
 All notable changes are documented here. The project follows semantic versioning.
 
+## 0.3.0 — 2026-09-01
+
+- Added Motion Engine 3 with 1,000 deterministic motion recipes (`x000` through `x999`).
+- Added ten coordinated global profiles: off, quiet, polished, dynamic, cinematic, playful, editorial, application, commerce and dramatic.
+- Added 20 entrance effects, 14 scroll effects, 16 hover effects, eight press effects, 12 ambient-loop choices and nine child choreographies.
+- Added compact motion tokens for presets, entrances, scroll behavior, hover, press, loops, choreography, easing, duration, delay, stagger, origin, intensity and repeat behavior.
+- Added role-aware profile defaults for heroes, sections, collections, cards, buttons, navigation and application surfaces.
+- Added deterministic motion interpretation for all Generation-2 virtual component IDs.
+- Added continuous parallax, depth, scale, rotation, fade, blur, tilt, skew, clip, progress and sticky scroll behavior through one animation-frame scheduler.
+- Added magnetic, tilt, spotlight, shine, fill, underline, arrow, border-draw, icon-slide, jelly, bounce, glow and lift hover interactions.
+- Added compress, push, depress, ripple, bounce, rubber and pulse press feedback.
+- Added a complete reduced-motion path, coarse-pointer safeguards and bounded intensity values.
+- Added `appblocks.motion.json`, typed motion exports and `appblocks-v2 motion` inspection commands.
+- Added a multi-page public motion showcase with a functional application workspace.
+- Expanded Node.js 20, 22 and 24 verification to cover all 1,000 motion recipes, generated runtime safety, strict fixtures, package contents and Pages output.
+
 ## 0.2.1 — 2026-09-01
 
-- Replaced the public GitHub Pages landing site with a full Generation 2 website and functional application showcase.
-- Added a multi-page compact-source example covering distinctive typography, palettes, shapes, materials, motion, carousels, frames, charts, forms, tabs, tables, dialogs, command palettes and Kanban workflows.
-- Preserved the original documentation showcase under the `/docs/` Pages path.
-- Added `--base` support to `appblocks-v2 build` for subpath and static-host deployments.
-- Added release tests for Generation 2 base-path output.
+- Published the Generation 2 website and application showcase at the GitHub Pages root.
+- Preserved the canonical documentation showcase under `/docs/`.
+- Added base-path support to `appblocks-v2 build`.
+- Expanded the public fixture with coordinated typography and color, generated surfaces and shapes, carousel controls, charts, tabs, tables, forms, dialogs, a command palette and Kanban workflows.
 
 ## 0.2.0 — 2026-09-01
 

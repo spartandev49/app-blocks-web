@@ -1,5 +1,5 @@
 import { readdir, readFile } from "node:fs/promises";
-import { compile, normalizeCompactSource } from "../src/index.js";
+import { compile, normalizeSource } from "../src/index.js";
 
 const directory = new URL("../examples/", import.meta.url);
 const files = (await readdir(directory)).filter((file) => /\.(?:appblocks|ab)$/.test(file)).sort();
@@ -7,11 +7,12 @@ const rows = [];
 
 for (const file of files) {
   const source = await readFile(new URL(file, directory), "utf8");
-  const normalized = normalizeCompactSource(source);
+  const normalized = normalizeSource(source);
   const result = await compile(source, { filename: file, strict: true });
   rows.push({
     example: file,
     generation: result.capabilities?.generation ?? 1,
+    motion: result.capabilities?.motionEngine ?? 0,
     pages: result.manifest.pages.length,
     blocks: result.manifest.blocks.total,
     sourceBytes: result.manifest.source.bytes,
@@ -37,5 +38,14 @@ if (!generation2 || generation2.generation !== 2) {
   process.exitCode = 1;
 } else if (generation2.sourceShare >= 0.8) {
   console.error(`Compact-source target failed: ${generation2.sourceShare} must be below 0.8 of canonical source.`);
+  process.exitCode = 1;
+}
+
+const motion = rows.find((row) => row.example === "motion-showcase.ab");
+if (!motion || motion.motion !== 3) {
+  console.error("Motion benchmark fixture did not activate Motion Engine 3.");
+  process.exitCode = 1;
+} else if (motion.sourceShare >= 0.82) {
+  console.error(`Compact-motion target failed: ${motion.sourceShare} must be below 0.82 of normalized source.`);
   process.exitCode = 1;
 }

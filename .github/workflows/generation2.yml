@@ -1,10 +1,10 @@
-name: Generation 2
+name: Generation 2 and Motion 3
 
 on:
   pull_request:
   push:
     branches:
-      - feature/maximal-combinatorial-library-v4
+      - feature/motion-engine-v03
       - main
 
 permissions:
@@ -32,12 +32,14 @@ jobs:
           node --check bin/appblocks-v2.js
           node --check src/generation2.js
           node --check src/normalizer-v2.js
+          node --check src/normalizer-v3.js
           node --check src/generation2-assets.js
+          node --check src/motion3.js
           node --check src/compiler-v2.js
           node --check src/compiler-v3.js
           node --check src/parser-v2.js
-      - name: Generation 2 tests
-        run: node --test test/generation2.test.js test/generation2-token-budget.test.js test/generation2-cli.test.js
+      - name: Generation 2 and Motion 3 tests
+        run: node --test test/generation2.test.js test/generation2-token-budget.test.js test/generation2-cli.test.js test/motion3.test.js
       - name: Release tests
         run: |
           set -o pipefail
@@ -50,11 +52,15 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: generation2-test-logs-node-${{ matrix.node }}
+          name: motion3-test-logs-node-${{ matrix.node }}
           path: |
             release-tests-node-${{ matrix.node }}.log
             full-tests-node-${{ matrix.node }}.log
           if-no-files-found: ignore
+      - name: Strict Generation 2 build
+        run: node bin/appblocks-v2.js build examples/generation2-showcase.ab --out .verification/generation2 --strict
+      - name: Strict Motion Engine 3 build
+        run: node bin/appblocks-v2.js build examples/motion-showcase.ab --out .verification/motion --strict
       - name: Generated-output audit
         run: npm run --if-present audit
       - name: Benchmark

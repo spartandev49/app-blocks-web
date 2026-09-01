@@ -23,12 +23,14 @@ function auditHtml(label, contents) {
 function auditRuntime(label, contents) {
   if (/\beval\s*\(|new Function\s*\(/.test(contents)) failures.push(`${label} contains dynamic code evaluation`);
   if (/\.innerHTML\s*=|\.outerHTML\s*=|document\.write\s*\(/.test(contents)) failures.push(`${label} performs unsafe HTML insertion`);
+  if (contents.includes("AppBlocks Web motion engine 3") && !contents.includes("requestAnimationFrame")) failures.push(`${label} lacks the shared motion scheduler`);
 }
 
 function auditCss(label, contents) {
   if (/transition\s*:\s*all\b/i.test(contents)) failures.push(`${label} contains an unrestricted transition declaration`);
   if (!contents.includes("prefers-reduced-motion")) failures.push(`${label} lacks reduced-motion handling`);
   if (!contents.includes("focus-visible")) failures.push(`${label} lacks focus-visible treatment`);
+  if (contents.includes("AppBlocks Web motion engine 3") && !contents.includes("ab-m3-ripple")) failures.push(`${label} lacks motion microinteraction styles`);
 }
 
 for (const example of examples) {
@@ -50,6 +52,17 @@ for (const example of examples) {
     if (!result.files.has("appblocks.extended-catalog.json")) failures.push(`${example} missing extended catalog`);
     const html = [...result.files.entries()].find(([name]) => name.endsWith(".html"))?.[1] ?? "";
     if (!html.includes('data-ab-engine="2"')) failures.push(`${example} missing generation-2 HTML marker`);
+  }
+  if (result.capabilities?.motionEngine === 3) {
+    if (!result.files.has("appblocks.motion.json")) failures.push(`${example} missing motion manifest`);
+    const motion = JSON.parse(result.files.get("appblocks.motion.json") ?? "{}");
+    if (motion.engine !== 3 || motion.recipeCount !== 1_000) failures.push(`${example} has invalid motion manifest metadata`);
+    const html = [...result.files.entries()].find(([name]) => name.endsWith(".html"))?.[1] ?? "";
+    if (!html.includes('data-ab-motion-engine="3"')) failures.push(`${example} missing motion HTML marker`);
+    const css = [...result.files.entries()].find(([name]) => name.endsWith("appblocks.css"))?.[1] ?? "";
+    const runtime = [...result.files.entries()].find(([name]) => name.endsWith("appblocks.js"))?.[1] ?? "";
+    if (!css.includes("AppBlocks Web motion engine 3")) failures.push(`${example} missing motion CSS`);
+    if (!runtime.includes("data-ab-motion-engine") && !runtime.includes("ab-m3")) failures.push(`${example} missing motion runtime`);
   }
 }
 
