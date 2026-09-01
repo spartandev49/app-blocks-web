@@ -1,0 +1,61 @@
+{
+  "name": "app-blocks-web",
+  "version": "0.1.0",
+  "description": "An LLM-native language and zero-dependency compiler for complete websites and web applications.",
+  "type": "module",
+  "types": "./src/index.d.ts",
+  "bin": {
+    "appblocks": "./bin/appblocks.js"
+  },
+  "exports": {
+    ".": "./src/index.js",
+    "./catalog": "./src/catalog.js",
+    "./runtime": "./src/runtime.js",
+    "./styles": "./src/appblocks.css"
+  },
+  "files": [
+    "bin",
+    "src",
+    "schemas",
+    "docs",
+    "examples",
+    "LLMS.txt",
+    "README.md",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build:showcase": "node ./bin/appblocks.js build ./examples/showcase.appblocks --out ./public",
+    "check": "node ./scripts/check-syntax.js",
+    "test": "node --test",
+    "benchmark": "node ./scripts/benchmark.js",
+    "audit": "node ./scripts/static-audit.js",
+    "verify": "npm run check && npm test && npm run audit && npm run build:showcase && npm run benchmark",
+    "prepack": "npm run verify"
+  },
+  "keywords": [
+    "llm",
+    "ai",
+    "dsl",
+    "website-builder",
+    "static-site-generator",
+    "code-generation"
+  ],
+  "author": "spartandev49",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spartandev49/app-blocks-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spartandev49/app-blocks-web/issues"
+  },
+  "homepage": "https://github.com/spartandev49/app-blocks-web#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}

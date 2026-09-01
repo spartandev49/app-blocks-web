@@ -1,0 +1,118 @@
+site "Northstar" theme=signal lang=en base=/
+  meta description="A complete SaaS marketing site generated from AppBlocks."
+  header logo=Northstar sticky=true theme-toggle=true
+    nav
+      link "Product" href="/#product"
+      link "Process" href="/#process"
+      link "Pricing" href="/#pricing"
+    button "Open workspace" href="/app/" variant=solid
+  footer logo=Northstar note="A fictional product example. No customer claims are presented."
+    nav label="Product"
+      link "Overview" href="/#product"
+      link "Pricing" href="/#pricing"
+    text "Generated with AppBlocks Web."
+  page "/" title="Northstar — plan work without losing the thread"
+    hero variant=editorial
+      eyebrow "Project direction, made visible"
+      title "Turn scattered requests into a plan your team can trust." level=1
+      text "Northstar keeps decisions, owners and delivery risk in one operational view." size=large
+      button "Explore the workspace" href="/app/" variant=solid
+      button "Review pricing" href="/#pricing" variant=outline
+      visual variant=dashboard
+    features id=product variant=ledger
+      eyebrow "Built for repeated work"
+      title "A system that remembers the decision."
+      feature icon=layers
+        title "Decision records"
+        text "Attach the why, owner and evidence to every material choice."
+      feature icon=trend
+        title "Delivery signals"
+        text "See scope drift and blocked ownership before the deadline moves."
+      feature icon=grid
+        title "Operational views"
+        text "Move between timeline, table and board without duplicating records."
+    steps id=process variant=timeline
+      eyebrow "The operating loop"
+      title "Capture. Decide. Deliver."
+      step
+        heading "Collect the request"
+        text "Preserve its source, constraints and intended outcome."
+      step
+        heading "Make the decision"
+        text "Record the owner and the evidence that changed the plan."
+      step
+        heading "Watch delivery"
+        text "Keep risk visible until the work produces its intended result."
+    pricing id=pricing variant=ledger currency=CAD
+      eyebrow "Example pricing"
+      title "Start with one active workspace."
+      text "These plans are fictional and exist only to demonstrate the pricing block."
+      tier name=Starter price="$0" period=month
+        text "For evaluating the workflow."
+        list
+          item "One workspace"
+          item "Three collaborators"
+          item "Decision history"
+        button "Try the example" href="/app/" variant=outline
+      tier name=Team price="$18" period=member featured=true badge="Example plan"
+        text "For teams coordinating active delivery."
+        list
+          item "Unlimited workspaces"
+          item "Delivery signals"
+          item "Role controls"
+        button "Open the workspace" href="/app/" variant=solid
+    faq
+      title "Questions before adopting a new workflow"
+      question "Is this a real service?"
+        text "No. Northstar is an explicitly fictional AppBlocks example."
+      question "Does the generated application need a framework?"
+        text "No. AppBlocks outputs standard HTML, CSS and JavaScript."
+    cta variant=ink
+      title "Inspect the generated workspace."
+      text "The next route demonstrates application chrome, metrics and a board."
+      button "Open workspace" href="/app/" variant=solid
+  page "/app/" title="Northstar workspace" layout=app
+    app-shell
+      sidebar logo=Northstar
+        link "Portfolio" href="/app/" icon=grid current=true
+        link "Decisions" href="#decisions" icon=layers
+        link "Signals" href="#signals" icon=trend
+      toolbar
+        eyebrow "Portfolio 04"
+        title "Delivery view" level=1
+        text "Fictional local data for interface demonstration."
+        button "New initiative" variant=solid icon=plus dialog=initiative
+      metrics
+        metric value="8" label="Active initiatives" change="2 need a decision" progress=66
+        metric value="3" label="At risk" change="One new this week" tone=warning progress=38
+        metric value="71%" label="On-plan work" change="Example data" progress=71
+      kanban label="Initiative workflow"
+        lane name="Framing" count=2
+          card
+            badge "Evidence needed" variant=warning
+            heading "Renewal research"
+            text "Clarify the decision threshold before scheduling build work."
+          card
+            badge "Owner assigned" variant=success
+            heading "Usage baseline"
+            text "Create a stable comparison cohort."
+        lane name="Delivery" count=2
+          card
+            badge "On plan" variant=success
+            heading "Workspace import"
+            text "Test the migration flow against long project histories."
+          card
+            badge "Blocked" variant=danger
+            heading "Permission review"
+            text "Resolve inherited role behavior."
+        lane name="Review" count=1
+          card
+            badge "Review Friday" variant=accent
+            heading "Decision digest"
+            text "Compare the output against the original adoption goal."
+      dialog id=initiative title="New initiative"
+        form demo=true submit="Create initiative"
+          field name=name label="Initiative name" required=true
+          field name=stage label="Initial stage" type=select
+            option "Framing" value=framing
+            option "Delivery" value=delivery

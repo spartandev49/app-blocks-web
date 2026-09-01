@@ -1,0 +1,47 @@
+site "Relay Operations" theme=blueprint lang=en base=/
+  meta description="A dense admin application generated from AppBlocks."
+  page "/" title="Relay Operations" layout=app
+    app-shell
+      sidebar logo=Relay label="Operations navigation"
+        link "Queue" href=/ icon=grid current=true
+        link "Signals" href="#signals" icon=trend
+        link "Controls" href="#controls" icon=shield
+      toolbar
+        eyebrow "Deterministic fixture"
+        title "Exception queue" level=1
+        text "Resolve irregular jobs without losing their evidence trail."
+        button "Create exception" variant=solid icon=plus dialog=exception
+      metrics
+        metric value="18" label="Open" change="4 high priority" progress=72
+        metric value="7m" label="Median response" change="Example only" progress=48
+        metric value="96%" label="Evidence attached" change="One record incomplete" progress=96
+      tabs id=queue-tabs label="Queue views"
+        tab id=open label="Open" selected=true
+          table id=exceptions label="Open exceptions" filter=true
+            column key=id label="ID"
+            column key=summary label="Summary"
+            column key=owner label="Owner"
+            column key=age label="Age" align=right
+            column key=status label="Status"
+            row
+              cell key=id "RX-1042"
+              cell key=summary "Webhook delivery paused after signature mismatch"
+              cell key=owner "M. Chen"
+              cell key=age "12m"
+              cell key=status
+                badge "Investigating" variant=warning
+            row
+              cell key=id "RX-1038"
+              cell key=summary "Import contains an unsupported date boundary"
+              cell key=owner "A. Singh"
+              cell key=age "34m"
+              cell key=status
+                badge "Needs evidence" variant=danger
+        tab id=resolved label="Resolved"
+          empty-state title="No resolved fixtures" text="This example intentionally keeps the resolved view empty." icon=check
+      dialog id=exception title="Create exception"
+        text "Local demonstration only."
+        form demo=true submit="Add exception" target=exceptions
+          field name=id label="Exception ID" placeholder="RX-1043" required=true
+          field name=summary label="Summary" required=true
+          field name=owner label="Owner" required=true

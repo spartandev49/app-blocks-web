@@ -1,0 +1,6 @@
+node_modules/
+public/
+.appblocks-dev/
+artifacts/
+*.tgz
+.DS_Store

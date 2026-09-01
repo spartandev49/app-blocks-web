@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/spartandev49/app-blocks-web/schemas/block-manifest.schema.json",
+  "title": "AppBlocks Web block manifest",
+  "type": "object",
+  "required": ["name", "category", "summary", "kind"],
+  "properties": {
+    "name": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+    "category": { "enum": ["document", "layout", "navigation", "content", "marketing", "reading", "application"] },
+    "summary": { "type": "string", "minLength": 20 },
+    "kind": { "enum": ["block", "structural"] },
+    "variants": { "type": "array", "items": { "type": "string" }, "uniqueItems": true, "default": [] },
+    "attributes": { "type": "array", "items": { "type": "string" }, "uniqueItems": true, "default": [] },
+    "children": { "type": "array", "items": { "type": "string" }, "uniqueItems": true, "default": [] },
+    "examples": { "type": "array", "items": { "type": "string" }, "default": [] }
+  },
+  "additionalProperties": false
+}

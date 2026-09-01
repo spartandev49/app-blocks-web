@@ -1,0 +1,52 @@
+site "Morrow Field Office" theme=editorial lang=en base=/
+  meta description="An editorial portfolio generated from AppBlocks."
+  header variant=editorial logo="Morrow Field Office" theme-toggle=true
+    nav
+      link "Selected work" href="/#work"
+      link "Method" href="/#method"
+      link "Contact" href="/#contact"
+  footer logo="Morrow Field Office" note="A fictional design practice used as an AppBlocks example."
+    nav label="Index"
+      link "Work" href="/#work"
+      link "Method" href="/#method"
+    text "No client claims or awards are represented."
+  page "/" title="Morrow Field Office — systems made legible"
+    hero variant=manifesto
+      eyebrow "Independent systems practice"
+      title "We make complicated work possible to see." level=1
+      text "Research, information architecture and interface systems for organizations whose tools have outgrown their original shape." size=large
+      button "Read selected work" href="/#work" variant=solid
+      code-block label="Field note 07" variant=light copy=false
+        code "A useful system makes the next decision clearer without hiding the cost of that decision."
+    section id=work variant=ruled
+      eyebrow "Selected fictional studies"
+      title "Three kinds of operational clarity"
+      grid variant=three
+        card
+          badge "Public service" variant=accent
+          heading "Permit review index"
+          text "A legible queue and evidence trail for high-consequence municipal reviews."
+        card
+          badge "Research" variant=accent
+          heading "Field evidence library"
+          text "A durable annotation system for work collected far from a desk."
+        card
+          badge "Operations" variant=accent
+          heading "Exception control room"
+          text "A calm interface for irregular events that cannot be reduced to a happy path."
+    split id=method variant=media-right
+      eyebrow "Method"
+      title "Follow the decision, not the screen."
+      text "We map where evidence enters, where responsibility changes hands and where uncertainty is currently hidden."
+      list ordered=true
+        item "Observe the real operating environment"
+        item "Name the decisions and failure costs"
+        item "Prototype the information relationships"
+        item "Test the system under imperfect conditions"
+      code-block label="Working principle" variant=blueprint
+        code "clarity = evidence + ownership + recoverable action"
+    cta id=contact variant=editorial
+      eyebrow "Fictional contact surface"
+      title "Bring the difficult workflow."
+      text "This CTA demonstrates an editorial style pack; it does not submit to a real service."
+      button "Review the AppBlocks source" href="https://github.com/spartandev49/app-blocks-web" variant=outline

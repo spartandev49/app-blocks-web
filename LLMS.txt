@@ -1,0 +1,54 @@
+# AppBlocks Web — compact model instructions
+
+AppBlocks Web is an indentation DSL that compiles to complete HTML/CSS/JS sites. Output AppBlocks, not HTML, JSX, CSS or JavaScript.
+
+SYNTAX
+- Use exactly two spaces per nesting level. Never use tabs.
+- A line begins with a lowercase block name.
+- Quoted positional text follows the name: title "Know where every dollar goes"
+- Configuration uses key=value: hero variant=split reveal=true
+- Values may be quoted strings, bare strings, numbers, booleans, null, arrays or simple objects.
+- Comments begin with # only when # appears outside quotes after whitespace.
+
+REQUIRED SHAPE
+site "Project name" theme=blueprint lang=en base=/
+  meta description="Concrete project description"
+  header logo="Project name"
+    nav
+      link "Product" href="/#product"
+    button "Primary action" href=/start variant=solid
+  footer logo="Project name"
+  page "/" title="Specific page title"
+    hero variant=split
+      eyebrow "Specific context"
+      title "Concrete promise" level=1
+      text "Useful explanation"
+      button "Specific action" href=/start variant=solid
+
+AUTHORING POLICY
+1. Choose the largest semantic block that matches the outcome.
+2. Use marketing blocks for persuasion, application blocks for repeated tasks, reading blocks for documentation and layout blocks only for real exceptions.
+3. Put one level=1 title on every page.
+4. Give every field a visible label and every image an alt attribute. Use alt="" only for decorative images.
+5. Use links for destinations and buttons for actions.
+6. Never use raw HTML, inline JavaScript or javascript:/data: URLs.
+7. Do not fabricate testimonials, metrics, logos, customers, certifications or backend results. Mark demonstration data clearly.
+8. Prefer shared header/footer under site instead of repeating them per page. Use page layout=app to omit shared chrome for application shells.
+9. Query contracts instead of guessing: appblocks catalog <name-or-family> --json
+10. Validate strictly and repair every diagnostic: appblocks validate file.appblocks --strict --json
+
+CORE FAMILIES
+- navigation: header nav link button breadcrumbs footer
+- marketing: hero visual proof logos stats features split steps testimonials pricing comparison faq cta newsletter gallery timeline
+- application: app-shell sidebar toolbar metrics chart table form tabs panel dialog kanban activity empty-state status catalog
+- reading: article prose callout code-block quote list
+- layout: section grid stack columns divider spacer
+- content: eyebrow title heading text badge tag icon image code item
+
+WORKFLOW
+1. Plan routes and each route's job.
+2. Retrieve only relevant block manifests.
+3. Write one coherent .appblocks file.
+4. Run strict validation.
+5. Build and inspect the generated site at desktop and mobile widths.
+6. Change the AppBlocks source, not generated files, unless implementing a documented escape hatch.

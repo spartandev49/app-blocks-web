@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "project": "AppBlocks Web self-hosted showcase",
+  "surfaces": [
+    {
+      "id": "home",
+      "route": "/",
+      "purpose": "Prove that a concise AppBlocks source expands into a polished complete site.",
+      "mode": "persuade",
+      "file": "examples/showcase.appblocks",
+      "actions": [
+        {
+          "id": "home-view-example",
+          "label": "Inspect the source",
+          "trigger": "Activate the primary hero link.",
+          "priority": "primary",
+          "visible_result": { "kind": "navigate", "description": "Navigate to the syntax guide and source example." },
+          "domain_result": { "kind": "navigation", "description": "Update the browser location to the guide route." },
+          "states": ["default", "hover", "focus-visible", "active"],
+          "backend": { "kind": "none" }
+        },
+        {
+          "id": "toggle-theme",
+          "label": "Change theme",
+          "trigger": "Activate the header theme button.",
+          "priority": "secondary",
+          "visible_result": { "kind": "inline-state", "description": "Switch the complete rendered color theme and pressed state." },
+          "domain_result": { "kind": "persisted-state", "description": "Persist the selected theme in localStorage." },
+          "states": ["default", "hover", "focus-visible", "active", "selected"],
+          "backend": { "kind": "none" }
+        }
+      ]
+    },
+    {
+      "id": "catalog",
+      "route": "/catalog/",
+      "purpose": "Inspect block families, variants and machine-readable contracts.",
+      "mode": "showcase",
+      "file": "examples/showcase.appblocks",
+      "actions": [
+        {
+          "id": "catalog-filter",
+          "label": "Filter blocks",
+          "trigger": "Type in the catalog filter field.",
+          "priority": "primary",
+          "visible_result": { "kind": "inline-state", "description": "Show only matching block rows and update the live result count." },
+          "domain_result": { "kind": "local-state", "description": "Update the active filter query in browser state." },
+          "states": ["default", "focus-visible", "active", "success"],
+          "backend": { "kind": "none" }
+        }
+      ]
+    },
+    {
+      "id": "guide",
+      "route": "/guide/",
+      "purpose": "Teach an LLM or developer to compile a first site and recover from invalid input.",
+      "mode": "read",
+      "file": "examples/showcase.appblocks",
+      "actions": [
+        {
+          "id": "guide-copy",
+          "label": "Copy example",
+          "trigger": "Activate a code block copy button.",
+          "priority": "secondary",
+          "visible_result": { "kind": "inline-state", "description": "Change the button label and announce that the source was copied." },
+          "domain_result": { "kind": "local-state", "description": "Write the selected AppBlocks source to the clipboard." },
+          "states": ["default", "hover", "focus-visible", "active", "success", "error"],
+          "recovery": "Select the visible source manually if clipboard access is denied.",
+          "backend": { "kind": "none" }
+        }
+      ]
+    },
+    {
+      "id": "dashboard",
+      "route": "/dashboard/",
+      "purpose": "Demonstrate dense application blocks, filtering, dialogs and reversible local state.",
+      "mode": "operate",
+      "file": "examples/showcase.appblocks",
+      "actions": [
+        {
+          "id": "dashboard-filter",
+          "label": "Filter builds",
+          "trigger": "Type into the build filter.",
+          "priority": "primary",
+          "visible_result": { "kind": "inline-state", "description": "Filter the build table and expose a reset path when no rows match." },
+          "domain_result": { "kind": "local-state", "description": "Update the current table query." },
+          "states": ["default", "focus-visible", "active", "success"],
+          "backend": { "kind": "none" }
+        },
+        {
+          "id": "dashboard-sort",
+          "label": "Sort builds",
+          "trigger": "Activate a sortable build-table column heading.",
+          "priority": "secondary",
+          "visible_result": { "kind": "inline-state", "description": "Reorder visible and filtered rows and expose ascending or descending state on the active heading." },
+          "domain_result": { "kind": "local-state", "description": "Update the current table sort key and direction." },
+          "states": ["default", "hover", "focus-visible", "active", "selected"],
+          "backend": { "kind": "none" }
+        },
+        {
+          "id": "open-build-dialog",
+          "label": "New build",
+          "trigger": "Activate the New build button.",
+          "priority": "primary",
+          "visible_result": { "kind": "overlay", "description": "Open the build dialog and focus its project field." },
+          "domain_result": { "kind": "local-state", "description": "Create an unpersisted build draft." },
+          "states": ["default", "hover", "focus-visible", "active"],
+          "backend": { "kind": "none" }
+        },
+        {
+          "id": "create-build",
+          "label": "Create build",
+          "trigger": "Submit a valid new-build form.",
+          "priority": "primary",
+          "visible_result": { "kind": "inline-state", "description": "Close the dialog, prepend the new row and show an undo control." },
+          "domain_result": { "kind": "local-state", "description": "Insert a deterministic build record into local demo state." },
+          "states": ["default", "focus-visible", "active", "loading", "error", "success"],
+          "recovery": "Preserve form values after validation failure; undo the successful insertion from the status region.",
+          "backend": { "kind": "mock", "boundary": "local-build-create" }
+        }
+      ]
+    }
+  ],
+  "overlays": [
+    {
+      "id": "new-build-dialog",
+      "surface": "dashboard",
+      "type": "dialog",
+      "open_action": "open-build-dialog",
+      "close_paths": ["Close button", "Cancel button", "Escape key"],
+      "focus": { "initial": "Project name input", "trap": true, "return": "New build trigger" }
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "catalog-no-results",
+      "surface": "catalog",
+      "action": "catalog-filter",
+      "state": "no-results",
+      "enter": "Enter a query that matches no block names.",
+      "expected": ["Show a clear no-results row.", "Keep the filter editable.", "Offer a reset action."],
+      "recovery": "Clear the query or activate Reset."
+    },
+    {
+      "id": "dashboard-loading",
+      "surface": "dashboard",
+      "action": "create-build",
+      "state": "loading",
+      "enter": "Submit the valid new-build fixture.",
+      "expected": ["Preserve the submit label.", "Prevent duplicate submission.", "Announce progress."],
+      "recovery": "Resolve deterministically to success or validation error."
+    },
+    {
+      "id": "dashboard-empty",
+      "surface": "dashboard",
+      "action": "dashboard-filter",
+      "state": "empty",
+      "enter": "Activate the empty-state fixture control.",
+      "expected": ["Keep table headers visible.", "Explain why no builds appear.", "Expose New build."],
+      "recovery": "Restore the seeded fixture or create a build."
+    },
+    {
+      "id": "dashboard-dense",
+      "surface": "dashboard",
+      "state": "dense",
+      "enter": "Load the default seeded build table.",
+      "expected": ["Keep numerical columns aligned.", "Keep actions keyboard reachable.", "Allow narrow-screen horizontal table scrolling."],
+      "recovery": "Filter the table."
+    },
+    {
+      "id": "dashboard-overflow",
+      "surface": "dashboard",
+      "state": "overflow",
+      "enter": "Load the long-name build fixture at 320 CSS pixels.",
+      "expected": ["Contain table overflow inside its region.", "Avoid document-level horizontal scrolling."],
+      "recovery": "Scroll the table region or filter the row."
+    },
+    {
+      "id": "dashboard-error",
+      "surface": "dashboard",
+      "action": "create-build",
+      "state": "error",
+      "enter": "Submit the form without a project name.",
+      "expected": ["Preserve all entered values.", "Place the error at the field.", "Focus the invalid input."],
+      "recovery": "Enter a valid project name and resubmit."
+    },
+    {
+      "id": "dashboard-success",
+      "surface": "dashboard",
+      "action": "create-build",
+      "state": "success",
+      "enter": "Submit the valid new-build fixture.",
+      "expected": ["Prepend the created row.", "Announce success.", "Expose Undo."],
+      "recovery": "Activate Undo to remove the inserted row."
+    }
+  ],
+  "state_decisions": [
+    { "state": "loading", "status": "covered", "scenario": "dashboard-loading" },
+    { "state": "empty", "status": "covered", "scenario": "dashboard-empty" },
+    { "state": "no-results", "status": "covered", "scenario": "catalog-no-results" },
+    { "state": "sparse", "status": "not-applicable", "reason": "The showcase uses either authored content or an explicitly dense application fixture." },
+    { "state": "dense", "status": "covered", "scenario": "dashboard-dense" },
+    { "state": "overflow", "status": "covered", "scenario": "dashboard-overflow" },
+    { "state": "stale", "status": "not-applicable", "reason": "The showcase has no synchronized remote data source." },
+    { "state": "error", "status": "covered", "scenario": "dashboard-error" },
+    { "state": "permission", "status": "not-applicable", "reason": "The generated showcase is public and has no authorization boundary." },
+    { "state": "offline", "status": "not-applicable", "reason": "All showcase behavior is local and remains available after the static assets load." },
+    { "state": "success", "status": "covered", "scenario": "dashboard-success" },
+    { "state": "destructive", "status": "not-applicable", "reason": "The showcase provides reversible insertion only and performs no destructive operation." }
+  ],
+  "backend_boundaries": [
+    {
+      "id": "local-build-create",
+      "kind": "mock",
+      "operation": "Validate and insert a deterministic build row after a short local delay.",
+      "request": "{ project: string, target: string }",
+      "success": "{ id: string, project: string, target: string, status: 'queued' }",
+      "errors": ["validation-error"]
+    }
+  ],
+  "verification": {
+    "browser": "blocked",
+    "viewports": [],
+    "surfaces_tested": [],
+    "actions_tested": [],
+    "scenarios_tested": [],
+    "notes": "Rendered QA is blocked in the current environment: Playwright is installed, but its Chromium executable is absent; no system Chromium, Chrome, Firefox or alternate HTML renderer is available. Strict compilation, generated-HTML audits, interaction-contract inspection and responsive CSS checks completed, but they are not represented as browser evidence."
+  }
+}

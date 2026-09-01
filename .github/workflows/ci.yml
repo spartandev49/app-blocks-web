@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Syntax check
+        run: node --check bin/appblocks.js && for file in src/*.js; do node --check "$file"; done
+      - name: Unit and integration tests
+        run: node --test
+      - name: Generated-output audit
+        run: node scripts/static-audit.js
+      - name: Strict showcase build
+        run: node bin/appblocks.js build examples/showcase.appblocks --out public --strict
+      - name: Compression benchmark
+        run: node scripts/benchmark.js
+      - name: Package inspection
+        run: npm pack --dry-run

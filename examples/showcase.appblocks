@@ -1,0 +1,235 @@
+# AppBlocks Web builds its own showcase from this compact source.
+site "AppBlocks Web" theme=blueprint lang=en base=/
+  meta description="An LLM-native language and zero-dependency compiler for complete websites and web applications." author=spartandev49 theme-color="#f5f2ea"
+
+  header variant=floating logo="AppBlocks Web" sticky=true theme-toggle=true
+    nav label="Primary navigation"
+      link "Why AppBlocks" href="/#why"
+      link "Block catalog" href="/catalog/"
+      link "Language guide" href="/guide/"
+      link "Dashboard proof" href="/dashboard/"
+    button "View on GitHub" href="https://github.com/spartandev49/app-blocks-web" variant=outline icon=github
+
+  footer variant=index logo="AppBlocks Web" note="A compact semantic language that expands into complete, inspectable browser software."
+    nav label="Explore"
+      link "Catalog" href="/catalog/"
+      link "Language guide" href="/guide/"
+      link "Dashboard" href="/dashboard/"
+    nav label="Project"
+      link "Source code" href="https://github.com/spartandev49/app-blocks-web"
+      link "MIT license" href="https://github.com/spartandev49/app-blocks-web/blob/main/LICENSE"
+    text "Written in AppBlocks. Compiled to dependency-free HTML, CSS and JavaScript." tone=muted
+
+  page "/" title="AppBlocks Web — 10× less code for complete websites" description="Let an LLM describe complete websites and web applications using compact, validated semantic blocks."
+    hero variant=split
+      eyebrow "LLM-native web language" icon=bolt
+      title "Stop paying models to rewrite the web." level=1
+      text "AppBlocks lets an AI describe the important structure, content and behavior. A deterministic compiler supplies the responsive layout, accessibility, interaction states, motion and production plumbing." size=large
+      button "Inspect the language" href="/guide/" variant=solid icon=code
+      button "See the generated app" href="/dashboard/" variant=outline
+      visual variant=compiler label="Compact AppBlocks source compiling into a complete interface"
+        code "site product theme=blueprint"
+        code "  hero split"
+        code "    title \"A complete site\""
+        code "    button \"Start\" href=/app"
+        code "  features bento"
+        code "  dashboard dense"
+
+    proof id=why variant=rail
+      eyebrow "The leverage"
+      title "Semantics replace boilerplate."
+      text "The model chooses tested capabilities instead of recreating markup, responsive CSS, event handlers and accessibility behavior for every project."
+      stats variant=rail
+        stat value="81" label="Block contracts" detail="One searchable catalog"
+        stat value="0" label="Runtime dependencies" detail="Plain browser output"
+        stat value="4" label="Surface modes" detail="Persuade, operate, read, showcase"
+
+    features id=capabilities variant=bento
+      eyebrow "One language, full web hierarchy"
+      title "From a button to an application."
+      text "Use the highest-level block that fits. Descend into smaller blocks only when the design needs an exception."
+      feature icon=layers span=wide
+        title "Compound sections"
+        text "Headers, heroes, pricing, comparisons, FAQs, calls to action and footers arrive with responsive structure and every relevant state."
+        badge "Marketing"
+      feature icon=grid
+        title "Application surfaces"
+        text "Dashboards, metrics, charts, tables, forms, tabs, dialogs, boards and activity feeds share one interaction contract."
+        badge "Web apps" variant=accent
+      feature icon=shield
+        title "Safe by construction"
+        text "Unknown blocks, duplicate routes, invalid fields and unsafe URL schemes fail before deployment. Content is escaped by default."
+      feature icon=code span=wide
+        title "Machine-readable contracts"
+        text "Every block exposes concise attributes, children and variants through the CLI and generated catalog JSON. Models retrieve only what they need."
+      feature icon=trend
+        title "Measurable compression"
+        text "Every build reports exact byte expansion and a transparent token estimate, so the 10× target can be tested rather than marketed."
+
+    split id=how variant=source-result
+      eyebrow "A deliberately small authoring surface"
+      title "Describe intent. Keep ownership of the output."
+      text "AppBlocks compiles to ordinary static files that run without the compiler. You can deploy them anywhere, inspect every byte and add conventional code where a block is not enough."
+      list
+        item "Two-space indentation and readable nouns"
+        item "Quoted values, arrays, objects and source diagnostics"
+        item "Multiple routes, shared site chrome and per-page themes"
+        item "CSS-only motion where possible; a small runtime where necessary"
+      button "Read the compiler contract" href="/guide/" variant=outline
+      code-block label="showcase.appblocks" language=appblocks variant=blueprint
+        code "site \"Northstar\" theme=signal\n  header logo=Northstar sticky=true\n  page \"/\" title=\"Northstar\"\n    hero variant=editorial\n      title \"Plan the work. Ship the result.\" level=1\n      button \"Open workspace\" href=/app variant=solid\n    features variant=bento\n      feature icon=grid\n        title \"One coherent system\"\n        text \"Responsive and accessible by contract.\""
+
+    steps variant=rail
+      eyebrow "Compiler pipeline"
+      title "Compact input. Deterministic consequence."
+      step number="01"
+        heading "Parse"
+        text "Turn indentation, arguments and attributes into a source-located syntax tree."
+      step number="02"
+        heading "Validate"
+        text "Reject unknown contracts, unsafe URLs, duplicate routes and incomplete controls."
+      step number="03"
+        heading "Render"
+        text "Expand the validated graph into complete pages, styles, runtime behavior and manifests."
+
+    cta variant=ink
+      eyebrow "The repository is the proof"
+      title "Read 100 lines. Generate thousands."
+      text "Clone the project, edit one AppBlocks file and inspect the deployable output. No framework setup and no hosted model dependency."
+      button "Open the language guide" href="/guide/" variant=solid
+      button "Browse every block" href="/catalog/" variant=outline
+
+  page "/catalog/" title="Block catalog — AppBlocks Web" description="Search the complete machine-readable AppBlocks Web block catalog."
+    article
+      eyebrow "Machine-readable standard library"
+      title "Block catalog" level=1
+      text "Filter by block name, family, purpose or variant. The same contracts are available to coding agents through appblocks catalog --json and in every generated build." size=large
+      callout variant=note title="Authoring rule"
+        text "Choose the largest semantic block that matches the requested outcome. Use lower-level layout and content blocks only for real exceptions."
+    catalog id=block-catalog filter=true
+
+  page "/guide/" title="Language guide — AppBlocks Web" description="Learn the AppBlocks syntax, CLI and authoring rules."
+    article
+      eyebrow "Language version 1"
+      title "Build a site from one readable file." level=1
+      text "AppBlocks uses two-space indentation. The first token names the block, quoted values are positional content, and key=value pairs configure behavior." size=large
+      heading "1. Create a source file" id=create
+      code-block label="hello.appblocks" language=appblocks variant=blueprint
+        code "site \"Acme\" theme=blueprint\n  meta description=\"A concise product site.\"\n  page \"/\" title=\"Acme\"\n    hero variant=split\n      eyebrow \"A sharper workflow\"\n      title \"Move from request to result.\" level=1\n      text \"A complete responsive page from semantic blocks.\"\n      button \"Start now\" href=/signup variant=solid"
+      heading "2. Compile it" id=compile
+      code-block label="terminal" language=shell
+        code "npx app-blocks-web build hello.appblocks --out public"
+      text "The output contains route HTML, appblocks.css, appblocks.js, a block catalog and an exact build manifest. It runs from any static host."
+      heading "3. Let the compiler correct the model" id=validate
+      callout variant=warning title="Diagnostics are part of the language"
+        text "A misspelled block produces its line, column and nearest known contract. Unsafe javascript: URLs and unlabeled form fields fail before rendering."
+      code-block label="diagnostic" language=text variant=light
+        code "error: 8:5 Unknown block 'featre'\n  hint: Did you mean 'feature'?"
+      heading "Commands" id=commands
+      table label="CLI commands"
+        column key=command label="Command"
+        column key=purpose label="Purpose"
+        row
+          cell key=command "build"
+          cell key=purpose "Compile deployable static output"
+        row
+          cell key=command "dev"
+          cell key=purpose "Watch, rebuild and serve with live reload"
+        row
+          cell key=command "validate"
+          cell key=purpose "Check syntax, contracts and security boundaries"
+        row
+          cell key=command "catalog"
+          cell key=purpose "Inspect concise machine-readable block manifests"
+        row
+          cell key=command "tokens"
+          cell key=purpose "Measure source-to-output expansion"
+      heading "LLM authoring policy" id=llm
+      list ordered=true
+        item "Read LLMS.txt before generating AppBlocks."
+        item "Query only the relevant catalog family."
+        item "Prefer one compound block over many layout primitives."
+        item "Specify content and exceptions; accept semantic defaults."
+        item "Run validate, then build, then inspect the rendered result."
+      callout variant=tip title="Escape hatch"
+        text "AppBlocks is not intended to hide irreducibly custom behavior. Add ordinary source code after compilation or author a tested block rather than smuggling arbitrary JavaScript into the DSL."
+
+  page "/dashboard/" title="Generated dashboard proof — AppBlocks Web" description="A responsive interactive dashboard generated entirely from AppBlocks." layout=app
+    app-shell name="Compiler workspace"
+      sidebar logo="AppBlocks" label="Workspace navigation"
+        link "Overview" href="/dashboard/" icon=grid current=true
+        link "Block catalog" href="/catalog/" icon=layers
+        link "Language guide" href="/guide/" icon=code
+        link "Repository" href="https://github.com/spartandev49/app-blocks-web" icon=github
+      toolbar
+        eyebrow "Local demonstration"
+        title "Build control" level=1
+        text "A dense application surface generated without handwritten markup."
+        button "Empty fixture" variant=outline action="empty:build-table"
+        button "New build" variant=solid icon=plus dialog=new-build
+      metrics variant=grid
+        metric value="12.8×" label="Byte expansion" change="Showcase fixture" progress=82
+        metric value="81" label="Block contracts" change="Across seven families" progress=81
+        metric value="4" label="Generated routes" change="One source file" progress=50
+        metric value="0" label="Runtime packages" change="Browser-native" progress=100
+      grid variant=two
+        chart variant=bars label="Generated output by surface" unit=" KB"
+          bar label=Home value=84
+          bar label=Catalog value=62
+          bar label=Guide value=54
+          bar label=Dashboard value=91
+          bar label=Runtime value=38
+          bar label=Styles value=100 max=120
+        activity label="Compiler activity"
+          event time="08:42" icon=check
+            heading "Validation passed" level=3
+            text "Four routes and all block contracts resolved."
+          event time="08:43" icon=code
+            heading "Static output written" level=3
+            text "HTML, CSS, runtime and machine manifests generated."
+          event time="08:44" icon=shield
+            heading "Security checks complete" level=3
+            text "No raw HTML or executable URL schemes accepted."
+      table id=build-table label="Recent builds" filter=true sortable=true
+        column key=project label="Project"
+        column key=target label="Target"
+        column key=blocks label="Blocks" align=right
+        column key=ratio label="Expansion" align=right
+        column key=status label="Status"
+        row id=build-1
+          cell key=project "AppBlocks showcase"
+          cell key=target "Static web"
+          cell key=blocks "84"
+          cell key=ratio "12.8×"
+          cell key=status
+            badge "Passed" variant=success
+        row id=build-2
+          cell key=project "Counts budget dashboard"
+          cell key=target "Web application"
+          cell key=blocks "61"
+          cell key=ratio "11.4×"
+          cell key=status
+            badge "Passed" variant=success
+        row id=build-3
+          cell key=project "Northstar documentation and developer portal with an intentionally long localization fixture"
+          cell key=target "Documentation"
+          cell key=blocks "93"
+          cell key=ratio "14.2×"
+          cell key=status
+            badge "Review" variant=warning
+        row id=build-4
+          cell key=project "Studio portfolio"
+          cell key=target "Showcase"
+          cell key=blocks "37"
+          cell key=ratio "10.6×"
+          cell key=status
+            badge "Queued" variant=accent
+      dialog id=new-build title="Create a build" size=standard
+        text "This demonstration inserts a local table row. It does not contact a backend."
+        form id=create-build demo=true submit="Create build" target=build-table
+          field name=project label="Project name" placeholder="Example: Atlas portal" required=true autocomplete=off
+          field name=target label="Target surface" type=select required=true
+            option "Marketing website" value=website
+            option "Web application" value=webapp
+            option "Documentation" value=docs
+          field name=notes label="Build note" type=textarea placeholder="What should this build prove?" help="Stored only for this local demonstration."

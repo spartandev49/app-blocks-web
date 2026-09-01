@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/spartandev49/app-blocks-web/schemas/appblocks-ast.schema.json",
+  "title": "AppBlocks canonical syntax tree",
+  "type": "object",
+  "required": ["name", "args", "attrs", "children", "loc"],
+  "properties": {
+    "name": { "type": "string", "pattern": "^(document|[a-z][a-z0-9-]*)$" },
+    "args": { "type": "array" },
+    "attrs": { "type": "object", "additionalProperties": true },
+    "children": {
+      "type": "array",
+      "items": { "$ref": "#" }
+    },
+    "loc": {
+      "type": "object",
+      "required": ["line", "column", "indent"],
+      "properties": {
+        "line": { "type": "integer", "minimum": 0 },
+        "column": { "type": "integer", "minimum": 0 },
+        "indent": { "type": "integer", "minimum": -2 }
+      },
+      "additionalProperties": false
+    },
+    "filename": { "type": "string" }
+  },
+  "additionalProperties": false
+}
