@@ -1,0 +1,264 @@
+st "Kinetic Atlas" theme=signal lang=en r=r7314 p=p28 f=f173 s=s13 sf=u03 mo=m11 dn=d1 sd=z6 fx=cinematic
+  meta description="AppBlocks Web Motion Engine 3: rich scroll choreography and button microinteractions from compact, validated source." theme-color="#101826"
+
+  h042 logo="Kinetic Atlas" href="/" sticky=true theme-toggle=true fx="nav en:fall cx:children"
+    nav l="Primary navigation"
+      ln "Motion system" h="/#motion"
+      ln "Interactions" h="/#interactions"
+      ln "Workspace" h="/app/"
+      ln "Documentation" h="/docs/"
+    b203 "Open workspace" h="/app/" i=arrow hx=magnetic px=ripple
+
+  ft033 logo="Kinetic Atlas" note="A fictional interface proving AppBlocks Web Motion Engine 3."
+    nav l="Explore"
+      ln "Motion system" h="/#motion"
+      ln "Interaction gallery" h="/#interactions"
+      ln "Workspace" h="/app/"
+    nav l="Project"
+      ln "Documentation" h="/docs/"
+      ln "Source" h="https://github.com/spartandev49/app-blocks-web"
+    txt "1,000 motion recipes. 10 global profiles. Finite, accessible browser behavior." t=muted
+
+  pg "/" title="Kinetic Atlas — AppBlocks Motion Engine 3" description="See compact motion tokens expand into responsive scroll choreography and polished microinteractions."
+    hr017 v=split fx="hero en:clip-up sx:depth cx:hero du:cinematic ix:strong"
+      bdg "Motion Engine 3" v=accent i=spark
+      eye "Rich motion without animation boilerplate" i=bolt
+      ttl "Make the interface move with intent." lvl=1
+      txt "A model selects a global motion profile or one exact recipe. AppBlocks supplies coordinated entrances, scroll-linked transforms, child choreography, hover behavior, press feedback and reduced-motion fallbacks." sz=large
+      b203 "Explore interactions" h="/#interactions" i=arrow hx=magnetic px=ripple
+      b444 "Open motion workspace" h="/app/" hx=shine px=compress
+      vis v=orbit l="Scroll-linked motion system preview" fx="media en:scale-up sx:parallax-y hx:tilt du=slow"
+
+    sc006 id="motion" fx="section en:rise sx:reveal cx:cascade du=slow"
+      eye "A compact motion vocabulary"
+      ttl "One profile choreographs the whole page." lvl=2
+      txt "Use a named profile such as cinematic, polished, playful or application. Override only the blocks that need a specific entrance, scroll effect or interaction."
+      sts v=cards cx=wave
+        stat val="1,000" l="Motion recipes" detail="x000 through x999" fx="card en:pop hx:lift"
+        stat val="20" l="Entrance effects" detail="Fade, clip, spring, zoom and more" fx="card en:scale-up hx:spotlight"
+        stat val="14" l="Scroll effects" detail="Parallax, depth, tilt, clip and progress" fx="card en:rise hx:tilt"
+        stat val="24" l="Hover and press effects" detail="Finite, composable microinteractions" fx="card en:fade hx:glow"
+
+    sc013 fx="section en:clip-up sx:parallax-y cx:cascade ix=strong"
+      cols v=wide-left a=center
+        stk gap=lg
+          eye "Scroll choreography"
+          ttl "Viewport progress drives depth, not just a one-time fade." lvl=2
+          txt "A single request can add parallax, scale, rotation, opacity, blur, tilt, skew, clipping, progress or sticky behavior. The runtime batches updates through requestAnimationFrame."
+          lst cx=list
+            it "Intersection-based entrance and repeat controls"
+            it "Scroll-linked transforms with bounded intensity"
+            it "One animation-frame loop for active elements"
+            it "Automatic reduced-motion escape"
+          b731 "Inspect the compact contract" h="/docs/guide/" hx=arrow px=push
+        browser-frame fx="media en:scale-up sx:depth hx:spotlight du=cinematic"
+          tool
+            eye "Profile: cinematic"
+            hdn "Motion telemetry"
+            bdg "Runtime active" v=success
+          mets cx=grid
+            met val="60fps" l="Animation target" change="One scheduled scroll loop" progress=92
+            met val="0" l="Animation dependencies" change="Native browser APIs" progress=100
+            met val="100%" l="Reduced-motion path" change="Transform and loop escape" progress=100
+          ch v=bars l="Motion coverage" unit="%"
+            bar l="Entrance" val=100
+            bar l="Scroll" val=94
+            bar l="Hover" val=96
+            bar l="Press" val=90
+          status "Motion is generated, inspectable and finite." v=success
+
+    feature-grid fx="section en:rise sx:reveal cx:grid"
+      eye "Choreography, not random movement"
+      ttl "Blocks move according to their role." lvl=2
+      txt "Heroes receive staged entrances. Collections cascade or wave. Data surfaces stay fast and restrained. Calls to action can carry stronger emphasis."
+      feat i=layers sp=wide fx="card en:clip-left hx:lift"
+        hdn "Hero and section sequencing"
+        txt "Children receive deterministic order, delay and stagger variables without extra markup from the model."
+        bdg "Cascade, wave, radial" v=accent
+      feat i=grid fx="card en:scale-up hx:tilt"
+        hdn "Grid choreography"
+        txt "Cards can rise, scale or fan into place while preserving layout and document order."
+      feat i=trend fx="card en:rise hx=spotlight"
+        hdn "Scroll-linked depth"
+        txt "Elements can respond continuously as they cross the viewport rather than merely appearing once."
+      feat i=shield sp=wide fx="card en:fade hx=glow"
+        hdn "Accessibility remains mandatory"
+        txt "Reduced-motion preferences disable transforms, loops and choreography while keeping content immediately visible."
+
+    carousel cl="ab-surface-1" fx="collection en:clip-left sx:reveal cx:children du=slow"
+      it cl="ab-surface-2 ab-shape-7 ab-shadow-3" fx="card hx:magnetic px:compress"
+        bdg "Magnetic" v=accent
+        hdn "Pointer attraction"
+        txt "Fine pointers receive bounded magnetic movement. Touch input remains stable."
+        b203 "Try magnetic" act="toast:Magnetic interaction selected" hx=magnetic px=ripple
+      it cl="ab-surface-6 ab-shape-13 ab-shadow-6" fx="card hx:shine px:compress"
+        bdg "Shine" v=success
+        hdn "Directional highlight"
+        txt "A generated sheen crosses the surface without arbitrary authored CSS."
+        b444 "Try shine" act="toast:Shine interaction selected" hx=shine px=compress
+      it cl="ab-surface-8 ab-shape-20 ab-shadow-7" fx="card hx:tilt px:push"
+        bdg "Tilt" v=warning
+        hdn "Pointer depth"
+        txt "Perspective responds to pointer position and resets cleanly on pointer leave."
+        b731 "Try tilt" act="toast:Tilt interaction selected" hx=tilt px=push
+      it cl="ab-surface-3 ab-shape-3 ab-shadow-2" fx="card hx:spotlight px:depress"
+        bdg "Spotlight" v=danger
+        hdn "Local illumination"
+        txt "A radial highlight tracks the pointer while the surface remains semantic HTML."
+        b907 "Try spotlight" act="toast:Spotlight interaction selected" hx=spotlight px=depress
+
+    sc247 id="interactions" fx="section en:rise sx:reveal cx:cascade"
+      eye "Button motion recipes"
+      ttl "Hover and press are separate decisions." lvl=2
+      txt "A model can select one exact x000–x999 recipe or compose a hover and press treatment in a few characters."
+      gr v=four cx=wave
+        cd014 fx="card hx:lift"
+          hdn "Lift + compress"
+          txt "A restrained product-interface default."
+          b014 "Lift" act="toast:Lift button pressed" hx=lift px=compress
+        cd375 fx="card hx:glow"
+          hdn "Glow + ripple"
+          txt "A higher-emphasis conversion treatment."
+          b375 "Glow" act="toast:Glow button pressed" hx=glow px=ripple
+        cd728 fx="card hx:jelly"
+          hdn "Jelly + bounce"
+          txt "A playful interaction for informal products."
+          b728 "Play" act="toast:Playful button pressed" hx=jelly px=bounce
+        cd907 fx="card hx:border-draw"
+          hdn "Border + push"
+          txt "A graphic interaction with clear pressed feedback."
+          b907 "Outline" act="toast:Border button pressed" hx=border-draw px=push
+
+    sc511 fx="section en:clip-up sx:scale cx:cascade du=slow"
+      cols v=equal a=center
+        phone-frame fx="media en:slide-right sx:parallax-y hx:tilt"
+          stk
+            bdg "Touch-safe" v=success
+            hdn "Coarse pointers stay stable"
+            txt "Magnetic and tilt effects are disabled when hover or fine-pointer capability is unavailable."
+            b203 "Tap target" act="toast:Touch-safe interaction" px=ripple
+        stk gap=lg
+          eye "Motion constraints"
+          ttl "Expressive does not mean uncontrolled." lvl=2
+          txt "Every effect is allowlisted. Distances and intensity are bounded. Looping motion pauses on hover and disappears under reduced-motion preferences."
+          co v=tip title="Authoring rule"
+            txt "Choose one global profile. Override motion only when it improves hierarchy, feedback or spatial understanding."
+          b118 "Read motion documentation" h="/docs/" hx=arrow px=compress
+
+    call v=ink fx="cta en:pop sx:reveal cx:hero ix=strong"
+      eye "Use the motion engine directly"
+      ttl "Spend five tokens, not five hundred lines." lvl=2
+      txt "Select a profile, an exact motion recipe, or a small set of explicit effects. The generated output remains ordinary HTML, CSS and JavaScript."
+      b203 "Open the workspace" h="/app/" hx=magnetic px=ripple
+      b444 "View source" h="https://github.com/spartandev49/app-blocks-web" hx=shine px=compress
+
+  pg "/app/" title="Kinetic Workspace — Motion Engine 3" description="A functional application surface with restrained, role-aware motion." layout=app
+    dashboard-shell n="Kinetic workspace" fx=application
+      side logo="Kinetic" l="Workspace navigation"
+        ln "Overview" h="/app/" i=grid cur=true
+        ln "Motion queue" h="#queue" i=layers
+        ln "Experiments" h="#experiments" i=trend
+        ln "Documentation" h="/docs/" i=code
+      tool fx="nav en:fall cx:children"
+        eye "Motion profile: application"
+        ttl "Launch control" lvl=1
+        txt "Fast entrances, restrained data transitions and explicit feedback for operational work."
+        b203 "New sequence" i=plus dlg=sequence hx=magnetic px=ripple
+        b118 "Run preview" act="toast:Motion preview started" hx=shine px=compress
+      status "Local demonstration data only. No remote service or fabricated result is implied." v=info en=fade
+      metric-grid cx=grid
+        met val="18" l="Active sequences" change="Four need review" progress=72 en=rise hx=lift
+        met val="7" l="Scroll scenes" change="Two are pinned" t=warning progress=48 en=rise hx=lift
+        met val="96%" l="Reduced-motion coverage" change="Static fallback verified" t=success progress=96 en=rise hx=lift
+        met val="4ms" l="Frame budget" change="Example local metric" progress=82 en=rise hx=lift
+      tabs id="motion-tabs" l="Motion workspace views" fx=data
+        tab id="overview" l="Overview" sel=true
+          gr v=two cx=grid
+            fr013 fx="media en:scale-up hx:spotlight"
+              hdn "Viewport activity"
+              txt "The chart and surrounding frame enter once while the data surface stays readable."
+              ch v=bars l="Scene completion" unit="%"
+                bar l="Hero" val=100
+                bar l="Narrative" val=82
+                bar l="Gallery" val=74
+                bar l="Workspace" val=91
+            pnl v=raised fx="card en:rise hx:lift"
+              hdn "Recent motion events"
+              actv l="Workspace activity"
+                evt time="4 minutes ago" i=bolt
+                  hdn "Motion build completed"
+                  txt "The generated output passed strict validation."
+                evt time="18 minutes ago" i=shield
+                  hdn "Reduced-motion audit passed"
+                  txt "Animated content remains visible without transitions."
+                evt time="1 hour ago" i=trend
+                  hdn "Profile changed"
+                  txt "The workspace switched from polished to application motion."
+        tab id="queue" l="Motion queue"
+          kb l="Motion release workflow" fx="collection cx:grid"
+            lane n="Design" count=2
+              crd fx="card en:rise hx:tilt"
+                bdg "Choreography" v=accent
+                hdn "Hero sequence"
+                txt "Validate heading, supporting text and action timing."
+              crd fx="card en:rise hx:spotlight"
+                bdg "Scroll" v=warning
+                hdn "Depth scene"
+                txt "Confirm bounded scale and blur across viewport sizes."
+            lane n="Implementation" count=2
+              crd fx="card en:rise hx:shine"
+                bdg "Interaction" v=success
+                hdn "Button recipes"
+                txt "Exercise magnetic, ripple and keyboard paths."
+              crd fx="card en:rise hx:glow"
+                bdg "Accessibility" v=success
+                hdn "Motion preference"
+                txt "Verify static content visibility and focus behavior."
+            lane n="Release" count=1
+              crd fx="card en:pop hx:lift"
+                bdg "Ready" v=success
+                hdn "Publish v0.3"
+                txt "Ship after Node 20, 22 and 24 matrices pass."
+        tab id="experiments" l="Experiments"
+          tb006 id="motion-records" l="Motion experiments" empty="No experiments found" fx=data
+            col key=name l="Experiment"
+            col key=profile l="Profile"
+            col key=surface l="Surface"
+            col key=status l="Status" a=center
+            col key=score l="Score" a=right
+            row
+              cell key=name "Hero depth"
+              cell key=profile "Cinematic"
+              cell key=surface "Landing"
+              cell key=status
+                bdg "Verified" v=success
+              cell key=score "94%"
+            row
+              cell key=name "Magnetic CTA"
+              cell key=profile "Dynamic"
+              cell key=surface "Button"
+              cell key=status
+                bdg "Review" v=warning
+              cell key=score "82%"
+            row
+              cell key=name "Data cascade"
+              cell key=profile "Application"
+              cell key=surface "Table"
+              cell key=status
+                bdg "Verified" v=success
+              cell key=score "91%"
+      dlg id=sequence title="Create a motion sequence" fx=modal
+        txt "This local form demonstrates dialog entrance, focus return and validation without a remote service."
+        fm006 demo=true sub="Create sequence" ok="Motion sequence created" cx=cascade
+          fld n=name l="Sequence name" req=true ph="Homepage reveal"
+          fld n=profile l="Motion profile" typ=select
+            opt "Polished" val=polished
+            opt "Dynamic" val=dynamic
+            opt "Cinematic" val=cinematic
+            opt "Application" val=application
+          range n=intensity l="Intensity" min=0 max=100 val=60
+          toggle n=repeat l="Repeat while testing" checked=false
+      command-palette id=commands title="Motion command palette" fx=modal
+        txt "Press Control-K or Command-K anywhere in the workspace to open this surface."
+        frm demo=true sub="Run command" ok="Command queued"
+          search n=query l="Search commands" ph="Try profile, preview or reduce motion" req=true
