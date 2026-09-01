@@ -1,0 +1,49 @@
+st "Northstar" r=r7314 p=p12 f=f084 s=s07 sf=u03 mo=m11
+  pg "/" title="Northstar"
+    h042
+      ln "Northstar" h="/"
+      nav l="Primary"
+        ln "System" h="#system"
+        ln "Examples" h="#examples"
+      b118 "Sign in" h="/signin"
+    hr017
+      eye "Operations platform"
+      ttl "Operate without the busywork" lvl=1
+      txt "A complete responsive interface from a compact, deterministic source file."
+      b203 "Start now" h="/start"
+      b118 "See the system" h="#system"
+    sc247 id="system"
+      ttl "A broader interface vocabulary" lvl=2
+      txt "Generated choices normalize into the same canonical contracts used by generation 1."
+      gr v=three
+        cd014
+          ttl "Recipe-driven" lvl=3
+          txt "One short recipe selects a coordinated palette, type system, geometry, material, motion, density and elevation."
+        cd375
+          ttl "Model-efficient" lvl=3
+          txt "Compact aliases and generated identifiers keep authored output small without shrinking the generated interface."
+        cd728
+          ttl "Still validated" lvl=3
+          txt "The established parser, validator and renderer remain responsible for correctness and accessible HTML."
+    sc511 id="examples"
+      ttl "Exact choices on demand" lvl=2
+      txt "Models can resolve one block or recipe without loading thousands of copied definitions into context."
+      gr v=three
+        fr041
+          ttl "Browser frame" lvl=3
+          txt "Frames receive deterministic geometry, surface and elevation classes."
+        cd509
+          ttl "Application card" lvl=3
+          txt "Card IDs provide specific visual treatments without long style declarations."
+        cd907
+          ttl "Motion-safe" lvl=3
+          txt "Reveal, stagger and parallax respond to reduced-motion preferences."
+    call v=ink
+      ttl "Spend tokens on product logic" lvl=2
+      txt "Use recipes for interface expression, then focus the model on the behavior that makes the application valuable."
+      b907 "Create a project" h="/start"
+    ft033
+      txt "Northstar"
+      nav l="Footer"
+        ln "Privacy" h="/privacy"
+        ln "Terms" h="/terms"

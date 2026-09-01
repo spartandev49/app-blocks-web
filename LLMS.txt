@@ -1,16 +1,20 @@
-# AppBlocks Web — compact model instructions
+# AppBlocks Web 0.2 — model instructions
 
-AppBlocks Web is an indentation DSL that compiles to complete HTML/CSS/JS sites. Output AppBlocks, not HTML, JSX, CSS or JavaScript.
+AppBlocks Web compiles an indentation DSL into complete HTML, CSS and JavaScript. Output AppBlocks source, not HTML, JSX, CSS or JavaScript.
+
+Choose one authoring mode:
+- Canonical mode: use full block and attribute names from the catalog.
+- Compact mode: read LLMS-COMPACT.txt and use short aliases, one site recipe and exact virtual component IDs.
 
 SYNTAX
 - Use exactly two spaces per nesting level. Never use tabs.
-- A line begins with a lowercase block name.
+- A line begins with a lowercase block name or supported compact ID.
 - Quoted positional text follows the name: title "Know where every dollar goes"
 - Configuration uses key=value: hero variant=split reveal=true
 - Values may be quoted strings, bare strings, numbers, booleans, null, arrays or simple objects.
-- Comments begin with # only when # appears outside quotes after whitespace.
+- Comments begin with # only outside quotes after whitespace.
 
-REQUIRED SHAPE
+CANONICAL MINIMUM
 site "Project name" theme=blueprint lang=en base=/
   meta description="Concrete project description"
   header logo="Project name"
@@ -27,28 +31,20 @@ site "Project name" theme=blueprint lang=en base=/
 
 AUTHORING POLICY
 1. Choose the largest semantic block that matches the outcome.
-2. Use marketing blocks for persuasion, application blocks for repeated tasks, reading blocks for documentation and layout blocks only for real exceptions.
-3. Put one level=1 title on every page.
-4. Give every field a visible label and every image an alt attribute. Use alt="" only for decorative images.
-5. Use links for destinations and buttons for actions.
-6. Never use raw HTML, inline JavaScript or javascript:/data: URLs.
-7. Do not fabricate testimonials, metrics, logos, customers, certifications or backend results. Mark demonstration data clearly.
-8. Prefer shared header/footer under site instead of repeating them per page. Use page layout=app to omit shared chrome for application shells.
-9. Query contracts instead of guessing: appblocks catalog <name-or-family> --json
-10. Validate strictly and repair every diagnostic: appblocks validate file.appblocks --strict --json
-
-CORE FAMILIES
-- navigation: header nav link button breadcrumbs footer
-- marketing: hero visual proof logos stats features split steps testimonials pricing comparison faq cta newsletter gallery timeline
-- application: app-shell sidebar toolbar metrics chart table form tabs panel dialog kanban activity empty-state status catalog
-- reading: article prose callout code-block quote list
-- layout: section grid stack columns divider spacer
-- content: eyebrow title heading text badge tag icon image code item
+2. Put exactly one level=1 title on every page.
+3. Give every field a persistent label and every image alt text. Use alt="" only for decorative images.
+4. Use links for destinations and buttons for actions.
+5. Never emit raw HTML, inline JavaScript or javascript:/data: URLs.
+6. Do not fabricate testimonials, metrics, customers, certifications or backend results. Mark demonstration data clearly.
+7. Prefer shared header and footer blocks under site.
+8. Use page layout=app for application shells that should omit shared marketing chrome.
+9. Query contracts instead of guessing: appblocks catalog <name> --json or appblocks-v2 catalog <name> --json.
+10. Validate strictly and repair every diagnostic before claiming completion.
 
 WORKFLOW
-1. Plan routes and each route's job.
-2. Retrieve only relevant block manifests.
-3. Write one coherent .appblocks file.
+1. Plan routes and the job of each route.
+2. Retrieve only relevant contracts.
+3. Write one coherent source file.
 4. Run strict validation.
-5. Build and inspect the generated site at desktop and mobile widths.
-6. Change the AppBlocks source, not generated files, unless implementing a documented escape hatch.
+5. Build and inspect desktop and mobile output.
+6. Connect real backend operations through reviewed adapters; do not simulate production integrations.

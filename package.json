@@ -1,15 +1,20 @@
 {
   "name": "app-blocks-web",
-  "version": "0.1.0",
-  "description": "An LLM-native language and zero-dependency compiler for complete websites and web applications.",
+  "version": "0.2.0",
+  "description": "An LLM-native compact language and zero-dependency compiler for complete websites and web applications.",
   "type": "module",
   "types": "./src/index.d.ts",
   "bin": {
-    "appblocks": "./bin/appblocks.js"
+    "appblocks": "./bin/appblocks.js",
+    "appblocks-v2": "./bin/appblocks-v2.js"
   },
   "exports": {
-    ".": "./src/index.js",
-    "./catalog": "./src/catalog.js",
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js"
+    },
+    "./catalog": "./src/generation2.js",
+    "./generation2": "./src/generation2.js",
     "./runtime": "./src/runtime.js",
     "./styles": "./src/appblocks.css"
   },
@@ -20,6 +25,7 @@
     "docs",
     "examples",
     "LLMS.txt",
+    "LLMS-COMPACT.txt",
     "README.md",
     "CHANGELOG.md",
     "SECURITY.md",
@@ -27,17 +33,21 @@
   ],
   "scripts": {
     "build:showcase": "node ./bin/appblocks.js build ./examples/showcase.appblocks --out ./public",
+    "build:generation2": "node ./bin/appblocks-v2.js build ./examples/generation2-showcase.ab --out ./.appblocks-generation2 --strict",
     "check": "node ./scripts/check-syntax.js",
     "test": "node --test",
+    "test:generation2": "node --test ./test/generation2.test.js ./test/generation2-token-budget.test.js ./test/generation2-cli.test.js ./test/generation2-release.test.js",
     "benchmark": "node ./scripts/benchmark.js",
     "audit": "node ./scripts/static-audit.js",
-    "verify": "npm run check && npm test && npm run audit && npm run build:showcase && npm run benchmark",
+    "verify": "npm run check && npm test && npm run audit && npm run build:showcase && npm run build:generation2 && npm run benchmark",
     "prepack": "npm run verify"
   },
   "keywords": [
     "llm",
     "ai",
     "dsl",
+    "design-system",
+    "component-library",
     "website-builder",
     "static-site-generator",
     "code-generation"
