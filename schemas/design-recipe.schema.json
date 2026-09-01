@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/spartandev49/app-blocks-web/schemas/design-recipe.schema.json",
+  "title": "AppBlocks Web deterministic design recipe",
+  "type": "object",
+  "required": ["id", "index", "palette", "font", "system", "shape", "surface", "motion", "density", "shadow", "style", "layout", "signature"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^d\\d{4}$" },
+    "index": { "type": "integer", "minimum": 0, "maximum": 9999 },
+    "palette": {
+      "type": "object",
+      "required": ["name", "bg", "paper", "paper2", "ink", "muted", "line", "accent", "accent2", "soft", "mode"],
+      "properties": {
+        "name": { "type": "string" },
+        "bg": { "type": "string" },
+        "paper": { "type": "string" },
+        "paper2": { "type": "string" },
+        "ink": { "type": "string" },
+        "muted": { "type": "string" },
+        "line": { "type": "string" },
+        "accent": { "type": "string" },
+        "accent2": { "type": "string" },
+        "soft": { "type": "string" },
+        "mode": { "enum": ["light", "dark"] }
+      },
+      "additionalProperties": false
+    },
+    "font": {
+      "type": "object",
+      "required": ["name", "display", "body", "mono", "tracking"],
+      "properties": {
+        "name": { "type": "string" },
+        "display": { "type": "string" },
+        "body": { "type": "string" },
+        "mono": { "type": "string" },
+        "tracking": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "system": { "type": "string" },
+    "shape": { "type": "string" },
+    "surface": { "type": "string" },
+    "motion": { "type": "string" },
+    "density": { "type": "string" },
+    "shadow": { "type": "string" },
+    "style": { "type": "integer", "minimum": 0, "maximum": 11 },
+    "layout": { "type": "integer", "minimum": 0, "maximum": 9 },
+    "signature": { "type": "string" }
+  },
+  "additionalProperties": false
+}
