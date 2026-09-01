@@ -11,8 +11,16 @@ import {
   compactCatalog,
   designManifest
 } from "./generation2.js";
-import { normalizeCompactSource } from "./normalizer-v2.js";
+import { normalizeSource } from "./normalizer-v3.js";
 import { ADVANCED_CSS, ADVANCED_RUNTIME, buildDesignCss } from "./generation2-assets.js";
+import {
+  MOTION3_CSS,
+  MOTION3_RUNTIME,
+  MOTION_ENGINE_VERSION,
+  MOTION_RECIPE_COUNT,
+  buildMotionProfileCss,
+  motionManifest
+} from "./motion3.js";
 
 const isRecord = (value) => Boolean(value) && typeof value === "object" && !Array.isArray(value);
 const estimateTokens = (text) => Math.ceil(String(text).length / 4);
@@ -30,7 +38,7 @@ function escapeAttribute(value) {
   return String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 }
 
-function decorateHtml(html, design, features) {
+function decorateHtml(html, design, features, motion) {
   const enabledFeatures = Object.entries(features).filter(([, enabled]) => enabled).map(([name]) => name).join(",");
   const attributes = [
     'data-ab-engine="2"',
@@ -42,6 +50,13 @@ function decorateHtml(html, design, features) {
     for (const key of ["recipe", "palette", "font", "shape", "surface", "motion", "density", "shadow"]) {
       attributes.push(`data-ab-${key}="${escapeAttribute(design[key])}"`);
     }
+  }
+  if (motion?.used) {
+    attributes.push(
+      `data-ab-motion-engine="${MOTION_ENGINE_VERSION}"`,
+      `data-ab-motion-recipes="${MOTION_RECIPE_COUNT}"`,
+      `data-ab-motion-profile="${escapeAttribute(motion.profile)}"`
+    );
   }
   return String(html).replace(/<html\b([^>]*)>/i, (_match, existing) => `<html${existing} ${attributes.join(" ")}>`);
 }
@@ -149,42 +164,59 @@ function reconcileManifest(files, manifest, authoredSource) {
 
 export async function compile(source, options = {}) {
   const authoredSource = String(source ?? "");
-  const normalized = normalizeCompactSource(authoredSource);
+  const normalized = normalizeSource(authoredSource);
 
-  // Canonical generation-1 sources take the exact legacy path. This preserves
-  // file contents, diagnostics, snapshots, catalog output and manifest shape.
+  // Canonical generation-1 sources without compact or motion tokens retain
+  // their exact legacy compilation path and output.
   if (!normalized.used) return compileLegacy(authoredSource, options);
 
   const legacy = await compileLegacy(normalized.source, options);
   const files = new Map(legacy.files);
   const design = designManifest(normalized.design, normalized.features);
+  const motion = normalized.motion;
   const cssName = findFile(files, (name) => name.endsWith("appblocks.css"), "appblocks.css");
   const scriptName = findFile(files, (name) => name.endsWith("appblocks.js"), "appblocks.js");
 
-  appendAsset(files, cssName, `${ADVANCED_CSS}\n${buildDesignCss(normalized.design)}`);
-  appendAsset(files, scriptName, ADVANCED_RUNTIME);
+  if (normalized.compactUsed) {
+    appendAsset(files, cssName, `${ADVANCED_CSS}\n${buildDesignCss(normalized.design)}`);
+    appendAsset(files, scriptName, ADVANCED_RUNTIME);
+  }
+  if (motion.used) {
+    appendAsset(files, cssName, `${MOTION3_CSS}\n${buildMotionProfileCss(motion)}`);
+    appendAsset(files, scriptName, MOTION3_RUNTIME);
+    files.set("appblocks.motion.json", `${JSON.stringify(motionManifest(motion), null, 2)}\n`);
+  }
+
   files.set("appblocks.extended-catalog.json", `${JSON.stringify(compactCatalog({ includeMacros: true }), null, 2)}\n`);
   files.set("appblocks.design.json", `${JSON.stringify({
     generation: 2,
-    compactSyntax: true,
+    compactSyntax: normalized.compactUsed,
     design,
     axes: DESIGN_AXES,
     virtualBlocks: VIRTUAL_BLOCK_COUNT,
-    semanticMacros: SEMANTIC_MACRO_COUNT
+    semanticMacros: SEMANTIC_MACRO_COUNT,
+    motionEngine: motion.used ? {
+      version: MOTION_ENGINE_VERSION,
+      recipes: MOTION_RECIPE_COUNT,
+      profile: motion.profile
+    } : null
   }, null, 2)}\n`);
 
   for (const [name, contents] of [...files.entries()]) {
-    if (name.endsWith(".html")) files.set(name, decorateHtml(contents, design, normalized.features));
+    if (name.endsWith(".html")) files.set(name, decorateHtml(contents, design, normalized.features, motion));
   }
 
   const manifest = structuredClone(legacy.manifest);
   reconcileManifest(files, manifest, authoredSource);
   const capabilities = {
     generation: 2,
-    compactSyntax: true,
+    compactSyntax: normalized.compactUsed,
     recipes: DESIGN_AXES.recipes,
     virtualBlocks: VIRTUAL_BLOCK_COUNT,
     semanticMacros: SEMANTIC_MACRO_COUNT,
+    motionEngine: motion.used ? MOTION_ENGINE_VERSION : 0,
+    motionRecipes: motion.used ? MOTION_RECIPE_COUNT : 0,
+    motionProfile: motion.used ? motion.profile : null,
     features: { ...normalized.features }
   };
 
@@ -194,6 +226,7 @@ export async function compile(source, options = {}) {
     manifest,
     normalizedSource: normalized.source,
     design,
+    motion,
     capabilities
   };
 }
