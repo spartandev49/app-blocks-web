@@ -1,0 +1,44 @@
+name: Generation 2
+
+on:
+  pull_request:
+  push:
+    branches:
+      - feature/maximal-combinatorial-library-v4
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - name: Syntax
+        run: |
+          node --check src/generation2.js
+          node --check src/normalizer-v2.js
+          node --check src/generation2-assets.js
+          node --check src/compiler-v2.js
+          node --check src/compiler-v3.js
+          node --check src/parser-v2.js
+      - name: Generation 2 tests
+        run: node --test test/generation2.test.js test/generation2-token-budget.test.js
+      - name: Existing test suite
+        run: npm test
+      - name: Static audit when available
+        run: npm run --if-present audit:static
+      - name: Benchmark when available
+        run: npm run --if-present benchmark
+      - name: Package inspection
+        run: npm pack --dry-run
