@@ -16,6 +16,13 @@ st "Northstar" r=r7314
 
 The compact source above normalizes into canonical AppBlocks, passes the same strict validator, and compiles to ordinary browser files. The generated site runs without AppBlocks and without a frontend framework.
 
+## Live proof
+
+- [Generation 2 website and application showcase](https://spartandev49.github.io/app-blocks-web/)
+- [Canonical documentation showcase](https://spartandev49.github.io/app-blocks-web/docs/)
+
+The public Generation 2 site is built from [`examples/generation2-showcase.ab`](examples/generation2-showcase.ab). It includes coordinated typography and color, generated shape and material treatments, reveal/stagger/parallax motion, a controlled carousel, a multi-view application workspace, sortable and filterable records, validated forms, dialogs, a command palette and a Kanban workflow.
+
 ## Addressable design system
 
 AppBlocks generates choices algorithmically instead of storing thousands of copied components:
@@ -68,6 +75,7 @@ When installed as a package, both command paths are available:
 ```bash
 appblocks build product.appblocks --out public --strict
 appblocks-v2 build product.ab --out public --strict
+appblocks-v2 build product.ab --out public --base /product/ --strict
 appblocks-v2 normalize product.ab
 appblocks-v2 recipe r7314
 appblocks-v2 virtual b203
@@ -129,7 +137,7 @@ console.log(resolveVirtualBlock("hr017"));
 console.log(result.manifest.output.expansionRatio);
 ```
 
-A generation-2 build adds:
+A Generation 2 build adds:
 
 ```text
 public/
@@ -149,7 +157,7 @@ public/
 npm run verify
 ```
 
-The release gate checks all JavaScript syntax, the complete legacy and generation-2 test suites, every bundled example, generated landmarks and heading structure, duplicate IDs, skip links, executable URLs, inline handlers, dynamic code evaluation, unsafe DOM insertion, reduced-motion behavior, focus treatment, benchmarks and package contents across Node.js 20, 22 and 24 in GitHub Actions.
+The release gate checks all JavaScript syntax, the complete legacy and Generation 2 test suites, every bundled example, generated landmarks and heading structure, duplicate IDs, skip links, executable URLs, inline handlers, dynamic code evaluation, unsafe DOM insertion, reduced-motion behavior, focus treatment, benchmarks and package contents across Node.js 20, 22 and 24 in GitHub Actions.
 
 ## Documentation
 
