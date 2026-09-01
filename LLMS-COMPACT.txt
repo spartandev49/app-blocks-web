@@ -1,0 +1,66 @@
+# AppBlocks Web compact contract
+
+GOAL: emit the smallest valid .ab source that still contains real product content and behavior requirements. The compiler supplies tested layout, design, accessibility and browser interaction.
+
+START
+st "Project" r=r0000
+  pg "/" title="Project"
+    hr000
+      ttl "Concrete promise" lvl=1
+      txt "Specific useful explanation."
+      b000 "Primary action" h="/start"
+
+ADDRESS SPACE
+- Site designs: r0000-r9999.
+- Buttons: b000-b999. Headers: h000-h999. Footers: ft000-ft999.
+- Heroes: hr000-hr999. Frames: fr000-fr999. Cards: cd000-cd999.
+- Sections: sc000-sc999. Forms: fm000-fm999. Tables: tb000-tb999. Navigation: nv000-nv999.
+
+COMMON BLOCKS
+st=site pg=page mn=main sec=section gr=grid stk=stack cols=columns
+hd=header nav=nav ln=link bt=button ftr=footer eye=eyebrow ttl=title
+txt=text bdg=badge img=image cb=code-block lst=list it=item vis=visual
+pf=proof sts=stats feats=features feat=feature spl=split steps=steps
+price=pricing tier=tier fq=faq qu=question call=cta art=article co=callout
+app=app-shell side=sidebar tool=toolbar mets=metrics met=metric ch=chart
+tbl=table col=column row=row cell=cell frm=form fld=field tabs=tabs
+tab=tab pnl=panel dlg=dialog kb=kanban lane=lane crd=card status=status
+
+COMMON ATTRIBUTES
+v=variant h=href i=icon cl=class l=label t=tone rv=reveal sp=span
+w=width a=align n=name val=value req=required ph=placeholder
+sel=selected cur=current stk=sticky dlg=dialog act=action typ=type
+dis=disabled ld=loading op=open trg=target lvl=level sz=size
+sort=sortable filt=filter demo=demo sub=submit ok=success
+
+SITE DESIGN
+Use one recipe: st "Project" r=r7314
+Overrides: p=p12 f=f084 s=s07 sf=u03 mo=m11 dn=d2 sd=z4
+Custom safe values: primary="#5b5cf0" background="#f8fafc" foreground="#111827"
+Custom loaded/local fonts: font-display="Avenir, system-ui" font-body="Inter, system-ui"
+
+SEMANTIC MACROS
+browser-frame phone-frame laptop-frame glass-card gradient-card hover-card
+carousel masonry-grid marquee ticker drawer sheet modal command-palette
+search range file-drop toggle segmented stepper pagination data-grid
+calendar-grid inbox dashboard-shell kanban-board product-card product-grid
+checkout-form feature-grid pricing-grid comparison-table hero-split
+hero-centered hero-console terminal-window code-editor docs-layout
+
+RULES
+1. Exactly two spaces per nesting level. No tabs.
+2. Exactly one ttl/title with lvl=1 on each page.
+3. Every fld/field needs l/label. Every image needs alt.
+4. Use ln/link for destinations and bt/button for local actions.
+5. Never output raw HTML, CSS, JavaScript or executable URL schemes.
+6. Write real labels and content. Do not invent customers, metrics or integrations.
+7. A recipe selects visual defaults; add product-specific structure and content.
+8. Use the largest semantic block that matches the requested result.
+9. Backend operations require real adapters, authorization and server validation.
+10. Run: appblocks-v2 check file.ab --strict
+
+QUERY ONLY WHAT IS NEEDED
+appblocks-v2 recipe r7314
+appblocks-v2 virtual b203
+appblocks-v2 catalog carousel --json
+appblocks-v2 normalize file.ab

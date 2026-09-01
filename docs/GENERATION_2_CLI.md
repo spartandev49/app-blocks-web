@@ -1,36 +1,38 @@
 # Generation 2 CLI
 
-The generation-2 branch includes a separate command-line entry point so the compact compiler can be exercised without changing the legacy package binary prematurely.
+Version 0.2 installs `appblocks-v2` beside the backward-compatible `appblocks` command.
 
 ```bash
-node bin/appblocks-v2.js --help
+appblocks-v2 --help
 ```
 
-## Build a compact source file
+When running directly from a clone, replace `appblocks-v2` with `node bin/appblocks-v2.js`.
+
+## Build compact source
 
 ```bash
-node bin/appblocks-v2.js build examples/generation2-showcase.ab --out dist --strict
+appblocks-v2 build examples/generation2-showcase.ab --out dist --strict
 ```
 
 ## Validate without writing files
 
 ```bash
-node bin/appblocks-v2.js check examples/generation2-showcase.ab --strict
+appblocks-v2 check examples/generation2-showcase.ab --strict
 ```
 
 ## Inspect canonical expansion
 
 ```bash
-node bin/appblocks-v2.js normalize examples/generation2-showcase.ab
+appblocks-v2 normalize examples/generation2-showcase.ab
 ```
 
 ## Query the address space
 
 ```bash
-node bin/appblocks-v2.js recipe r7314
-node bin/appblocks-v2.js virtual b203
-node bin/appblocks-v2.js catalog carousel --json
-node bin/appblocks-v2.js catalog --extended --json
+appblocks-v2 recipe r7314
+appblocks-v2 virtual b203
+appblocks-v2 catalog carousel --json
+appblocks-v2 catalog --extended --json
 ```
 
-The legacy CLI remains untouched on this branch. After the generation-2 compatibility matrix is green, the new command path can replace or be aliased from the package binary in a separate, easy-to-review change.
+The original `appblocks` command retains build, dev, validate, inspect, catalog and token commands. Both commands use the same conditional compiler: canonical source follows the generation-1 path, while aliases, recipes, semantic macros and virtual IDs activate generation 2.

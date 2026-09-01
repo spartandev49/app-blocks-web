@@ -1,6 +1,19 @@
 # Changelog
 
-All notable changes are documented here. The project follows semantic versioning once public releases begin.
+All notable changes are documented here. The project follows semantic versioning.
+
+## 0.2.0 — 2026-09-01
+
+- Added 10,000 deterministic coordinated site recipes.
+- Added 10,000 virtual component IDs across buttons, headers, footers, heroes, frames, cards, sections, forms, tables and navigation.
+- Added 64 palettes, 320 local/system font pairings, 24 shapes, 12 surfaces, 16 motion systems, eight densities and eight shadow systems.
+- Added compact block and attribute aliases for lower model-output cost.
+- Added semantic macros for frames, cards, carousels, overlays, controls, feedback, application shells, commerce and marketing patterns.
+- Added dependency-free reveal, stagger, parallax, carousel, command-palette, file-drop and counter behavior.
+- Added generation-2 design and extended-catalog build artifacts.
+- Preserved byte-for-byte generation-1 compilation for canonical source.
+- Added the `appblocks-v2` CLI, complete TypeScript declarations, compact model instructions and generation-2 documentation.
+- Expanded release verification across Node.js 20, 22 and 24, including generated generation-2 output.
 
 ## 0.1.0 — 2026-09-01
 
