@@ -1,0 +1,213 @@
+name: Final compatibility verification
+
+on:
+  push:
+    branches:
+      - feature/combinatorial-design-engine
+    paths:
+      - .github/workflows/ready-combinatorial-v2-final.yml
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: install-combinatorial-engine
+  cancel-in-progress: true
+
+jobs:
+  verify-release-and-ready:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Check out feature branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up integration runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Assemble final release state
+        shell: bash
+        run: |
+          if [[ -f src/v2-runtime-browser.js ]]; then cp src/v2-runtime-browser.js src/v2-runtime.js; fi
+          if [[ ! -f src/index-legacy.js ]]; then
+            test -f scripts/install-v2-overlay.mjs
+            node ./scripts/install-v2-overlay.mjs
+          fi
+          if [[ -f scripts/finalize-v2.mjs ]]; then node ./scripts/finalize-v2.mjs; fi
+          node ./scripts/release-hardening.mjs
+          node ./scripts/release-hardening-2.mjs
+          cp src/v2-index-release.js src/index.js
+
+      - name: Refresh package lock
+        shell: bash
+        run: |
+          if [[ -f package-lock.json ]]; then npm install --package-lock-only --ignore-scripts; fi
+
+      - name: Parse all repository JavaScript
+        shell: bash
+        run: |
+          find src scripts bin test -type f \( -name '*.js' -o -name '*.mjs' \) -print0 | xargs -0 -n1 node --check
+
+      - name: Verify design and compatibility invariants
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import {
+            CATALOG, DESIGN_COUNTS, FONT_PRESETS, PALETTES, RECIPE_COUNT,
+            VIRTUAL_BLOCK_COUNT, VISUAL_SYSTEMS, compile, getBlock, normalizeSource,
+            resolveRecipe
+          } from "./src/index.js";
+          if (RECIPE_COUNT !== 10000 || DESIGN_COUNTS.recipes !== 10000) throw new Error("Recipe count regression");
+          if (VIRTUAL_BLOCK_COUNT !== 20000) throw new Error(`Virtual count regression: ${VIRTUAL_BLOCK_COUNT}`);
+          if (PALETTES.length !== 32 || FONT_PRESETS.length !== 30 || VISUAL_SYSTEMS.length !== 18) throw new Error("Design axis regression");
+          if (CATALOG.length < 150) throw new Error(`Catalog regression: ${CATALOG.length}`);
+          if (getBlock("h731")?.canonical !== "hero") throw new Error("Virtual lookup regression");
+          const signatures = new Set(Array.from({ length: RECIPE_COUNT }, (_, index) => resolveRecipe(index).signature));
+          if (signatures.size !== RECIPE_COUNT) throw new Error(`Recipe collision: ${signatures.size}/${RECIPE_COUNT}`);
+          const compact = 'st "Smoke" r=d0421\n  pg "/" title="Smoke"\n    h017\n      ti "Smoke test" level=1\n      b203 "Continue" hr=/';
+          const normalized = normalizeSource(compact);
+          if (!normalized.includes("abx-virtual-h017") || !normalized.includes("abx-virtual-b203")) throw new Error("Compact normalization regression");
+          const result = await compile(compact, { strict: true });
+          if (!result.files.get("index.html")?.includes("ab-recipe-d0421")) throw new Error("Recipe render regression");
+          console.log(JSON.stringify({ catalog: CATALOG.length, recipes: RECIPE_COUNT, virtualBlocks: VIRTUAL_BLOCK_COUNT }, null, 2));
+          NODE
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run complete suite on Node.js 20
+        run: node --test
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run complete suite on Node.js 22
+        run: node --test
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Run complete suite on Node.js 24
+        run: node --test
+
+      - name: Run generated-output security and accessibility audit
+        run: node ./scripts/static-audit.js
+
+      - name: Strictly build and parse-check every shipped example
+        shell: bash
+        run: |
+          for source in examples/showcase.appblocks examples/saas.appblocks examples/portfolio.appblocks examples/admin.appblocks examples/combinatorial.appblocks; do
+            output=".tmp-$(basename "$source" .appblocks)"
+            node ./bin/appblocks.js build "$source" --out "$output" --strict
+            node --check "$output/appblocks.js"
+          done
+
+      - name: Run established expansion regression
+        run: node ./scripts/benchmark.js --min-ratio 10
+
+      - name: Generate exact version 0.2 benchmark artifacts
+        run: node ./scripts/write-v2-benchmark.mjs
+
+      - name: Remove migration-only scaffolding
+        shell: bash
+        run: |
+          rm -f \
+            .github/workflows/install-combinatorial-engine.yml \
+            .github/workflows/repair-and-integrate-v2.yml \
+            .github/workflows/finalize-v2.yml \
+            .github/workflows/verify-and-open-v2-pr.yml \
+            .github/workflows/ready-combinatorial-v2.yml \
+            .github/workflows/ready-combinatorial-v2-final.yml \
+            scripts/install-v2-overlay.mjs \
+            scripts/finalize-v2.mjs \
+            scripts/release-hardening.mjs \
+            scripts/release-hardening-2.mjs \
+            src/v2-index.js \
+            src/v2-index-final.js \
+            src/v2-index-release.js \
+            src/v2-runtime-browser.js
+          rm -rf .tmp-showcase .tmp-saas .tmp-portfolio .tmp-admin .tmp-combinatorial
+
+      - name: Parse final shipped JavaScript
+        shell: bash
+        run: |
+          find src scripts bin test -type f \( -name '*.js' -o -name '*.mjs' \) -print0 | xargs -0 -n1 node --check
+
+      - name: Re-run final suite after cleanup
+        run: node --test
+
+      - name: Inspect release package
+        run: npm pack --dry-run
+
+      - name: Audit production dependency tree
+        shell: bash
+        run: |
+          if [[ -f package-lock.json ]]; then npm audit --omit=dev; else echo "No lockfile; no install-time dependency tree."; fi
+
+      - name: Check patch integrity
+        run: git diff --check
+
+      - name: Commit verified release state
+        shell: bash
+        run: |
+          git config user.name "app-blocks automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Integrate combinatorial design engine"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Create or update pull request and mark ready
+        shell: bash
+        run: |
+          BODY_FILE="$(mktemp)"
+          cat > "$BODY_FILE" <<'EOF'
+          ## What changed
+
+          - 10,000 deterministic complete-site design recipes
+          - 20,000 virtual semantic block IDs across 20 compact families
+          - compact block and attribute aliases for lower model output
+          - 32 palettes, 30 font pairings, 18 visual systems and combinatorial layout/style axes
+          - advanced responsive frames, carousels, drawers, dropdowns, command palettes, ranges, file drops, switches, counters and application patterns
+          - backwards-compatible wrapper around the original parser, validator and renderer
+          - recipe-scoped CSS plus an allowlisted interaction runtime
+          - compact model contract, two-route showcase, schemas, tests and reproducible benchmark artifacts
+
+          ## Verified before ready-for-review
+
+          - complete test suite on Node.js 20, 22 and 24
+          - all 10,000 recipe signatures checked for collisions
+          - every shipped example strictly compiled and its generated JavaScript parse-checked
+          - generated-output security/accessibility audit
+          - established expansion regression benchmark
+          - exact v2 benchmark generation
+          - package dry run and production dependency audit
+          - final test run after migration scaffolding removal
+
+          Exact measurements are committed in `docs/BENCHMARK_V2.md` and `benchmarks/v2.json`. Byte counts are exact; token figures are labelled estimates.
+          EOF
+
+          PR_JSON="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$GITHUB_REF_NAME" --base main --state open --json number,url,isDraft --jq '.[0]')"
+          if [[ -z "$PR_JSON" || "$PR_JSON" == "null" ]]; then
+            PR_URL="$(gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$GITHUB_REF_NAME" --title "Add combinatorial design engine and compact authoring" --body-file "$BODY_FILE")"
+          else
+            PR_URL="$(node -e 'const p=JSON.parse(process.argv[1]); process.stdout.write(p.url)' "$PR_JSON")"
+            gh pr edit "$PR_URL" --title "Add combinatorial design engine and compact authoring" --body-file "$BODY_FILE"
+            IS_DRAFT="$(node -e 'const p=JSON.parse(process.argv[1]); process.stdout.write(String(p.isDraft))' "$PR_JSON")"
+            if [[ "$IS_DRAFT" == "true" ]]; then gh pr ready "$PR_URL"; fi
+          fi
+          echo "Verified pull request: $PR_URL" >> "$GITHUB_STEP_SUMMARY"
