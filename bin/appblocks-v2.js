@@ -17,18 +17,19 @@ function usage() {
   return `AppBlocks Web generation 2
 
 Usage:
-  node bin/appblocks-v2.js build <input.ab> [--out <directory>] [--strict]
-  node bin/appblocks-v2.js check <input.ab> [--strict]
-  node bin/appblocks-v2.js normalize <input.ab>
-  node bin/appblocks-v2.js catalog [name] [--extended] [--json]
-  node bin/appblocks-v2.js recipe <r0000-r9999>
-  node bin/appblocks-v2.js virtual <block-id>
+  appblocks-v2 build <input.ab> [--out <directory>] [--base <path>] [--strict]
+  appblocks-v2 check <input.ab> [--strict]
+  appblocks-v2 normalize <input.ab>
+  appblocks-v2 catalog [name] [--extended] [--json]
+  appblocks-v2 recipe <r0000-r9999>
+  appblocks-v2 virtual <block-id>
 
 Examples:
-  node bin/appblocks-v2.js build examples/generation2-showcase.ab --out dist --strict
-  node bin/appblocks-v2.js catalog carousel --json
-  node bin/appblocks-v2.js recipe r7314
-  node bin/appblocks-v2.js virtual b203
+  appblocks-v2 build examples/generation2-showcase.ab --out dist --strict
+  appblocks-v2 build examples/generation2-showcase.ab --out dist --base /product/ --strict
+  appblocks-v2 catalog carousel --json
+  appblocks-v2 recipe r7314
+  appblocks-v2 virtual b203
 `;
 }
 
@@ -41,9 +42,10 @@ function optionValue(args, name, fallback = undefined) {
 
 function positional(args) {
   const values = [];
+  const valuedOptions = new Set(["--out", "--base"]);
   for (let index = 0; index < args.length; index += 1) {
     if (args[index].startsWith("--")) {
-      if (["--out"].includes(args[index])) index += 1;
+      if (valuedOptions.has(args[index])) index += 1;
       continue;
     }
     values.push(args[index]);
@@ -67,6 +69,7 @@ async function build(args) {
   const outDir = optionValue(args, "--out", "dist");
   const result = await buildFile(resolve(input), {
     outDir: resolve(outDir),
+    base: optionValue(args, "--base"),
     strict: args.includes("--strict")
   });
   printDiagnostics(result.diagnostics);
