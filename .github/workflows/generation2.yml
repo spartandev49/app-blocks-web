@@ -38,8 +38,23 @@ jobs:
           node --check src/parser-v2.js
       - name: Generation 2 tests
         run: node --test test/generation2.test.js test/generation2-token-budget.test.js test/generation2-cli.test.js
+      - name: Release tests
+        run: |
+          set -o pipefail
+          node --test test/generation2-release.test.js 2>&1 | tee release-tests-node-${{ matrix.node }}.log
       - name: Existing test suite
-        run: npm test
+        run: |
+          set -o pipefail
+          npm test 2>&1 | tee full-tests-node-${{ matrix.node }}.log
+      - name: Upload diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: generation2-test-logs-node-${{ matrix.node }}
+          path: |
+            release-tests-node-${{ matrix.node }}.log
+            full-tests-node-${{ matrix.node }}.log
+          if-no-files-found: ignore
       - name: Generated-output audit
         run: npm run --if-present audit
       - name: Benchmark
