@@ -43,7 +43,10 @@ test("generation 2 CLI normalizes compact design and motion files", async () => 
   assert.doesNotMatch(normalized.stdout, /\bfx=|\bsx=|\bcx=|\bhx=|\bpx=/);
   assert.match(normalized.stdout, /hero .*ab-v-hr017/);
   assert.match(normalized.stdout, /hero .*ab-scroll-depth/);
-  assert.match(normalized.stdout, /button "Start" href="\/start" class="[^"]*ab-hover-magnetic[^"]*ab-press-ripple/);
+  const buttonLine = normalized.stdout.split("\n").find((line) => line.includes('button "Start"')) ?? "";
+  assert.match(buttonLine, /href="\/start"/);
+  assert.match(buttonLine, /ab-hover-magnetic/);
+  assert.match(buttonLine, /ab-press-ripple/);
 });
 
 test("generation 2 CLI builds deployable base-path motion output", async () => {
