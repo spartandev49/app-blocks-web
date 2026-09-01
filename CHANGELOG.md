@@ -2,6 +2,14 @@
 
 All notable changes are documented here. The project follows semantic versioning.
 
+## 0.2.1 — 2026-09-01
+
+- Replaced the public GitHub Pages landing site with a full Generation 2 website and functional application showcase.
+- Added a multi-page compact-source example covering distinctive typography, palettes, shapes, materials, motion, carousels, frames, charts, forms, tabs, tables, dialogs, command palettes and Kanban workflows.
+- Preserved the original documentation showcase under the `/docs/` Pages path.
+- Added `--base` support to `appblocks-v2 build` for subpath and static-host deployments.
+- Added release tests for Generation 2 base-path output.
+
 ## 0.2.0 — 2026-09-01
 
 - Added 10,000 deterministic coordinated site recipes.
