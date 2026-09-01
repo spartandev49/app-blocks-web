@@ -1,0 +1,73 @@
+APPBLOCKS WEB 0.2 — COMPACT MODEL CONTRACT
+
+Output AppBlocks, not HTML, JSX, CSS or JavaScript. Two spaces per nesting level. Use quoted text and key=value attributes.
+
+MINIMUM PROJECT
+st "Product" r=d0000 lang=en base=/
+  m description="Specific project description"
+  hd000 logo=Product sticky=true
+    nv
+      l "Product" hr="/#product"
+    b000 "Open app" hr=/app/
+  ft000 logo=Product
+  pg "/" title="Specific title"
+    h000
+      ey "Specific context"
+      ti "Concrete promise" level=1
+      tx "Useful explanation"
+      b000 "Primary action" hr=/app/
+
+DESIGN
+- Choose exactly one site recipe: r=d0000 through r=d9999.
+- Recipes coordinate palette, font pairing, visual system, shape, surface, motion, density and shadow.
+- Use virtual IDs for differentiated blocks: hNNN hero, bNNN button, hdNNN header, ftNNN footer, frNNN frame, sNNN section, cNNN card, gNNN grid, fNNN feature, pNNN panel, nvNNN nav, fmNNN form, tbNNN table, dgNNN dialog, ctNNN CTA, prNNN pricing, tsNNN testimonials, chNNN chart, mtNNN metric, shNNN app shell. NNN is 000–999.
+- Virtual IDs keep canonical semantics. Do not choose IDs by pretending they contain content; they select deterministic visual axes.
+
+CORE ALIASES
+st=site pg=page m=meta hd=header nv=nav l=link b/button=button ft=footer h=hero ey=eyebrow ti=title tx=text im=image ic=icon bd=badge sc=section gr=grid sk=stack co=columns pn=panel cd=card sp=split fs=features f=feature ss=stats s=stat pr=pricing tr=tier fq=faq q=question ct=cta fm=form fd=field op=option tb=table cl=column rw=row ce=cell ap=app-shell sb=sidebar tl=toolbar ms=metrics mt=metric ch=chart br=bar ts=tabs t=tab dg=dialog kb=kanban ln=lane ac=activity ev=event ar=article ps=prose cb=code-block ca=callout ls=list it=item
+
+ATTRIBUTE ALIASES
+r=recipe v=variant c=class i=id hr=href ico=icon a=align g=gap w=width rv=reveal t=tone n=name lb=label ph=placeholder req=required sel=selected cur=current act=action dlg=dialog typ=type val=value
+
+ADVANCED BLOCKS
+- Frames: frame browser-frame device-frame window-frame glass-panel floating-panel
+- Navigation: drawer dropdown popover command-palette context-menu nav-dock mega-menu pagination
+- Motion/media: carousel slide marquee ticker spotlight orbit particles constellation
+- Controls: range file-drop switch rating segmented segment counter gauge progress
+- App patterns: data-grid calendar chat message tree tree-item wizard wizard-step split-pane notification-center search-box filter-bar action-bar
+- Marketing: logo-cloud social-proof feature-wall hero-canvas media-card profile-card product-card comparison-card
+
+INTERACTION EXAMPLES
+button "Open settings" action=drawer:settings
+drawer id=settings
+  title "Settings" level=2
+  range name=scale label="Scale" min=80 max=120 value=100
+  file-drop name=assets label="Upload assets" multiple=true
+  button "Close" action=close-drawer
+
+carousel id=stories autoplay=4200
+  slide
+    title "First" level=2
+    text "First slide content"
+  slide
+    title "Second" level=2
+    text "Second slide content"
+
+command-palette id=commands
+  search-box name=query label="Search commands"
+  button "Open app" href=/app/
+
+AUTHORING RULES
+1. Use the largest semantic block that matches the requested outcome.
+2. Put exactly one level=1 title on every page.
+3. Give every field a visible label and every meaningful image useful alt text.
+4. Use links for destinations and buttons for actions.
+5. Shared header/footer belong under site. Use page layout=app for application shells.
+6. Do not emit raw HTML, arbitrary JavaScript, javascript: URLs or data: URLs.
+7. Do not fabricate customers, testimonials, metrics, certifications, integrations or backend success. Mark demonstration data.
+8. Prefer a coherent recipe plus a few meaningful exceptions over random styling per block.
+9. Retrieve only needed contracts: appblocks catalog <name-or-family> --json.
+10. Validate strictly and repair every diagnostic: appblocks validate project.appblocks --strict --json.
+
+WORKFLOW
+Plan routes and each route’s job. Select one recipe. Retrieve relevant contracts. Write one coherent file. Strictly validate. Build. Inspect desktop and mobile. Change the AppBlocks source, not generated output.
