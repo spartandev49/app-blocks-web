@@ -1,6 +1,6 @@
 {
   "name": "app-blocks-web",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An LLM-native compact language and zero-dependency compiler for complete websites and web applications.",
   "type": "module",
   "types": "./src/index.d.ts",

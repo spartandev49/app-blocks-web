@@ -11,7 +11,7 @@ async function packageMetadata() {
 
 test("generation 2 is exposed as a coherent 0.2 package release", async () => {
   const metadata = await packageMetadata();
-  assert.equal(VERSION, "0.2.0");
+  assert.match(VERSION, /^0\.2\.\d+$/);
   assert.equal(metadata.version, VERSION);
   assert.equal(metadata.bin.appblocks, "./bin/appblocks.js");
   assert.equal(metadata.bin["appblocks-v2"], "./bin/appblocks-v2.js");

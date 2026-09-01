@@ -1,49 +1,264 @@
-st "Northstar" r=r7314 p=p12 f=f084 s=s07 sf=u03 mo=m11
-  pg "/" title="Northstar"
-    h042
-      ln "Northstar" h="/"
-      nav l="Primary"
-        ln "System" h="#system"
-        ln "Examples" h="#examples"
-      b118 "Sign in" h="/signin"
-    hr017
-      eye "Operations platform"
-      ttl "Operate without the busywork" lvl=1
-      txt "A complete responsive interface from a compact, deterministic source file."
-      b203 "Start now" h="/start"
-      b118 "See the system" h="#system"
-    sc247 id="system"
-      ttl "A broader interface vocabulary" lvl=2
-      txt "Generated choices normalize into the same canonical contracts used by generation 1."
+st "Northstar Studio" theme=signal lang=en r=r7314 p=p28 f=f173 s=s13 sf=u03 mo=m11 dn=d1 sd=z6
+  meta description="A multi-page AppBlocks Web Generation 2 showcase with deterministic typography, color, shape, motion and functional application patterns." theme-color="#101826"
+
+  h042 logo="Northstar Studio" href="/" sticky=true theme-toggle=true
+    nav l="Primary navigation"
+      ln "System" h="/#system"
+      ln "Patterns" h="/#patterns"
+      ln "Behavior" h="/#behavior"
+      ln "Documentation" h="/docs/"
+    b203 "Open workspace" h="/app/" i=arrow
+
+  ft033 logo="Northstar Studio" note="A fictional product surface generated from compact AppBlocks source."
+    nav l="Explore"
+      ln "Design system" h="/#system"
+      ln "Pattern gallery" h="/#patterns"
+      ln "Workspace" h="/app/"
+    nav l="Project"
+      ln "Documentation" h="/docs/"
+      ln "Source" h="https://github.com/spartandev49/app-blocks-web"
+    txt "10,000 coordinated recipes. 10,000 exact component IDs. Zero browser dependencies." t=muted
+
+  pg "/" title="Northstar Studio — AppBlocks Generation 2" description="See compact model-authored source expand into a distinctive, animated and functional multi-page website and web application."
+    hr017 v=split
+      bdg "Generation 2 live showcase" v=accent i=spark
+      eye "A larger visual vocabulary in fewer tokens" i=bolt
+      ttl "Build the interface. Skip the boilerplate." lvl=1
+      txt "One compact source file selects coordinated typography, color, geometry, material, density, elevation and motion—then combines them with tested website and application contracts." sz=large
+      b203 "Explore the workspace" h="/app/" i=arrow
+      b118 "Inspect the system" h="/#system"
+      vis v=dashboard l="Generated application dashboard preview"
+
+    sc006 id="system"
+      eye "Addressable design engine"
+      ttl "Thousands of choices without thousands of copied files." lvl=2
+      txt "Recipes and virtual component IDs are resolved deterministically. Models retrieve one exact choice instead of spending context and output tokens rebuilding CSS, responsive states and interaction plumbing."
+      sts v=cards
+        stat val="10,000" l="Site recipes" detail="r0000 through r9999"
+        stat val="10,000" l="Component IDs" detail="Ten families, 1,000 each"
+        stat val="320" l="Font pairings" detail="Local and system-first stacks"
+        stat val="64" l="Palettes" detail="Generated coordinated color systems"
       gr v=three
         cd014
-          ttl "Recipe-driven" lvl=3
-          txt "One short recipe selects a coordinated palette, type system, geometry, material, motion, density and elevation."
+          bdg "Design" v=accent
+          hdn "Coordinated by recipe"
+          txt "A short address selects palette, display and body type, shape, surface, motion, density and shadow."
         cd375
-          ttl "Model-efficient" lvl=3
-          txt "Compact aliases and generated identifiers keep authored output small without shrinking the generated interface."
+          bdg "Compression" v=success
+          hdn "Cheap for models to emit"
+          txt "Compact aliases and exact IDs preserve product-specific content while removing repetitive frontend code."
         cd728
-          ttl "Still validated" lvl=3
-          txt "The established parser, validator and renderer remain responsible for correctness and accessible HTML."
-    sc511 id="examples"
-      ttl "Exact choices on demand" lvl=2
-      txt "Models can resolve one block or recipe without loading thousands of copied definitions into context."
-      gr v=three
-        fr041
-          ttl "Browser frame" lvl=3
-          txt "Frames receive deterministic geometry, surface and elevation classes."
-        cd509
-          ttl "Application card" lvl=3
-          txt "Card IDs provide specific visual treatments without long style declarations."
-        cd907
-          ttl "Motion-safe" lvl=3
-          txt "Reveal, stagger and parallax respond to reduced-motion preferences."
+          bdg "Correctness" v=warning
+          hdn "Strictly validated"
+          txt "Every expanded block still passes source-located contract, accessibility and URL-safety checks."
+
+    sc013 id="patterns"
+      cols v=wide-left a=center
+        stk gap=lg
+          eye "A real visual system"
+          ttl "Frames, materials, charts and controls share one language." lvl=2
+          txt "Virtual blocks can look materially different while retaining predictable semantics, keyboard behavior and responsive output."
+          lst
+            it "Distinctive display and body typography"
+            it "Glass, gradient, paper, grid, glow and ink surfaces"
+            it "Square, rounded, pill, notched, blob and architectural shapes"
+            it "Fade, rise, tilt, spring, stagger and parallax motion"
+          b444 "Read the compact contract" h="/docs/guide/"
+        browser-frame cl="ab-motion-11"
+          tool
+            eye "Recipe r7314"
+            hdn "Generated operating view"
+            bdg "Compiler online" v=success
+          mets
+            met val="94%" l="Reusable UI" change="Less repeated implementation" progress=94
+            met val="11×" l="Expansion" change="Compact source to browser output" progress=78
+            met val="0" l="Dependencies" change="Plain HTML, CSS and JavaScript" progress=100
+          ch v=bars l="Interface coverage" unit="%"
+            bar l="Marketing" val=92
+            bar l="Application" val=88
+            bar l="Reading" val=76
+            bar l="Navigation" val=96
+          status "Responsive, keyboard-operable and reduced-motion aware." v=success
+
+    carousel id="button-recipes" aria-label="Deterministic button recipe carousel" cl="ab-motion-2"
+      it cl="ab-surface-2 ab-shape-7 ab-shadow-3"
+        bdg "b203" v=accent
+        hdn "Primary conversion"
+        txt "A high-emphasis action with generated geometry, surface, motion, density and elevation."
+        b203 "Create workspace" h="/app/"
+      it cl="ab-surface-6 ab-shape-13 ab-shadow-6"
+        bdg "b444" v=success
+        hdn "Expressive secondary"
+        txt "A visually distinct recipe that still supplies complete hover, active, focus and disabled states."
+        b444 "Review system" h="/#system"
+      it cl="ab-surface-8 ab-shape-20 ab-shadow-7"
+        bdg "b731" v=warning
+        hdn "Operational action"
+        txt "Exact IDs let smaller models choose a credible treatment without authoring custom style declarations."
+        b731 "Run local action" act="toast:Generation 2 action completed"
+      it cl="ab-surface-3 ab-shape-3 ab-shadow-2"
+        bdg "b907" v=danger
+        hdn "Final call to action"
+        txt "The browser runtime remains dependency-free and announces local action feedback accessibly."
+        b907 "Open workspace" h="/app/"
+
+    feature-grid id="behavior" cl="ab-motion-11"
+      eye "Functional, not decorative"
+      ttl "The generated browser behavior is already wired." lvl=2
+      txt "The model selects semantic capabilities. AppBlocks supplies the implementation and accessibility contract."
+      feat i=layers sp=wide
+        hdn "Reveal, stagger and parallax"
+        txt "Viewport-aware motion is generated from recipe classes and automatically disabled for reduced-motion preferences."
+        bdg "Motion system" v=accent
+      feat i=grid
+        hdn "Carousels and responsive layouts"
+        txt "Native scrolling, generated controls, snap behavior and mobile geometry ship without a frontend dependency."
+      feat i=terminal
+        hdn "Command palette"
+        txt "The workspace route includes a Control/Command-K dialog with native focus handling."
+      feat i=database sp=wide
+        hdn "Forms, tables and application state"
+        txt "Validated forms, sortable and filterable records, tabs, dialogs, boards and feedback states share one deterministic runtime."
+        b203 "Test the application" h="/app/"
+
+    faq-list
+      eye "What Generation 2 changes"
+      ttl "Compact authoring without a black box." lvl=2
+      qu "Does a recipe replace product design decisions?"
+        txt "No. It supplies coordinated defaults. The author still chooses content, hierarchy, routes, data and meaningful exceptions."
+      qu "Do canonical AppBlocks projects still work?"
+        txt "Yes. Canonical Generation 1 source follows the original compiler path unchanged."
+      qu "Does this create a production backend?"
+        txt "No. Authentication, persistence, authorization, payments and external operations require real backend adapters."
+
     call v=ink
-      ttl "Spend tokens on product logic" lvl=2
-      txt "Use recipes for interface expression, then focus the model on the behavior that makes the application valuable."
-      b907 "Create a project" h="/start"
-    ft033
-      txt "Northstar"
-      nav l="Footer"
-        ln "Privacy" h="/privacy"
-        ln "Terms" h="/terms"
+      eye "The useful trade"
+      ttl "Spend model tokens on what makes the product different." lvl=2
+      txt "Let the compiler own repeatable interface implementation while the model focuses on product structure, content and behavior."
+      b203 "Open the functional workspace" h="/app/"
+      b118 "Read the documentation" h="/docs/"
+
+  pg "/app/" title="Northstar Workspace — Generation 2" description="A functional application workspace generated from compact AppBlocks source." layout=app
+    dashboard-shell n="Northstar workspace"
+      side logo="Northstar" l="Workspace navigation"
+        ln "Overview" h="/app/" i=grid cur=true
+        ln "Pipeline" h="#pipeline" i=layers
+        ln "Accounts" h="#accounts" i=database
+        ln "Documentation" h="/docs/" i=code
+      tool
+        eye "Workspace 07"
+        ttl "Launch control" lvl=1
+        txt "A functional local application surface generated from compact source."
+        b203 "New project" i=plus dlg=project
+        b118 "Run export" act="toast:Export prepared"
+      status "Local demonstration data only. No remote service or fabricated customer result is implied." v=info
+      metric-grid
+        met val="12" l="Active projects" change="Three need review" progress=72
+        met val="4" l="Blocked decisions" change="Two assigned today" t=warning progress=38
+        met val="86%" l="On-plan work" change="Example workspace data" t=success progress=86
+        met val="7m" l="Median response" change="Local fixture" progress=61
+      tabs id="workspace-tabs" l="Workspace views"
+        tab id="overview" l="Overview" sel=true
+          gr v=two
+            fr013
+              hdn "Delivery signal"
+              txt "Parallax, generated material and chart behavior share one exact frame ID."
+              ch v=bars l="Weekly completion" unit="%"
+                bar l="Mon" val=44
+                bar l="Tue" val=68
+                bar l="Wed" val=57
+                bar l="Thu" val=82
+                bar l="Fri" val=74
+            pnl v=raised
+              hdn "Recent activity"
+              actv l="Workspace activity"
+                evt time="4 minutes ago" i=bolt
+                  hdn "Build completed"
+                  txt "The responsive artifact passed strict validation."
+                evt time="18 minutes ago" i=shield
+                  hdn "Permission review assigned"
+                  txt "Ownership moved to the platform team."
+                evt time="1 hour ago" i=trend
+                  hdn "Delivery forecast changed"
+                  txt "The fixture now reports one additional risk."
+          gr v=three
+            cd006
+              bdg "Decision" v=warning
+              hdn "Approve import boundary"
+              txt "Confirm how historical records outside the supported range are handled."
+              b444 "Review" act="toast:Decision opened"
+            cd375
+              bdg "On plan" v=success
+              hdn "Workspace migration"
+              txt "Test the generated import flow against long project histories."
+            cd728
+              bdg "Research" v=accent
+              hdn "Navigation benchmark"
+              txt "Compare task completion across compact and expanded navigation treatments."
+        tab id="pipeline" l="Pipeline"
+          kb l="Release workflow"
+            lane n="Framing" count=2
+              crd
+                bdg "Evidence needed" v=warning
+                hdn "Renewal research"
+                txt "Name the decision threshold before scheduling implementation."
+              crd
+                bdg "Owner assigned" v=success
+                hdn "Usage baseline"
+                txt "Create a stable comparison cohort."
+            lane n="Delivery" count=2
+              crd
+                bdg "On plan" v=success
+                hdn "Workspace import"
+                txt "Exercise the migration path against realistic fixture depth."
+              crd
+                bdg "Blocked" v=danger
+                hdn "Permission review"
+                txt "Resolve inherited role behavior before release."
+            lane n="Review" count=1
+              crd
+                bdg "Review Friday" v=accent
+                hdn "Decision digest"
+                txt "Compare the shipped result with the original adoption goal."
+        tab id="accounts" l="Accounts"
+          tb006 id="account-records" l="Example accounts" empty="No accounts found"
+            col key=name l="Account"
+            col key=plan l="Plan"
+            col key=owner l="Owner"
+            col key=health l="Health" a=center
+            col key=usage l="Usage" a=right
+            row
+              cell key=name "Aster Works"
+              cell key=plan "Team"
+              cell key=owner "M. Chen"
+              cell key=health
+                bdg "Healthy" v=success
+              cell key=usage "84%"
+            row
+              cell key=name "Fjord Systems"
+              cell key=plan "Starter"
+              cell key=owner "A. Singh"
+              cell key=health
+                bdg "Review" v=warning
+              cell key=usage "61%"
+            row
+              cell key=name "Morrow Office"
+              cell key=plan "Team"
+              cell key=owner "J. Rivera"
+              cell key=health
+                bdg "At risk" v=danger
+              cell key=usage "42%"
+      dlg id=project title="Create a project"
+        txt "This form operates locally to demonstrate validation, status feedback and dialog focus return."
+        fm006 demo=true sub="Create project" ok="Project created"
+          fld n=name l="Project name" req=true ph="Atlas launch"
+          fld n=stage l="Initial stage" typ=select
+            opt "Framing" val=framing
+            opt "Delivery" val=delivery
+            opt "Review" val=review
+          file-drop n=brief l="Project brief" accept=".pdf,.doc,.docx"
+          toggle n=alerts l="Email launch alerts" checked=true
+      command-palette id=commands title="Command palette"
+        txt "Press Control-K or Command-K anywhere in the workspace to open this surface."
+        frm demo=true sub="Run command" ok="Command queued"
+          search n=query l="Search commands" ph="Try export, invite or theme" req=true

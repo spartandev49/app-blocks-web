@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtemp, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -34,4 +34,19 @@ test("generation 2 CLI normalizes compact files", async () => {
   assert.match(normalized.stdout, /^site "CLI"/m);
   assert.match(normalized.stdout, /hero .*ab-v-hr017/);
   assert.match(normalized.stdout, /button "Start" href="\/start"/);
+});
+
+test("generation 2 CLI builds deployable base-path output", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "appblocks-generation2-build-"));
+  const filename = join(directory, "compact.ab");
+  const output = join(directory, "dist");
+  await writeFile(filename, `st "CLI" r=r0042\n  pg "/" title="CLI"\n    hr017\n      ttl "CLI" lvl=1\n      b203 "Start" h="/start"\n`, "utf8");
+
+  const built = run(["build", filename, "--out", output, "--base", "/product/", "--strict"]);
+  assert.equal(built.status, 0, built.stderr);
+
+  const html = await readFile(join(output, "index.html"), "utf8");
+  assert.match(html, /href="\/product\/appblocks\.css"/);
+  assert.match(html, /src="\/product\/appblocks\.js"/);
+  assert.match(html, /href="\/product\/start"/);
 });
