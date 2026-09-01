@@ -1,0 +1,107 @@
+name: Finalize combinatorial engine
+
+on:
+  push:
+    branches:
+      - feature/combinatorial-design-engine
+    paths:
+      - .github/workflows/finalize-v2.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: install-combinatorial-engine
+  cancel-in-progress: true
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out feature branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install and harden compatibility overlay
+        run: |
+          cp src/v2-runtime-browser.js src/v2-runtime.js
+          node ./scripts/install-v2-overlay.mjs
+          node ./scripts/finalize-v2.mjs
+
+      - name: Refresh lockfile when present
+        shell: bash
+        run: |
+          if [[ -f package-lock.json ]]; then
+            npm install --package-lock-only --ignore-scripts
+          fi
+
+      - name: Check repository JavaScript syntax
+        shell: bash
+        run: |
+          find src scripts bin test -type f \( -name '*.js' -o -name '*.mjs' \) -print0 | xargs -0 -n1 node --check
+
+      - name: Run complete test suite
+        run: node --test
+
+      - name: Run generated-output security audit
+        run: node ./scripts/static-audit.js
+
+      - name: Build compact showcase strictly
+        run: node ./bin/appblocks.js build ./examples/combinatorial.appblocks --out ./.tmp-combinatorial --strict
+
+      - name: Parse-check generated compact runtime
+        run: node --check ./.tmp-combinatorial/appblocks.js
+
+      - name: Build compatibility showcase strictly
+        run: node ./bin/appblocks.js build ./examples/showcase.appblocks --out ./.tmp-showcase --strict
+
+      - name: Parse-check generated compatibility runtime
+        run: node --check ./.tmp-showcase/appblocks.js
+
+      - name: Run expansion regression benchmark
+        run: node ./scripts/benchmark.js --min-ratio 10
+
+      - name: Write version 0.2 benchmark artifacts
+        run: node ./scripts/write-v2-benchmark.mjs
+
+      - name: Inspect package contents
+        run: npm pack --dry-run
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev
+
+      - name: Remove one-time integration scaffolding
+        run: |
+          rm -f \
+            .github/workflows/install-combinatorial-engine.yml \
+            .github/workflows/repair-and-integrate-v2.yml \
+            .github/workflows/finalize-v2.yml \
+            scripts/install-v2-overlay.mjs \
+            scripts/finalize-v2.mjs \
+            src/v2-index.js \
+            src/v2-runtime-browser.js
+
+      - name: Check patch integrity
+        run: git diff --check
+
+      - name: Commit verified integration
+        shell: bash
+        run: |
+          rm -rf .tmp-combinatorial .tmp-showcase
+          git config user.name "app-blocks automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No integration changes to commit."
+            exit 0
+          fi
+          git commit -m "Integrate combinatorial design engine"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
