@@ -30,9 +30,13 @@ jobs:
           echo "$(cat .taste-payload/SHA256)  /tmp/appblocks-changes.patch.xz" | sha256sum -c -
           xz --decompress --stdout /tmp/appblocks-changes.patch.xz > /tmp/appblocks-changes.patch
           git apply --index --binary /tmp/appblocks-changes.patch
-          rm -f .github/workflows/hallmark-snapshot.yml
+          git restore --source=HEAD --staged --worktree -- \
+            .github/workflows/ci.yml \
+            .github/workflows/generation2.yml \
+            .github/workflows/pages.yml \
+            .github/workflows/release.yml \
+            .github/workflows/hallmark-snapshot.yml
           rm -rf .taste-payload
-          rm -f .github/workflows/apply-taste-payload.yml
       - name: Verify release tree
         run: npm run verify
       - name: Remove generated verification output
