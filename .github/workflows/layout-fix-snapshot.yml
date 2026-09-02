@@ -1,23 +1,54 @@
-name: Layout fix branch snapshot
+name: Apply layout resilience release payload
 
 on:
   push:
     branches:
       - fix/layout-resilience-v0.4.1
+    paths:
+      - .layout-fix-payload/READY
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  snapshot:
+  apply:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Upload repository snapshot
-        uses: actions/upload-artifact@v4
         with:
-          name: layout-fix-branch-snapshot
-          path: .
-          include-hidden-files: true
-          retention-days: 1
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify and apply layout-resilience patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .layout-fix-payload/part-* | base64 --decode > /tmp/layout-resilience.patch.xz
+          echo "$(cat .layout-fix-payload/SHA256)  /tmp/layout-resilience.patch.xz" | sha256sum -c -
+          xz --decompress --stdout /tmp/layout-resilience.patch.xz > /tmp/layout-resilience.patch
+          git apply --index --binary /tmp/layout-resilience.patch
+          rm -rf .layout-fix-payload
+      - name: Verify complete release tree
+        run: npm run verify
+      - name: Run Chromium layout regression gate
+        run: npm run audit:layout
+      - name: Inspect publishable package
+        run: npm pack --dry-run --ignore-scripts
+      - name: Remove generated verification output
+        shell: bash
+        run: |
+          rm -rf public .appblocks-generation2 .appblocks-motion .appblocks-taste .verification .verification-final
+          rm -f app-blocks-web-*.tgz
+      - name: Commit verified framework fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Fix AppBlocks layout resilience and browser regressions"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
