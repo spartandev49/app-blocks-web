@@ -1,0 +1,48 @@
+name: Apply verified ChatGPT skill package
+
+on:
+  push:
+    branches:
+      - feature/chatgpt-skill-v041
+    paths:
+      - .chatgpt-skill-payload/READY
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Verify and extract source payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .chatgpt-skill-payload/part-* | base64 --decode > /tmp/chatgpt-skill-source-overlay.tar.gz
+          echo "$(cat .chatgpt-skill-payload/SHA256)  /tmp/chatgpt-skill-source-overlay.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/chatgpt-skill-source-overlay.tar.gz -C .
+          rm -rf .chatgpt-skill-payload
+      - name: Verify exact release tree
+        run: npm run verify
+      - name: Remove generated verification output
+        shell: bash
+        run: |
+          rm -rf public .appblocks-generation2 .appblocks-motion .appblocks-taste .verification dist
+      - name: Commit verified skill source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Add portable ChatGPT skill package"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
