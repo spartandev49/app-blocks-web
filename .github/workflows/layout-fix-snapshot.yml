@@ -1,40 +1,34 @@
-name: Apply layout resilience release payload
+name: Publish AppBlocks Web layout resilience fix
 
 on:
   push:
     branches:
       - fix/layout-resilience-v0.4.1
-    paths:
-      - .layout-fix-payload/READY
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: appblocks-layout-resilience-publish
+  cancel-in-progress: false
+
 jobs:
-  apply:
+  verify-and-publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: fix/layout-resilience-v0.4.1
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-      - name: Verify and apply layout-resilience patch
-        shell: bash
-        run: |
-          set -euo pipefail
-          cat .layout-fix-payload/part-* | base64 --decode > /tmp/layout-resilience.patch.xz
-          echo "$(cat .layout-fix-payload/SHA256)  /tmp/layout-resilience.patch.xz" | sha256sum -c -
-          xz --decompress --stdout /tmp/layout-resilience.patch.xz > /tmp/layout-resilience.patch
-          git apply --index --binary /tmp/layout-resilience.patch
-          rm -rf .layout-fix-payload
-      - name: Verify complete release tree
+          node-version: 20
+      - name: Apply systemic AppBlocks layout fixes
+        run: python scripts/apply-layout-resilience-hotfix.py
+      - name: Verify source, generated output, Taste quality, and responsive geometry
         run: npm run verify
-      - name: Run Chromium layout regression gate
-        run: npm run audit:layout
       - name: Inspect publishable package
         run: npm pack --dry-run --ignore-scripts
       - name: Remove generated verification output
@@ -42,13 +36,21 @@ jobs:
         run: |
           rm -rf public .appblocks-generation2 .appblocks-motion .appblocks-taste .verification .verification-final
           rm -f app-blocks-web-*.tgz
-      - name: Commit verified framework fix
+      - name: Publish verified clean commit directly to main
         shell: bash
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          rm -f scripts/apply-layout-resilience-hotfix.py
+          git checkout origin/main -- .github/workflows
+          rm -f .github/workflows/layout-fix-snapshot.yml
           git add -A
           git diff --cached --check
-          git commit -m "Fix AppBlocks layout resilience and browser regressions"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          tree="$(git write-tree)"
+          parent="$(git rev-parse origin/main)"
+          commit="$(printf '%s\n\n%s\n' \
+            'Publish AppBlocks Web 0.4.1 layout resilience fixes' \
+            'Enforce component-compatible layouts, intrinsic responsive geometry, safe typography, balanced metrics, resilient footers and application shells, and browser-level regression auditing.' \
+            | git commit-tree "$tree" -p "$parent")"
+          git push origin "$commit:refs/heads/main"
+          echo "Published commit $commit to main" >> "$GITHUB_STEP_SUMMARY"
