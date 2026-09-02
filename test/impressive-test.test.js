@@ -41,7 +41,7 @@ test("the impressive AppBlocks test compiles into five complete animated routes"
   assert.match(lab, /Fictional spatial scenes/);
 
   assert.match(css, /ab-hover-magnetic/);
-  assert.match(css, /ab-press-ripple/);
+  assert.match(css, /ab-m3-ripple/);
   assert.match(css, /prefers-reduced-motion:reduce/);
   assert.match(runtime, /requestAnimationFrame/);
   assert.match(runtime, /pointermove/);
