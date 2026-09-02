@@ -29,7 +29,7 @@ st "EIDOLON" theme=signal lang=en r=r8421 p=p47 f=f221 s=s07 sf=u03 mo=m11 dn=d0
       b203 "Start a fictional brief" h="/brief/" hx=shine px=compress
       vis v=orbit l="An abstract orbital habitat system" fx="media en:zoom sx:parallax-y hx:tilt lx=float du:cinematic ix:strong"
 
-    sc873 fx="section en:rise sx:reveal cx:cascade du=slow"
+    sc873 id="signal" fx="section en:rise sx:reveal cx:cascade du=slow"
       eye "The premise"
       ttl "The brief begins after the obvious answer ends." lvl=2
       txt "We treat every project as a small world: a system of light, ritual, movement, weather, sound and social gravity. The result is less a building than a believable future someone could choose to inhabit."
@@ -39,7 +39,7 @@ st "EIDOLON" theme=signal lang=en r=r8421 p=p47 f=f221 s=s07 sf=u03 mo=m11 dn=d0
         stat val="01" l="Coherent fiction" detail="Every decision supports the same world" fx="card en:rise hx:glow"
         stat val="0" l="Custom animation libraries" detail="Motion supplied by AppBlocks" fx="card en:fade hx:shine"
 
-    spl v=wide-left id="signal" fx="section en:clip-up sx:parallax-y cx:cascade ix=strong"
+    cols v=wide-left a=center fx="section en:clip-up sx:parallax-y cx:cascade ix=strong"
       stk gap=lg
         eye "Worldbuilding as architecture"
         ttl "Design the rules before the rooms." lvl=2
