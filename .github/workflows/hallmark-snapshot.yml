@@ -1,9 +1,9 @@
-name: Hallmark branch snapshot
+name: Taste Engine branch snapshot
 
 on:
   push:
     branches:
-      - feature/hallmark-design-intelligence-v04
+      - feature/taste-engine-v05
   workflow_dispatch:
 
 permissions:
@@ -17,7 +17,7 @@ jobs:
       - name: Upload repository snapshot
         uses: actions/upload-artifact@v4
         with:
-          name: hallmark-branch-snapshot
+          name: taste-engine-branch-snapshot
           path: .
           include-hidden-files: true
           retention-days: 1
