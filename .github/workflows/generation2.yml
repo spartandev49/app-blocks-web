@@ -1,10 +1,12 @@
-name: Generation 2 and Motion 3
+name: Generation 2, Motion 3, and Taste 5
 
 on:
   pull_request:
   push:
     branches:
       - feature/motion-engine-v03
+      - feature/taste-engine-v05
+      - feature/taste-engine-million-site-v05
       - main
 
 permissions:
@@ -28,23 +30,21 @@ jobs:
           node --version
           npm --version
       - name: Syntax
+        run: npm run check
+      - name: Generation 2, Motion 3, and Taste 5 tests
         run: |
-          node --check bin/appblocks-v2.js
-          node --check src/generation2.js
-          node --check src/normalizer-v2.js
-          node --check src/normalizer-v3.js
-          node --check src/generation2-assets.js
-          node --check src/motion3.js
-          node --check src/compiler-v2.js
-          node --check src/compiler-v3.js
-          node --check src/parser-v2.js
-      - name: Generation 2 and Motion 3 tests
-        run: node --test test/generation2.test.js test/generation2-token-budget.test.js test/generation2-cli.test.js test/motion3.test.js
+          node --test \
+            test/generation2.test.js \
+            test/generation2-token-budget.test.js \
+            test/generation2-cli.test.js \
+            test/motion3.test.js \
+            test/taste5.test.js \
+            test/taste5-cli.test.js
       - name: Release tests
         run: |
           set -o pipefail
-          node --test test/generation2-release.test.js 2>&1 | tee release-tests-node-${{ matrix.node }}.log
-      - name: Existing test suite
+          node --test test/generation2-release.test.js test/taste5-release.test.js 2>&1 | tee release-tests-node-${{ matrix.node }}.log
+      - name: Complete test suite
         run: |
           set -o pipefail
           npm test 2>&1 | tee full-tests-node-${{ matrix.node }}.log
@@ -52,7 +52,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: motion3-test-logs-node-${{ matrix.node }}
+          name: taste5-test-logs-node-${{ matrix.node }}
           path: |
             release-tests-node-${{ matrix.node }}.log
             full-tests-node-${{ matrix.node }}.log
@@ -61,9 +61,11 @@ jobs:
         run: node bin/appblocks-v2.js build examples/generation2-showcase.ab --out .verification/generation2 --strict
       - name: Strict Motion Engine 3 build
         run: node bin/appblocks-v2.js build examples/motion-showcase.ab --out .verification/motion --strict
-      - name: Generated-output audit
-        run: npm run --if-present audit
+      - name: Strict Taste Engine 5 build
+        run: node bin/appblocks-v2.js build examples/taste-showcase.ab --out .verification/taste --strict --taste-strict
+      - name: Generated-output and Taste audits
+        run: npm run audit && npm run audit:taste
       - name: Benchmark
-        run: npm run --if-present benchmark
+        run: npm run benchmark
       - name: Package inspection
-        run: npm pack --dry-run
+        run: npm pack --dry-run --ignore-scripts
