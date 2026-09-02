@@ -22,16 +22,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Verify and extract source payload
+      - name: Verify and apply source patch
         shell: bash
         run: |
           set -euo pipefail
-          cat .taste-payload/part-* | base64 --decode > /tmp/appblocks-source.tar.gz
-          echo "$(cat .taste-payload/SHA256)  /tmp/appblocks-source.tar.gz" | sha256sum -c -
-          tar -xzf /tmp/appblocks-source.tar.gz -C .
+          cat .taste-payload/part-* | base64 --decode > /tmp/appblocks-changes.patch.xz
+          echo "$(cat .taste-payload/SHA256)  /tmp/appblocks-changes.patch.xz" | sha256sum -c -
+          xz --decompress --stdout /tmp/appblocks-changes.patch.xz > /tmp/appblocks-changes.patch
+          git apply --index --binary /tmp/appblocks-changes.patch
+          rm -f .github/workflows/hallmark-snapshot.yml
           rm -rf .taste-payload
           rm -f .github/workflows/apply-taste-payload.yml
-          rm -f .github/workflows/hallmark-snapshot.yml
       - name: Verify release tree
         run: npm run verify
       - name: Remove generated verification output
