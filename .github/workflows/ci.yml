@@ -21,17 +21,27 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+      - name: Environment
+        run: |
+          node --version
+          npm --version
       - name: Syntax check
-        run: node --check bin/appblocks.js && node --check bin/appblocks-v2.js && for file in src/*.js; do node --check "$file"; done
+        run: npm run check
       - name: Unit and integration tests
-        run: node --test
+        run: npm test
       - name: Generated-output audit
-        run: node scripts/static-audit.js
+        run: npm run audit
       - name: Strict canonical showcase build
         run: node bin/appblocks.js build examples/showcase.appblocks --out .verification/canonical --strict
-      - name: Strict Motion Engine showcase build
+      - name: Strict Generation 2 build
+        run: node bin/appblocks-v2.js build examples/generation2-showcase.ab --out .verification/generation2 --strict
+      - name: Strict Motion Engine 3 build
         run: node bin/appblocks-v2.js build examples/motion-showcase.ab --out .verification/motion --strict
+      - name: Strict Taste Engine 5 build
+        run: node bin/appblocks-v2.js build examples/taste-showcase.ab --out .verification/taste --strict --taste-strict
+      - name: Taste release quality gate
+        run: npm run audit:taste
       - name: Compression benchmark
-        run: node scripts/benchmark.js
+        run: npm run benchmark
       - name: Package inspection
-        run: npm pack --dry-run
+        run: npm pack --dry-run --ignore-scripts
