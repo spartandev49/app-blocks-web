@@ -1,10 +1,11 @@
-# AppBlocks Web 0.2 — model instructions
+# AppBlocks Web 0.4 - model instructions
 
 AppBlocks Web compiles an indentation DSL into complete HTML, CSS and JavaScript. Output AppBlocks source, not HTML, JSX, CSS or JavaScript.
 
 Choose one authoring mode:
 - Canonical mode: use full block and attribute names from the catalog.
 - Compact mode: read LLMS-COMPACT.txt and use short aliases, one site recipe and exact virtual component IDs.
+- Taste mode: also read LLMS-TASTE.txt; choose one Taste DNA, set the three design dials, plan structural variety, use real assets, and pass the strict Taste audit.
 
 SYNTAX
 - Use exactly two spaces per nesting level. Never use tabs.
@@ -40,11 +41,13 @@ AUTHORING POLICY
 8. Use page layout=app for application shells that should omit shared marketing chrome.
 9. Query contracts instead of guessing: appblocks catalog <name> --json or appblocks-v2 catalog <name> --json.
 10. Validate strictly and repair every diagnostic before claiming completion.
+11. For Taste work, run appblocks-v2 audit <file> --strict --json and do not ship below 88.
+12. Do not draw fake browser, phone, terminal, or dashboard chrome. Use real images, real screenshots, generated assets, or live components.
 
 WORKFLOW
 1. Plan routes and the job of each route.
 2. Retrieve only relevant contracts.
 3. Write one coherent source file.
 4. Run strict validation.
-5. Build and inspect desktop and mobile output.
+5. Build and inspect desktop and mobile output. Taste routes must be inspected at 320, 375, 414, 768, 1024, 1280, and 1440 CSS pixels.
 6. Connect real backend operations through reviewed adapters; do not simulate production integrations.

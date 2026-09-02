@@ -24,7 +24,7 @@ export const CATALOG = [
   manifest("header", "navigation", "Responsive site or application header.", { variants: ["bar", "split", "floating", "editorial"], attributes: ["variant", "logo", "href", "sticky", "theme-toggle", "class"], children: ["nav", "link", "button", "badge"] }),
   manifest("nav", "navigation", "Named navigation group.", { attributes: ["label", "class"], children: ["link", "button"] }),
   manifest("link", "navigation", "Semantic destination link.", { attributes: ["href", "icon", "tone", "target", "current", "class"] }),
-  manifest("button", "navigation", "Button or CTA with complete interaction states.", { variants: ["solid", "outline", "ghost", "quiet", "icon"], attributes: ["href", "variant", "tone", "icon", "action", "target", "dialog", "type", "disabled", "loading", "class"] }),
+  manifest("button", "navigation", "Button or CTA with complete interaction states.", { variants: ["solid", "outline", "ghost", "quiet", "icon"], attributes: ["href", "variant", "tone", "icon", "action", "target", "dialog", "type", "disabled", "loading", "state", "class"] }),
   manifest("breadcrumbs", "navigation", "Accessible breadcrumb trail.", { children: ["link", "text"] }),
   manifest("footer", "navigation", "Site footer with grouped navigation and legal content.", { variants: ["standard", "compact", "index"], attributes: ["variant", "logo", "note", "class"], children: ["nav", "link", "text", "badge"] }),
 

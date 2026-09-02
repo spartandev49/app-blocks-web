@@ -38,19 +38,23 @@ export function renderButton(node, context, options = {}) {
   const variant = node.attrs.variant ?? (node.attrs.tone === "primary" ? "solid" : "outline");
   const className = classes(node, "ab-button", `ab-button--${slugify(variant)}`);
   const iconName = node.attrs.icon;
+  const disabled = bool(node.attrs.disabled);
+  const state = String(node.attrs.state ?? (bool(node.attrs.loading) ? "loading" : "")).toLowerCase();
   if (node.attrs.href) {
     const href = safeUrl(node.attrs.href, context.base);
     const external = /^https?:\/\//.test(href);
-    const content = `${iconName ? icon(iconName) : ""}<span>${label}</span>${!external && iconName !== "external" ? icon("arrow") : ""}`;
+    const content = `${iconName ? icon(iconName) : ""}<span>${label}</span>${!external && !["external", "arrow"].includes(iconName) ? icon("arrow") : ""}`;
+    if (disabled) return `<span class="${className}" role="link" aria-disabled="true"${state ? ` data-state="${escapeAttribute(state)}"` : ""}>${content}</span>`;
     const target = node.attrs.target ?? (external ? "_blank" : "");
-    return `<a class="${className}" href="${escapeAttribute(href)}"${target ? ` target="${escapeAttribute(target)}"` : ""}${target === "_blank" ? ' rel="noopener noreferrer"' : ""}>${content}${external && iconName !== "external" ? icon("external") : ""}</a>`;
+    return `<a class="${className}" href="${escapeAttribute(href)}"${state ? ` data-state="${escapeAttribute(state)}"` : ""}${target ? ` target="${escapeAttribute(target)}"` : ""}${target === "_blank" ? ' rel="noopener noreferrer"' : ""}>${content}${external && iconName !== "external" ? icon("external") : ""}</a>`;
   }
   const content = `${iconName ? icon(iconName) : ""}<span>${label}</span>`;
   const attributes = [
     node.attrs.action ? `data-action="${escapeAttribute(node.attrs.action)}"` : "",
     node.attrs.dialog ? `data-dialog-open="${escapeAttribute(node.attrs.dialog)}"` : "",
-    bool(node.attrs.disabled) ? "disabled" : "",
-    bool(node.attrs.loading) ? 'aria-busy="true"' : ""
+    disabled ? "disabled" : "",
+    state ? `data-state="${escapeAttribute(state)}"` : "",
+    state === "loading" || bool(node.attrs.loading) ? 'aria-busy="true"' : ""
   ].filter(Boolean).join(" ");
   const type = node.attrs.type ?? options.type ?? "button";
   return `<button class="${className}" type="${escapeAttribute(type)}"${attributes ? ` ${attributes}` : ""}>${content}</button>`;

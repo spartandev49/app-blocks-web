@@ -2,148 +2,170 @@
 
 AppBlocks Web is an LLM-native language and zero-dependency compiler for complete websites and web applications. A model writes compact, validated semantic source; AppBlocks expands it into responsive HTML, CSS and JavaScript with accessibility, interaction states, visual design and motion already implemented.
 
-Version 0.3 adds Motion Engine 3: 1,000 deterministic motion recipes, ten coordinated profiles, continuous scroll choreography and a full button/card microinteraction vocabulary.
+Version 0.4 adds **Taste Engine 5**: deterministic art direction, ten million coordinated visual DNAs, one million element looks, 100,000 Motion 5 recipes, role-aware styling for every canonical block, and a strict anti-slop quality gate informed by Leonxlnx's MIT-licensed Taste Skill.
 
 ```ab
-st "Northstar" r=r7314 fx=cinematic
+st "Northstar" r=r7314 ts=t4839201 pk=saas gn=neo-industrial dv=8 mi=7 vd=4
   pg "/" title="Northstar"
-    hr017 fx="hero sx:depth"
-      ttl "Build the interface. Skip the boilerplate." lvl=1
-      txt "Design, responsive behavior and motion expand from compact source."
-      b203 "Start now" h="/start" hx=magnetic px=ripple
+    hr017 tl=artifact-first tr=focal te=cinematic tsc=depth tc=hero
+      ttl "Build software that looks deliberately made." lvl=1 tty=display
+      txt "Compact source expands into a responsive, art-directed interface."
+      b203 "Inspect product" h="/product/" th=magnetic tp=ripple
+      img src="/assets/product.webp" alt="Northstar product interface" width=1400 height=1000
 ```
 
-The compact source normalizes into canonical AppBlocks, passes the same strict validator, and compiles to ordinary browser files. The generated site runs without AppBlocks, a frontend framework or an animation dependency.
+The source normalizes into canonical AppBlocks, passes the same strict validator, and compiles to ordinary browser files. Generated sites run without AppBlocks, a frontend framework, or an animation dependency.
 
 ## Live proof
 
-- [Motion Engine 3 website and application showcase](https://spartandev49.github.io/app-blocks-web/)
+- [Taste Engine 5 website and application showcase](https://spartandev49.github.io/app-blocks-web/)
+- [Motion Engine 3 showcase](https://spartandev49.github.io/app-blocks-web/motion/)
+- [Generation 2 showcase](https://spartandev49.github.io/app-blocks-web/v2/)
 - [Canonical documentation showcase](https://spartandev49.github.io/app-blocks-web/docs/)
 
-The public site is built from [`examples/motion-showcase.ab`](examples/motion-showcase.ab). It demonstrates staged hero entrances, scroll-linked depth and parallax, staggered grids, magnetic and tilt interactions, spotlights, shine treatments, ripple presses, application transitions, dialogs, tables, forms, tabs, a command palette and a Kanban workflow.
+The public Taste site is built from [`examples/taste-showcase.ab`](examples/taste-showcase.ab). It contains a three-route product site, visual specimen, and functional application workspace. It demonstrates art-directed typography, real image assets, differentiated surfaces, responsive structures, forms, tables, tabs, dialogs, application state, and role-aware motion.
 
-## Design address space
+## Why Taste Engine exists
 
-AppBlocks generates coordinated choices algorithmically instead of storing thousands of copied components:
+Large models can produce a lot of frontend code, but they repeatedly converge on the same statistical defaults: a centered hero, three equal cards, generic glass panels, purple-blue gradients, repeated eyebrows, fake screenshots, and motion added without purpose. Smaller models often do worse because they lack enough output budget to implement a coherent design system and all required states.
 
-| System | Choices |
+Taste Engine moves those repeatable decisions into the compiler. The model selects a stable visual DNA, three design dials, and a few meaningful exceptions. The compiler supplies coordinated typography, palette, geometry, surfaces, section rhythm, component posture, responsive behavior, interaction states, and motion.
+
+## Address spaces
+
+AppBlocks resolves choices algorithmically instead of storing millions of copied templates:
+
+| System | Stable addresses |
 | --- | ---: |
-| Coordinated site recipes | 10,000 |
-| Virtual component recipes | 10,000 |
-| Motion recipes | 1,000 |
-| Motion profiles | 10 |
-| Palettes | 64 |
-| Font pairings | 320 |
-| Shapes | 24 |
-| Surfaces and materials | 12 |
-| Base motion systems | 16 |
-| Density systems | 8 |
-| Shadow systems | 8 |
+| Coordinated Taste DNAs | 10,000,000 |
+| Element looks | 1,000,000 |
+| Motion 5 recipes | 100,000 |
+| Generation 2 site recipes | 10,000 |
+| Generation 2 virtual components | 10,000 |
+| Motion 3 recipes | 1,000 |
+| Taste page macrostructures | 20 |
+| Taste hero architectures | 20 |
+| Taste navigation architectures | 12 |
+| Taste footer architectures | 12 |
+| Taste typography systems | 32 |
+| Taste palettes | 48 |
+| Taste surface languages | 16 |
 
-The ten virtual component families provide 1,000 exact IDs each for buttons, headers, footers, heroes, frames, cards, sections, forms, tables and navigation. `b203` is a deterministic button treatment, `hr017` is a deterministic hero treatment and `x731` is a deterministic motion recipe.
+`t4839201` is one coordinated Taste DNA. `e042731` is one deterministic element look. `y73142` is one Motion 5 recipe. These IDs are compact model-facing addresses, not filenames or duplicated component implementations.
 
-## Motion Engine 3
+## Taste controls
 
-Set one global profile:
-
-```ab
-st "Product" r=r7314 fx=polished
-```
-
-Profiles:
-
-```text
-off quiet polished dynamic cinematic playful editorial application commerce dramatic
-```
-
-The profile supplies role-aware defaults. Heroes receive staged entrances, sections reveal with restrained scroll behavior, collections choreograph their children, interactive controls get hover and press feedback, and application data surfaces stay fast and quiet.
-
-Use an exact motion recipe:
+A site normally needs one DNA and three dials:
 
 ```ab
-cd203 fx=x731
+st "Product" ts=t4839201 pk=saas gn=neo-industrial dv=8 mi=7 vd=4
 ```
 
-Or compose only the needed axes:
-
-```ab
-sc247 sx=parallax-y en=clip-up cx=cascade du=slow ix=strong
-b203 "Start" h="/start" hx=magnetic px=ripple
-hr017 fx="hero sx:depth hx:spotlight"
-```
-
-Compact motion aliases:
-
-| Alias | Meaning |
+| Token | Meaning |
 | --- | --- |
-| `fx` | Profile, preset or `x000`–`x999` recipe |
-| `en` | Entrance effect |
-| `sx` | Scroll-linked effect |
-| `hx` | Hover interaction |
-| `px` | Press feedback |
-| `lx` | Ambient loop |
-| `cx` | Child choreography |
-| `ez` | Easing |
-| `du` | Duration |
-| `dl` | Delay token |
-| `sg` | Stagger token |
-| `og` | Transform origin |
-| `ix` | Intensity |
-| `rp` | Repeat on viewport re-entry |
+| `ts` | Taste DNA, `t0000000` through `t9999999` |
+| `pk` | Page kind such as `saas`, `commerce`, `portfolio`, or `application` |
+| `gn` | Visual genre such as `neo-industrial`, `editorial`, `quiet-luxury`, or `technical` |
+| `dv` | Design variance, 1 through 10 |
+| `mi` | Motion intensity, 1 through 10 |
+| `vd` | Visual density, 1 through 10 |
 
-### Entrance effects
+Local tokens create deliberate exceptions without abandoning the shared system:
 
-```text
-fade rise fall slide-left slide-right scale-up scale-down blur flip-x
-flip-y rotate clip-up clip-left clip-right wipe-up pop spring zoom bounce
+```ab
+sec tl=sticky-story tr=narrative
+pnl tl=artifact-stage tsf=blueprint tr=evidence
+crd tl=offset tsf=canvas tr=artifact
+ttl "The argument" tty=display tr=focal
+b203 "Open workspace" h="/workspace/" th=magnetic tp=ripple
 ```
 
-### Scroll effects
+Common local Taste tokens:
+
+| Token | Meaning |
+| --- | --- |
+| `tl` | Block layout architecture |
+| `tty` | Typography voice |
+| `tsf` | Surface language |
+| `tr` | Semantic visual role |
+| `el` | Exact element-look address |
+| `te` | Entrance motion |
+| `tsc` | Scroll-linked motion |
+| `th` | Hover behavior |
+| `tp` | Press feedback |
+| `tch` | Child choreography |
+
+All values are finite and allowlisted. Unknown values remain visible and fail strict validation rather than becoming arbitrary CSS or JavaScript.
+
+## Role-aware components
+
+Taste Engine applies visual direction across the complete canonical catalog, including navigation, marketing, reading, commerce, form, data, and application blocks. Components are assigned roles such as:
 
 ```text
-reveal parallax-y parallax-x scale rotate fade blur tilt skew clip depth
-progress pin
+focal supporting quiet utility evidence navigation action artifact data narrative status
 ```
 
-Scroll-linked elements share one `requestAnimationFrame` scheduler. Translation, scale, blur, rotation and perspective are bounded by the selected intensity.
+A CTA, evidence panel, photograph, table, and navigation item therefore receive different posture and motion even when they share the same global DNA.
 
-### Hover and press effects
+## Motion Engine 5
+
+Taste builds use role-aware Motion Engine 5. The global `mi` dial scales the amount and amplitude of motion; explicit tokens override only the axes that matter.
+
+```ab
+sec te=rise tsc=word-reveal tch=editorial
+img te=image-reveal tsc=image-scale th=image-zoom
+b203 "Continue" h="/next/" th=magnetic tp=ripple
+```
+
+Motion 5 includes bounded entrance, scroll, hover, press, loop, and choreography vocabularies. Continuous effects share one animation-frame scheduler. Entrance eligibility uses `IntersectionObserver`; native view timelines are used where supported. Reduced-motion preferences disable entrance transforms, scroll transforms, loops, and pointer physics while keeping content visible.
+
+The generated Taste runtime does not use raw authored scripts, dynamic code evaluation, unsafe HTML insertion, or one scroll listener per element.
+
+## Strict anti-slop gate
+
+```bash
+appblocks-v2 audit site.ab --strict
+appblocks-v2 check site.ab --strict --taste-strict
+appblocks-v2 build site.ab --out public --strict --taste-strict
+```
+
+The audit starts at 100 and reports source-located deductions for common failures, including:
+
+- Missing art direction or weak structural variety
+- Generic centered high-variance heroes
+- Equal three-column feature rows
+- Repeated eyebrows and repeated section architectures
+- Fake browser, terminal, phone, or product chrome
+- Missing real visual assets
+- Excessive marquees, pills, glass, or decorative metadata
+- Generic copy and repeated CTA intent
+- Long hero content that cannot fit the initial viewport
+- High claimed motion without meaningful motion intent
+
+The strict minimum is 88. A passing score is necessary but does not replace rendered desktop, mobile, light-mode, dark-mode, keyboard, and reduced-motion inspection.
+
+Taste builds emit:
 
 ```text
-hover: lift glow shine fill underline arrow magnetic tilt spotlight
-       border-draw icon-slide jelly bounce pulse soften
-
-press: compress push depress ripple bounce rubber pulse
+appblocks.taste.json
+appblocks.motion5.json
 ```
 
-Magnetic and tilt effects are enabled only for devices with hover and a fine pointer. Ripple nodes are created safely with browser DOM APIs and remove themselves after animation.
+The manifests record the resolved DNA, dials, structures, typography, palette, geometry, surfaces, actually used effects, scheduler strategy, accessibility behavior, score, and findings.
 
-### Ambient loops and choreography
+## Generation 2 and Motion Engine 3
 
-```text
-loop: float breathe pulse bob sway wiggle shimmer gradient spin glow dash
-choreography: children cascade grid stack hero wave radial list
+The earlier compact design and motion systems remain available for compatibility.
+
+```ab
+st "Product" r=r7314 fx=cinematic
+  pg "/" title="Product"
+    hr017 fx="hero sx:depth"
+      ttl "Build the interface. Skip the boilerplate." lvl=1
+      b203 "Start now" h="/start" hx=magnetic px=ripple
 ```
 
-All loop and choreography behavior is disabled automatically under `prefers-reduced-motion: reduce`.
-
-Read [`docs/MOTION.md`](docs/MOTION.md) for the complete reference.
-
-## What the compiler supplies
-
-- Responsive headers, footers, heroes, grids, sections and frames
-- Buttons with complete visual, hover, focus, active, loading and disabled states
-- Features, pricing, comparisons, FAQs, testimonials and calls to action
-- Dashboards, metrics, charts, tables, forms, tabs, dialogs and Kanban boards
-- Browser, phone, laptop, glass, gradient, grid, glow and ink surfaces
-- Carousels, drawers, sheets, command palettes, file drops and animated counters
-- Entrance effects, child choreography and continuous scroll transforms
-- Magnetic, tilt, spotlight, shine, fill, border and ripple microinteractions
-- Keyboard navigation, visible focus, semantic landmarks and safe escaping
-- Source-located diagnostics and strict contract validation
-- Exact generated-byte accounting and transparent token estimates
-
-AppBlocks compresses repeatable frontend implementation. Authentication, persistence, authorization, payments, email and other external operations still require real backend adapters.
+Generation 2 provides 10,000 coordinated site recipes and 10,000 virtual component IDs across buttons, headers, footers, heroes, frames, cards, sections, forms, tables, and navigation. Motion Engine 3 provides 1,000 deterministic recipes and the original compact motion vocabulary.
 
 ## Quick start
 
@@ -151,27 +173,28 @@ AppBlocks compresses repeatable frontend implementation. Authentication, persist
 git clone https://github.com/spartandev49/app-blocks-web.git
 cd app-blocks-web
 npm test
-node bin/appblocks-v2.js build examples/motion-showcase.ab --out dist --strict
-node bin/appblocks.js dev examples/motion-showcase.ab
+node bin/appblocks-v2.js build examples/taste-showcase.ab --out dist --strict --taste-strict
+node bin/appblocks.js dev examples/taste-showcase.ab
 ```
 
-Open `http://127.0.0.1:4173` after starting the development server.
+Open `http://127.0.0.1:4173` after starting the development server. Node.js 20 or newer is required. The compiler and generated browser output have no production runtime dependencies.
 
 Installed command paths:
 
 ```bash
 appblocks build product.appblocks --out public --strict
-appblocks-v2 build product.ab --out public --strict
-appblocks-v2 build product.ab --out public --base /product/ --strict
+appblocks-v2 build product.ab --out public --strict --taste-strict
+appblocks-v2 check product.ab --strict --taste-strict
+appblocks-v2 audit product.ab --strict
 appblocks-v2 normalize product.ab
+appblocks-v2 taste t4839201
+appblocks-v2 look e042731
+appblocks-v2 motion5 y73142
 appblocks-v2 recipe r7314
 appblocks-v2 virtual b203
 appblocks-v2 motion x731
-appblocks-v2 motion cinematic hero
 appblocks-v2 catalog carousel --json
 ```
-
-Node.js 20 or newer is required. The compiler and generated browser output have no production runtime dependencies.
 
 ## Compact authoring
 
@@ -184,25 +207,13 @@ price=pricing fq=faq call=cta app=app-shell side=sidebar tool=toolbar
 met=metric tbl=table frm=form fld=field pnl=panel dlg=dialog crd=card
 ```
 
-Common attribute aliases:
+Read [`LLMS-TASTE.txt`](LLMS-TASTE.txt) for the Taste-specific model contract, [`LLMS-COMPACT.txt`](LLMS-COMPACT.txt) for the compact syntax, and [`docs/AUTHORING_FOR_LLMS.md`](docs/AUTHORING_FOR_LLMS.md) for the generation workflow.
 
-```text
-v=variant h=href i=icon cl=class l=label t=tone rv=reveal
-w=width a=align n=name val=value req=required ph=placeholder
-sel=selected cur=current stk=sticky act=action typ=type lvl=level sz=size
-```
+## Compatibility
 
-Semantic macros include `browser-frame`, `phone-frame`, `glass-card`, `carousel`, `drawer`, `command-palette`, `file-drop`, `data-grid`, `dashboard-shell`, `kanban-board`, `product-grid`, `checkout-form`, `feature-grid`, `pricing-grid`, `hero-split`, `terminal-window` and many more.
+Canonical Generation-1 source without compact, design, motion, or Taste tokens takes the original compiler path unchanged. Existing Generation-2 and Motion-3 source continues to use its previous path. Taste Engine 5 activates only when the site or a block uses a Taste token.
 
-Read [`LLMS-COMPACT.txt`](LLMS-COMPACT.txt) for the smallest model-facing contract and [`docs/GENERATION_2.md`](docs/GENERATION_2.md) for the design-engine reference.
-
-## Generation-1 compatibility
-
-Canonical Generation-1 source without compact or motion tokens takes the original compiler path unchanged. Existing canonical builds retain their original files, diagnostics, catalog artifact and manifest shape.
-
-Generation 2 activates when source uses an alias, design recipe, semantic macro or virtual block ID. Motion Engine 3 activates when source uses a motion token or a virtual block that resolves to deterministic motion.
-
-The default `CATALOG`, `getCatalog()` and `compactCatalog()` remain the canonical catalog. Use `getCatalog({ includeMacros: true })` for the extended semantic catalog. Exact design, component and motion IDs resolve on demand, so a model never needs thousands of definitions in context.
+Authentication, persistence, authorization, payments, email, and other external operations still require real backend adapters. AppBlocks does not simulate production integrations.
 
 ## JavaScript API
 
@@ -210,81 +221,71 @@ The default `CATALOG`, `getCatalog()` and `compactCatalog()` remain the canonica
 import {
   compile,
   normalizeSource,
-  resolveMotionRecipe,
-  resolveRecipe,
-  resolveVirtualBlock
+  resolveElementLook,
+  resolveMotion5Recipe,
+  resolveTasteDNA
 } from "app-blocks-web";
 
-const source = `st "Northstar" r=r7314 fx=cinematic
+const dna = resolveTasteDNA("t4839201");
+const look = resolveElementLook("e042731");
+const motion = resolveMotion5Recipe("y73142");
+
+const source = `st "Northstar" ts=t4839201 pk=saas gn=neo-industrial dv=8 mi=7 vd=4
   pg "/" title="Northstar"
-    hr017 fx="hero sx:depth"
-      ttl "Ship a complete animated interface" lvl=1
-      b203 "Start" h="/start" hx=magnetic px=ripple
+    hr017 tr=focal te=cinematic
+      ttl "Build software that looks deliberately made." lvl=1 tty=display
+      b203 "Inspect product" h="/product/" th=magnetic tp=ripple
+      img src="/assets/product.webp" alt="Northstar interface" width=1400 height=1000
 `;
 
 const normalized = normalizeSource(source);
-const result = await compile(source, { filename: "product.ab", strict: true });
+const result = await compile(source, { filename: "product.ab", strict: true, tasteStrict: true });
 
-console.log(resolveRecipe("r7314"));
-console.log(resolveVirtualBlock("hr017"));
-console.log(resolveMotionRecipe("x731"));
-console.log(result.capabilities.motionProfile);
+console.log(dna.id, look.id, motion.id);
+console.log(result.capabilities.tasteEngine);
 ```
 
-Motion helpers are also exported from the dedicated entry point:
+Dedicated entry points are also available:
 
 ```js
-import {
-  MOTION_PROFILES,
-  normalizeMotionSource,
-  resolveMotion
-} from "app-blocks-web/motion";
-```
-
-A motion-enabled build adds:
-
-```text
-public/
-├── index.html
-├── <route>/index.html
-├── appblocks.css
-├── appblocks.js
-├── appblocks.catalog.json
-├── appblocks.extended-catalog.json
-├── appblocks.design.json
-├── appblocks.motion.json
-└── appblocks.manifest.json
+import { resolveTasteDNA, auditTasteSource } from "app-blocks-web/taste";
+import { resolveMotion5Recipe } from "app-blocks-web/motion5";
 ```
 
 ## Verification
 
 ```bash
 npm run verify
+npm pack --dry-run
 ```
 
-The release gate checks JavaScript syntax, the complete legacy, Generation-2 and Motion-3 test suites, every bundled example, generated landmarks and heading structure, duplicate IDs, skip links, executable URLs, inline handlers, dynamic code evaluation, unsafe DOM insertion, reduced-motion behavior, focus treatment, benchmarks and package contents across Node.js 20, 22 and 24 in GitHub Actions.
+The release gate runs syntax checks, 72 unit and integration tests, every bundled example, strict Generation-1/2/3/Taste builds, generated-output security and accessibility audits, the Taste quality gate, deterministic address checks, reduced-motion checks, benchmarks, and package inspection across Node.js 20, 22, and 24 in GitHub Actions.
 
 ## Documentation
 
+- [Taste Engine 5](docs/TASTE.md)
+- [Taste Engine architecture](docs/TASTE_ENGINE.md)
 - [Motion Engine 3](docs/MOTION.md)
 - [Generation 2 design engine](docs/GENERATION_2.md)
-- [Generation 2 CLI](docs/GENERATION_2_CLI.md)
 - [Language reference](docs/LANGUAGE.md)
 - [Block-system guide](docs/BLOCKS.md)
-- [Architecture](docs/ARCHITECTURE.md)
 - [LLM authoring guide](docs/AUTHORING_FOR_LLMS.md)
 - [Backend handoff](BACKEND_HANDOFF.md)
 - [Security policy](SECURITY.md)
 
+## Attribution
+
+Taste Engine 5 is an independent implementation informed by Leonxlnx's MIT-licensed Taste Skill at pinned revision `ccbc15639c97057cbfcf32ecebc38ef716e4bb37`. AppBlocks does not copy Taste Blocks' React component registry. Exact attribution and license terms are recorded in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+
 ## Security model
 
-AppBlocks does not provide a raw-HTML or arbitrary-JavaScript block. User content is escaped, executable URL schemes are rejected, and generated behavior comes from allowlisted runtime modules. Motion tokens cannot contain arbitrary CSS or JavaScript. Unknown motion values remain visible to strict validation.
+AppBlocks does not provide a raw-HTML or arbitrary-JavaScript block. User content is escaped, executable URL schemes are rejected, and generated behavior comes from allowlisted runtime modules. Design and motion tokens cannot contain arbitrary CSS or JavaScript. Unknown values remain visible to strict validation.
 
-This reduces common model-generated vulnerabilities; it does not replace backend authorization, server-side validation, Content Security Policy or security review.
+This reduces common model-generated vulnerabilities; it does not replace backend authorization, server-side validation, Content Security Policy, dependency review, or security testing.
 
 ## Repository policy
 
-The public repository is maintained by `spartandev49`. Public visibility and the MIT license permit reading, use and forks; they do not grant write access to this repository.
+The public repository is maintained by `spartandev49`. Public visibility and the MIT license permit reading, use, and forks; they do not grant write access to this repository.
 
 ## License
 

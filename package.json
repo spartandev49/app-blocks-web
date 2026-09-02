@@ -1,16 +1,16 @@
 {
   "name": "app-blocks-web",
-  "version": "0.3.0",
-  "description": "An LLM-native compact language and zero-dependency compiler for complete animated websites and web applications.",
+  "version": "0.4.0",
+  "description": "An LLM-native compact language and deterministic Taste Engine for complete, visually distinct, animated websites and web applications.",
   "type": "module",
-  "types": "./src/index-v3.d.ts",
+  "types": "./src/index-v5.d.ts",
   "bin": {
     "appblocks": "./bin/appblocks.js",
     "appblocks-v2": "./bin/appblocks-v2.js"
   },
   "exports": {
     ".": {
-      "types": "./src/index-v3.d.ts",
+      "types": "./src/index-v5.d.ts",
       "import": "./src/index.js"
     },
     "./catalog": "./src/generation2.js",
@@ -20,7 +20,15 @@
       "import": "./src/motion3.js"
     },
     "./runtime": "./src/runtime.js",
-    "./styles": "./src/appblocks.css"
+    "./styles": "./src/appblocks.css",
+    "./taste": {
+      "types": "./src/taste5.d.ts",
+      "import": "./src/taste5.js"
+    },
+    "./motion5": {
+      "types": "./src/motion5.d.ts",
+      "import": "./src/motion5.js"
+    }
   },
   "files": [
     "bin",
@@ -33,7 +41,10 @@
     "README.md",
     "CHANGELOG.md",
     "SECURITY.md",
-    "LICENSE"
+    "LICENSE",
+    ".agents",
+    "LLMS-TASTE.txt",
+    "THIRD_PARTY_NOTICES.md"
   ],
   "scripts": {
     "build:showcase": "node ./bin/appblocks.js build ./examples/showcase.appblocks --out ./public",
@@ -45,8 +56,11 @@
     "test:motion": "node --test ./test/motion3.test.js",
     "benchmark": "node ./scripts/benchmark.js",
     "audit": "node ./scripts/static-audit.js",
-    "verify": "npm run check && npm test && npm run audit && npm run build:showcase && npm run build:generation2 && npm run build:motion && npm run benchmark",
-    "prepack": "npm run verify"
+    "verify": "npm run check && npm test && npm run audit && npm run build:showcase && npm run build:generation2 && npm run build:motion && npm run build:taste && npm run audit:taste && npm run benchmark",
+    "prepack": "npm run verify",
+    "build:taste": "node ./bin/appblocks-v2.js build ./examples/taste-showcase.ab --out ./.appblocks-taste --strict --taste-strict",
+    "test:taste": "node --test ./test/taste5.test.js ./test/motion5.test.js ./test/taste5-cli.test.js ./test/taste5-release.test.js",
+    "audit:taste": "node ./scripts/taste-audit.js"
   },
   "keywords": [
     "llm",
@@ -58,7 +72,11 @@
     "motion-design",
     "website-builder",
     "static-site-generator",
-    "code-generation"
+    "code-generation",
+    "anti-slop",
+    "visual-design",
+    "taste-engine",
+    "design-variance"
   ],
   "author": "spartandev49",
   "license": "MIT",

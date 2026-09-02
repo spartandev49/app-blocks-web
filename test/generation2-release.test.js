@@ -25,11 +25,11 @@ async function compileFixture(name) {
   }
 }
 
-test("generation 2 and motion engine 3 ship as a coherent 0.3 package release", async () => {
+test("generation 2 and motion engine 3 remain coherent inside the 0.4 Taste release", async () => {
   const metadata = await packageMetadata();
-  assert.equal(VERSION, "0.3.0");
+  assert.equal(VERSION, "0.4.0");
   assert.equal(metadata.version, VERSION);
-  assert.equal(metadata.types, "./src/index-v3.d.ts");
+  assert.equal(metadata.types, "./src/index-v5.d.ts");
   assert.equal(metadata.bin.appblocks, "./bin/appblocks.js");
   assert.equal(metadata.bin["appblocks-v2"], "./bin/appblocks-v2.js");
   assert.equal(metadata.exports["./generation2"], "./src/generation2.js");

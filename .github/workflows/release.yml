@@ -16,6 +16,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
       - name: Resolve package version
         id: version
         shell: bash
@@ -27,20 +31,43 @@ jobs:
           fi
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "tag=v$version" >> "$GITHUB_OUTPUT"
-      - name: Create release when absent
+      - name: Pack verified npm artifact
+        id: pack
+        shell: bash
+        run: |
+          package="$(npm pack --ignore-scripts --silent)"
+          test -f "$package"
+          echo "package=$package" >> "$GITHUB_OUTPUT"
+      - name: Create or update GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.version.outputs.tag }}
           VERSION: ${{ steps.version.outputs.version }}
           TARGET: ${{ github.event.workflow_run.head_sha }}
+          PACKAGE: ${{ steps.pack.outputs.package }}
         shell: bash
         run: |
           if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            echo "$TAG already exists; no release action required."
+            gh release upload "$TAG" "$PACKAGE" --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$TAG" "$PACKAGE" \
+              --repo "$GITHUB_REPOSITORY" \
+              --target "$TARGET" \
+              --title "AppBlocks Web $VERSION" \
+              --generate-notes
+          fi
+      - name: Publish to npm when repository credentials are configured
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        shell: bash
+        run: |
+          if [[ -z "${NODE_AUTH_TOKEN:-}" ]]; then
+            echo "NPM_TOKEN is not configured; GitHub release is published, npm publication skipped." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          gh release create "$TAG" \
-            --repo "$GITHUB_REPOSITORY" \
-            --target "$TARGET" \
-            --title "AppBlocks Web $VERSION" \
-            --generate-notes
+          if npm view "app-blocks-web@${{ steps.version.outputs.version }}" version >/dev/null 2>&1; then
+            echo "app-blocks-web@${{ steps.version.outputs.version }} is already published." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          npm publish --access public
+          npm view "app-blocks-web@${{ steps.version.outputs.version }}" version

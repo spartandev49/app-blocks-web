@@ -128,19 +128,30 @@ export const ADVANCED_RUNTIME = String.raw`
     }
 
     const parallax = reduced ? [] : [...document.querySelectorAll(".ab-parallax")];
+    const activeParallax = new Set();
     let frame = 0;
     const updateParallax = () => {
       frame = 0;
-      parallax.forEach((element) => {
+      if (document.hidden || reduced) return;
+      activeParallax.forEach((element) => {
         const bounds = element.getBoundingClientRect();
         const offset = Math.max(-28, Math.min(28, (window.innerHeight / 2 - bounds.top) * 0.035));
         element.style.setProperty("--ab-parallax-y", offset + "px");
       });
+      if (activeParallax.size) frame = window.requestAnimationFrame(updateParallax);
     };
+    const startParallax = () => { if (!frame && activeParallax.size && !document.hidden) frame = window.requestAnimationFrame(updateParallax); };
     if (parallax.length) {
-      window.addEventListener("scroll", () => { if (!frame) frame = window.requestAnimationFrame(updateParallax); }, { passive: true });
-      window.addEventListener("resize", updateParallax, { passive: true });
-      updateParallax();
+      if ("IntersectionObserver" in window) {
+        const parallaxObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => entry.isIntersecting ? activeParallax.add(entry.target) : activeParallax.delete(entry.target));
+          startParallax();
+        }, { rootMargin: "35% 0px 35%", threshold: 0 });
+        parallax.forEach((element) => parallaxObserver.observe(element));
+      } else parallax.forEach((element) => activeParallax.add(element));
+      window.addEventListener("resize", startParallax, { passive: true });
+      document.addEventListener("visibilitychange", startParallax);
+      startParallax();
     }
 
     document.querySelectorAll(".ab-x-carousel:not([data-ab-carousel-ready])").forEach((carousel, carouselIndex) => {
