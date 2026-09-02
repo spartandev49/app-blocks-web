@@ -180,6 +180,7 @@ export interface CompileOptions {
   filename?: string;
   base?: string;
   strict?: boolean;
+  tasteStrict?: boolean;
 }
 
 export class AppBlocksError extends Error {

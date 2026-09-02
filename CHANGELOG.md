@@ -2,6 +2,21 @@
 
 All notable changes are documented here. The project follows semantic versioning.
 
+## 0.4.0 - 2026-09-02
+
+- Added Taste Engine 5 with 10,000,000 deterministic coordinated visual DNAs (`t0000000` through `t9999999`).
+- Added 1,000,000 deterministic element-look addresses and 100,000 Motion 5 recipes.
+- Added page-kind and visual-genre inference controls plus explicit design-variance, motion-intensity, and visual-density dials.
+- Added 20 page macrostructures, 20 hero architectures, 12 navigation architectures, 12 footer architectures, 32 typography systems, 48 palettes, 16 surface languages, and role-aware styling for every canonical block.
+- Added finite compact Taste tokens for block layout, typography voice, surface, semantic role, exact element look, entrance, scroll, hover, press, loop, and choreography.
+- Added Motion Engine 5 with `IntersectionObserver`, native view-timeline support, one shared animation-frame scheduler, visibility pausing, fine-pointer safeguards, bounded transforms, and complete reduced-motion behavior.
+- Removed raw scroll-event listeners from generated Generation-2 and Motion-3 runtime paths.
+- Added strict Taste auditing with a minimum score of 88 and machine-readable `appblocks.taste.json` and `appblocks.motion5.json` manifests.
+- Added a three-route public Taste showcase covering product marketing, a visual specimen, and a functional application workspace.
+- Added the repository-local Taste agent skill, compact model contract, architecture documentation, and pinned attribution to Leonxlnx's MIT-licensed Taste Skill.
+- Expanded release verification to 72 tests plus strict builds, generated-output security and accessibility auditing, deterministic address checks, Taste quality checks, benchmark reporting, package inspection, and Node.js 20/22/24 CI.
+- Updated the release workflow to attach the verified npm tarball to the GitHub release and publish to npm when `NPM_TOKEN` is configured.
+
 ## 0.3.0 — 2026-09-01
 
 - Added Motion Engine 3 with 1,000 deterministic motion recipes (`x000` through `x999`).

@@ -1,0 +1,124 @@
+APPBLOCKS WEB TASTE ENGINE 5 - MODEL CONTRACT
+
+PURPOSE
+Author complete, visually distinct websites and web applications in compact AppBlocks source. Your job is to choose product-specific structure, content, assets, and justified exceptions. The compiler owns responsive CSS, interaction states, accessibility, finite motion, and browser behavior.
+
+DESIGN READ - DO THIS BEFORE SOURCE
+Privately resolve one sentence with:
+- route job: persuade, operate, read, or showcase;
+- audience and trust requirements;
+- visual language inferred from the brief and supplied brand assets;
+- the degree of experimentation the product can support.
+Do not default to a fashionable aesthetic before reading the audience and constraints.
+
+THREE DIALS
+- dv=DESIGN_VARIANCE (design variance), 1-10. 1 is quiet symmetry; 10 is controlled asymmetry and spatial experimentation.
+- mi=MOTION_INTENSITY, 1-10. 1 is state feedback only; 10 is cinematic choreography.
+- vd=VISUAL_DENSITY, 1-10. 1 is gallery-like; 10 is operational cockpit density.
+
+Typical starting points:
+- mainstream SaaS: dv=7 mi=6 vd=4
+- creative studio: dv=9 mi=8 vd=3
+- premium consumer: dv=7 mi=6 vd=3
+- technical application: dv=5 mi=4 vd=7
+- public service: dv=3 mi=2 vd=5
+These are starting points, not automatic answers.
+
+DETERMINISTIC ADDRESS SPACE
+- Taste DNA: t0000000-t9999999. One address coordinates macrostructure, hero, navigation, footer, typography, palette, geometry, surface, rhythm, asset treatment, and default dials.
+- Element look: e000000-e999999. One address coordinates shape, border, shadow, surface, density, and tone.
+- Motion 5: y00000-y99999. Every address has a unique entrance/scroll/hover/press/repeat core tuple.
+- Existing design recipes: r0000-r9999.
+- Existing virtual blocks: b000-b999, h000-h999, ft000-ft999, hr000-hr999, fr000-fr999, cd000-cd999, sc000-sc999, fm000-fm999, tb000-tb999, nv000-nv999.
+
+START
+st "Project" r=r7314 ts=t4839201 pk=saas gn=neo-industrial dv=8 mi=7 vd=4
+  pg "/" title="Project" tl=asymmetric-field
+    hr017 tl=artifact-first tsf=photographic tr=focal te=cinematic tsc=depth tc=hero
+      ttl "A concrete product promise" lvl=1 tty=display
+      txt "A concise explanation that keeps the primary action in the first viewport."
+      b203 "Start" h="/start" th=magnetic tp=ripple
+      img src="/assets/product.webp" alt="Specific description" width=1400 height=1050 loading=eager
+
+SITE TOKENS
+- ts: Taste DNA
+- pk: page kind: saas consumer agency portfolio editorial event documentation commerce application public-service media community
+- gn: genre: modernist neo-industrial editorial kinetic technical organic brutalist quiet-luxury retro-future playful studio monochrome architectural soft-tech high-contrast print-led utilitarian cinematic catalogue workshop experimental institutional sport cultural
+- dv, mi, vd: integer 1-10
+- md: light dark auto
+
+LOCAL VISUAL TOKENS
+- tl: layout/composition
+- tsf: surface/material
+- tr: semantic visual role
+- tty: typography voice
+- lk: exact element look
+
+Useful layouts:
+asymmetric-split editorial-stack artifact-stage sticky-story modular-bento technical-grid horizontal-rail layered-collage ledger full-bleed offset masonry split-studio index-list cinematic workbench quiet-column media-left media-right comparison-rail dense-cockpit gallery-wall closing-band
+
+Surfaces:
+flat paper matte ink canvas blueprint metal chrome mesh noise frost foil terminal linework photographic tonal
+
+Roles:
+focal supporting quiet utility evidence navigation action artifact data narrative status
+
+Type voices:
+display editorial condensed mono whisper shout outline lede numeral label body caption data wordmark quote
+
+LOCAL MOTION TOKENS
+- te: entrance
+- tsc: scroll behavior
+- th: hover interaction
+- tp: press feedback
+- ta: ambient loop
+- tc: child choreography
+- tdu: duration
+- tez: easing
+- tix: intensity
+- trp: repeat on re-entry
+
+Motion vocabulary:
+- entrance: none fade rise fall slide-left slide-right scale blur clip-up clip-left clip-right wipe fold unmask spring settle focus-in type-rise image-reveal stagger-rise drift snap soft-pop cinematic
+- scroll: none reveal parallax-y parallax-x scale fade blur tilt depth clip progress sticky-stack horizontal-pan word-reveal image-scale counterflow section-wipe focus-shift
+- hover: none lift soft-lift shine fill underline arrow magnetic tilt spotlight border-trace icon-shift image-zoom focus reveal-copy swap-text chroma pressable quiet elastic
+- press: none compress push depress ripple bounce rubber pulse snap confirm
+- loop: none float breathe pulse bob sway shimmer gradient spin glow dash drift marquee orbit scan
+- choreography: none children cascade grid stack hero wave radial list editorial counterflow sequence
+
+TASTE DISCIPLINE
+1. One visual thesis per route. Do not combine unrelated aesthetics because tokens exist.
+2. The hero must fit at 1280x800: one level-1 title, at most two concise actions, concise support copy, and a real focal artifact when the route benefits from one.
+3. Use real images, real screenshots, or actual live components. Never draw fake browser, phone, terminal, or dashboard chrome from empty rectangles.
+4. Do not repeat one section layout. Across a long page, rotate among narrative, artifact, ledger, gallery, rail, bento, and closing compositions according to purpose.
+5. Avoid the generic centered hero plus three equal feature cards. Centering is allowed only when the message itself is the composition.
+6. Use cards only when containment or elevation communicates hierarchy. Otherwise use spacing, rules, or direct layout.
+7. Use one accent and one geometry logic. Do not improvise a new palette or radius halfway down the page.
+8. Use eyebrows sparingly: no more than one for every three major sections. Do not number sections as decoration.
+9. Use one action label per intent. Do not repeat "Start", "Get started", and "Try now" for the same action.
+10. Never invent customers, testimonials, metrics, certifications, integrations, uptime, or results. Label demonstration data plainly.
+11. Motion must communicate hierarchy, storytelling, feedback, or state. Do not animate every block. Use at most one marquee per page.
+12. mi>4 must produce visible, purposeful motion. All generated motion already respects reduced-motion preferences.
+13. Keep clickable labels on one line. Give images dimensions and meaningful alt text. Give every field a persistent label.
+14. Marketing and portfolio routes normally need at least two genuine visual assets. Applications may instead use live data components.
+15. Use sentence case and concrete verbs. Avoid generic copy such as "unlock the power", "seamless", "next-gen", "elevate", and "game-changer".
+16. Use the largest semantic AppBlocks block that matches the job. Do not rebuild pricing, tables, dialogs, forms, galleries, or application shells from primitive cards.
+
+APPLICATION EXCEPTION
+Leonxlnx's original Taste Skill focuses on marketing surfaces. AppBlocks extends its principles to applications by lowering default variance and motion on utility/data roles, preserving density, and styling complete loading, empty, error, disabled, focus, and success states. Do not turn a dense application into an art-directed landing page.
+
+REQUIRED VERIFICATION
+appblocks-v2 audit site.ab --strict --json
+appblocks-v2 check site.ab --strict --taste-strict
+appblocks-v2 build site.ab --out public --strict --taste-strict
+
+QUERY ONLY WHAT YOU NEED
+appblocks-v2 taste t4839201
+appblocks-v2 look e731024
+appblocks-v2 motion y73124
+appblocks-v2 virtual b203
+appblocks-v2 catalog gallery --json
+appblocks-v2 normalize site.ab
+
+SOURCE NOTE
+This contract adapts design guidance from Leonxlnx/taste-skill at commit ccbc15639c97057cbfcf32ecebc38ef716e4bb37 under the MIT License. AppBlocks' compiler, address spaces, audits, generated CSS, and runtime are independent implementations.

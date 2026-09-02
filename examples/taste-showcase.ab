@@ -1,0 +1,257 @@
+st "AppBlocks Studio" theme=signal lang=en r=r7314 ts=t4839201 pk=saas gn=neo-industrial dv=8 mi=7 vd=4
+  meta description="Taste Engine 5 turns compact AppBlocks source into structurally varied, responsive, motion-rich websites and applications." theme-color="#10120f"
+
+  h042 logo="AppBlocks Studio" href="/" sticky=true theme-toggle=true tl=asymmetric-nav tr=navigation te=fall tc=sequence
+    nav l="Primary navigation"
+      ln "Principles" h="/#principles"
+      ln "Patterns" h="/patterns/"
+      ln "Workspace" h="/workspace/"
+      ln "Documentation" h="/docs/"
+    b203 "Inspect patterns" h="/patterns/" i=arrow th=magnetic tp=ripple
+
+  ft033 logo="AppBlocks Studio" note="A deterministic visual language for models that need to ship real interfaces." tl=closing-statement tr=navigation
+    nav l="Explore"
+      ln "Design principles" h="/#principles"
+      ln "Pattern specimen" h="/patterns/"
+      ln "Application workspace" h="/workspace/"
+    nav l="Project"
+      ln "Language reference" h="/docs/"
+      ln "GitHub source" h="https://github.com/spartandev49/app-blocks-web"
+    txt "Taste Engine 5 is an independent AppBlocks implementation informed by Leonxlnx's MIT-licensed Taste Skill." t=muted
+
+  pg "/" title="AppBlocks Taste Engine 5" description="A compact language for visually distinct, functional websites and applications." tl=editorial-axis
+    hr017 v=split tl=artifact-first tr=focal te=cinematic tsc=depth tc=hero tdu=cinematic
+      eye "Taste Engine 5"
+      ttl "Models can now design, not merely assemble." lvl=1 tty=display
+      txt "Ten million coordinated visual DNAs turn concise product intent into distinctive structure, typography, surfaces, and purposeful motion." sz=large
+      b203 "Explore the system" h="/#principles" v=solid th=magnetic tp=ripple
+      b444 "Open workspace" h="/workspace/" v=outline th=fill tp=compress
+      img src="https://picsum.photos/seed/appblocks-industrial-studio/1400/1050" alt="Architectural studio materials arranged in a high-contrast composition" width=1400 height=1050 loading=eager tsf=photographic tr=artifact te=image-reveal tsc=image-scale th=image-zoom
+
+    proof id="principles" v=rail tl=ledger tsf=linework tr=evidence te=rise tsc=reveal
+      ttl "A visual system should make decisions." lvl=2 tty=display
+      txt "Taste DNA coordinates the whole page. Element looks vary locally without breaking palette, geometry, hierarchy, or interaction behavior."
+      sts v=rail tl=technical-grid tr=data tc=grid
+        stat val="10,000,000" l="Taste DNAs" detail="Stable addresses from t0000000 to t9999999" tty=numeral
+        stat val="1,000,000" l="Element looks" detail="Shape, border, surface, shadow, density, and tone" tty=numeral
+        stat val="100,000" l="Motion recipes" detail="Role-aware choreography from y00000 to y99999" tty=numeral
+        stat val="88" l="Quality floor" detail="Strict Taste audit minimum" tty=numeral
+
+    features v=bento tl=modular-bento tr=supporting te=stagger-rise tsc=reveal tc=grid
+      ttl "Every layer carries the same point of view." lvl=2 tty=display
+      txt "Structure, type, material, controls, and motion resolve from one deliberate direction instead of unrelated component defaults."
+      feat i=layers sp=wide tl=artifact-stage tsf=metal tr=evidence th=spotlight
+        hdn "Structural variety first"
+        txt "Hero, navigation, section rhythm, footer, and application chrome are selected independently but remain coordinated."
+      feat i=grid tl=offset tsf=canvas th=soft-lift
+        hdn "No equal-card reflex"
+        txt "Bento, ledger, editorial, full-bleed, sticky, and rail compositions replace repetitive template stacking."
+      feat i=code tl=technical-grid tsf=blueprint tr=artifact th=border-trace
+        hdn "Compact model syntax"
+        txt "A few bounded tokens carry decisions that normally consume hundreds of lines of frontend code."
+      feat i=trend sp=wide tl=horizontal-rail tsf=tonal tr=narrative th=focus
+        hdn "Motion explains the page"
+        txt "Entrances establish hierarchy, scroll behavior supports storytelling, and interaction physics confirm user actions."
+      feat i=shield tl=quiet-column tsf=paper tr=utility th=quiet
+        hdn "Strict by construction"
+        txt "Unknown visual tokens fail validation. Reduced motion, contrast, touch targets, and keyboard focus remain compiler-owned."
+
+    spl v=media-left tl=split-studio tr=narrative te=unmask tsc=parallax-y
+      stk gap=lg
+        ttl "Real artifacts replace fake interface chrome." lvl=2 tty=display
+        txt "Marketing pages use real photography, screenshots, or live components. The engine no longer draws pretend browser windows to look technical."
+        lst
+          it "One visual thesis per route"
+          it "One accent and one geometry system"
+          it "Purposeful component roles"
+          it "Explicit mobile collapse"
+        b731 "View the specimen" h="/patterns/" th=arrow tp=push
+      img src="https://picsum.photos/seed/appblocks-material-study/1200/900" alt="Close view of physical materials and printed design samples" width=1200 height=900 tsf=photographic tr=artifact te=image-reveal tsc=image-scale th=image-zoom
+
+    sec tr=narrative te=rise tsc=word-reveal
+      cols v=wide-left a=start
+        stk gap=lg tr=focal
+          ttl "A page becomes a sequence, not a component inventory." lvl=2 tty=display
+          txt "Each chapter changes posture while preserving the same typography, palette, spacing logic, and narrative direction."
+        steps v=timeline tr=narrative tc=sequence
+          step number="Read" i=search
+            hdn "Infer the brief"
+            txt "Classify the route, audience, trust level, brand assets, and desired degree of experimentation."
+          step number="Direct" i=spark
+            hdn "Choose a Taste DNA"
+            txt "Set variance, motion intensity, and visual density, then let the deterministic system coordinate the page."
+          step number="Compose" i=layers
+            hdn "Assign distinct roles"
+            txt "Focal, evidence, artifact, action, utility, and data blocks receive different visual and motion behavior."
+          step number="Prove" i=shield
+            hdn "Audit before shipping"
+            txt "Strict compilation rejects the recurring patterns that make generated websites feel interchangeable."
+
+    gal v=masonry tl=gallery-wall tr=artifact te=stagger-rise tsc=reveal tc=grid
+      img src="https://picsum.photos/seed/appblocks-type-specimen/900/1200" alt="Bold typographic specimen on a studio wall" width=900 height=1200 tsf=photographic th=image-zoom
+      img src="https://picsum.photos/seed/appblocks-product-material/1200/900" alt="Minimal product material study under directional light" width=1200 height=900 tsf=photographic th=image-zoom
+      img src="https://picsum.photos/seed/appblocks-architectural-grid/1000/1000" alt="Architectural grid and shadow study" width=1000 height=1000 tsf=photographic th=image-zoom
+      img src="https://picsum.photos/seed/appblocks-editorial-layout/1200/800" alt="Editorial layout materials spread across a table" width=1200 height=800 tsf=photographic th=image-zoom
+
+    call v=ink tl=closing-band tsf=ink tr=action te=soft-pop tsc=reveal tc=hero
+      ttl "Make the next generated site unmistakably its own." lvl=2 tty=display
+      txt "Choose one Taste address, write real content, supply real assets, and let AppBlocks expand the complete interface."
+      b907 "Read the contract" h="/docs/" th=shine tp=confirm
+
+  pg "/patterns/" title="Taste Engine pattern specimen" description="A visual specimen of AppBlocks typography, surfaces, layouts, controls, and motion." tl=component-playground
+    sec tl=artifact-stage tsf=paper tr=focal te=cinematic tc=hero
+      ttl "A specimen for every visual layer." lvl=1 tty=display
+      txt "Inspect coordinated type, material, geometry, controls, media, and motion without falling back to one universal card style."
+      img src="https://picsum.photos/seed/appblocks-pattern-library/1500/800" alt="Wall of varied visual design specimens and materials" width=1500 height=800 tsf=photographic tr=artifact te=image-reveal tsc=image-scale
+
+    sec tl=technical-grid tsf=blueprint tr=evidence te=rise tsc=reveal
+      ttl "Typography carries the identity." lvl=2 tty=display
+      gr v=two tl=offset tc=grid
+        pnl v=plain tl=editorial-stack tsf=paper
+          hdn "Display voice" tty=shout
+          txt "Large type uses deliberate width, tracking, weight, and measure rather than size alone."
+          qt "The compiler supplies discipline. The product still supplies meaning." by="AppBlocks design contract" tty=quote
+        pnl v=plain tl=ledger tsf=terminal tr=data
+          hdn "Operational voice" tty=mono
+          txt "Data, labels, and code use a separate register with tabular alignment and restrained motion."
+          code "ts=t4839201 dv=8 mi=7 vd=4" language=appblocks
+
+    sec tl=modular-bento tr=supporting te=stagger-rise tc=grid
+      ttl "Materials communicate hierarchy." lvl=2 tty=display
+      gr v=bento tl=modular-bento
+        cd014 tl=offset tsf=paper tr=supporting th=soft-lift
+          hdn "Paper"
+          txt "Quiet reading and supporting content."
+        cd375 tl=artifact-stage tsf=metal tr=evidence th=spotlight
+          hdn "Metal"
+          txt "High-value evidence and product artifacts."
+        cd728 tl=technical-grid tsf=blueprint tr=data th=border-trace
+          hdn "Blueprint"
+          txt "Technical explanation and inspectable systems."
+        cd907 tl=closing-band tsf=ink tr=action th=shine
+          hdn "Ink"
+          txt "Decisive calls to action with guaranteed contrast."
+        pnl v=plain tl=gallery-wall tsf=tonal tr=artifact th=image-zoom
+          img src="https://picsum.photos/seed/appblocks-surface-sample/1000/700" alt="Material surface sample under soft light" width=1000 height=700
+
+    sec tl=horizontal-rail tr=action te=rise tsc=reveal
+      ttl "Controls show every important state." lvl=2 tty=display
+      gr v=four tl=horizontal-rail
+        b014 "Default action" act="toast:Default action confirmed" th=lift tp=compress
+        b375 "Directional fill" act="toast:Directional fill confirmed" th=fill tp=ripple
+        b728 "Loading action" state=loading disabled=true
+        b907 "Saved action" state=success act="toast:Saved state confirmed" th=shine tp=confirm
+
+    call v=editorial tl=closing-band tr=action te=soft-pop
+      ttl "Use the engine from compact source." lvl=2 tty=display
+      txt "The model chooses semantic intent and justified exceptions. The compiler owns the repetitive implementation."
+      b444 "Launch workspace" h="/workspace/" th=magnetic tp=ripple
+
+  pg "/workspace/" title="Taste Engine application workspace" description="A functional AppBlocks workspace with role-aware visual design and motion." layout=app tl=workbench
+    app n="Taste workspace" tl=workbench tr=utility te=fade
+      side logo="AppBlocks" l="Workspace navigation" tl=command-nav tr=navigation
+        ln "Overview" h="/workspace/" i=grid cur=true
+        ln "Design queue" h="#queue" i=layers
+        ln "Audit" h="#audit" i=shield
+        ln "Patterns" h="/patterns/" i=spark
+      tool tl=ledger tr=utility te=fall
+        ttl "Design control" lvl=1 tty=display
+        txt "Example operational data for the Taste Engine showcase."
+        b118 "Run audit" act="toast:Taste audit passed" i=shield th=focus tp=confirm
+        b731 "New brief" dlg=brief i=plus th=magnetic tp=ripple
+      status "This workspace uses local demonstration state. No remote service is implied." v=info
+
+      mets v=rail tl=technical-grid tr=data tc=grid
+        met val="94" l="Taste score" change="Example route audit" progress=94 tty=numeral
+        met val="7" l="Motion intensity" change="Role-aware and reduced-motion safe" progress=70 tty=numeral
+        met val="8" l="Design variance" change="Asymmetric but controlled" progress=80 tty=numeral
+        met val="4" l="Visual density" change="Operational, not crowded" progress=40 tty=numeral
+
+      tabs id="workspace-tabs" l="Workspace views" tl=workbench tr=navigation
+        tab id="overview" l="Overview" sel=true
+          gr v=two tl=split-studio
+            pnl v=raised tl=artifact-stage tsf=metal tr=evidence te=unmask tsc=image-scale th=spotlight
+              hdn "Selected visual DNA"
+              txt "t4839201 coordinates the page architecture, type system, palette, geometry, surfaces, and section rhythm."
+              img src="https://picsum.photos/seed/appblocks-workspace-artifact/1200/700" alt="Abstract architectural product artifact used in the workspace" width=1200 height=700 tl=editorial-crop tsf=photographic tr=artifact
+            pnl v=plain tl=ledger tsf=linework tr=data
+              hdn "Current checks"
+              actv l="Taste audit activity"
+                evt time="Now" i=shield
+                  hdn "Structural variety passed"
+                  txt "The route uses distinct hero, evidence, gallery, narrative, and closing layouts."
+                evt time="Now" i=trend
+                  hdn "Motion intent passed"
+                  txt "Entrance, scroll, hover, and press behavior each support a visible interface purpose."
+                evt time="Now" i=layers
+                  hdn "Component roles passed"
+                  txt "Actions, evidence, artifacts, data, and navigation use different visual postures."
+          tbl id="design-queue" l="Design queue" filt=true sort=true tl=dense-cockpit tsf=paper tr=data
+            col key=route l="Route" sort=true
+            col key=kind l="Job"
+            col key=score l="Taste" a=right sort=true
+            col key=status l="Status"
+            row
+              cell key=route
+                txt "Homepage"
+              cell key=kind
+                txt "Persuade"
+              cell key=score
+                txt "96"
+              cell key=status
+                bdg "Ready" v=success
+            row
+              cell key=route
+                txt "Pattern specimen"
+              cell key=kind
+                txt "Showcase"
+              cell key=score
+                txt "92"
+              cell key=status
+                bdg "Ready" v=success
+            row
+              cell key=route
+                txt "Workspace"
+              cell key=kind
+                txt "Operate"
+              cell key=score
+                txt "94"
+              cell key=status
+                bdg "Review" v=warning
+        tab id="queue" l="Queue"
+          kb l="Design workflow" tl=horizontal-rail tr=data
+            lane n="Read" count=2
+              crd tl=quiet-column tsf=paper
+                hdn "Audience constraints"
+                txt "Confirm buyer expertise and required trust signals."
+              crd tl=quiet-column tsf=paper
+                hdn "Brand assets"
+                txt "Collect logo, photography, colors, and existing interface references."
+            lane n="Direct" count=2
+              crd tl=offset tsf=tonal
+                hdn "Choose visual DNA"
+                txt "Resolve one deterministic direction and document the reason."
+              crd tl=offset tsf=tonal
+                hdn "Assign component roles"
+                txt "Separate focal, evidence, artifact, action, utility, and data treatments."
+            lane n="Verify" count=2
+              crd tl=technical-grid tsf=blueprint
+                hdn "Run strict audit"
+                txt "Repair generic structure, weak assets, repeated labels, and unsupported motion."
+              crd tl=technical-grid tsf=blueprint
+                hdn "Inspect responsive output"
+                txt "Check desktop, tablet, mobile, keyboard, reduced motion, and both themes."
+        tab id="audit" l="Audit"
+          frm id="audit-form" demo=true sub="Analyze brief" ok="Brief audit complete" tl=quiet-column tsf=paper tr=utility
+            fld n="project" l="Project name" req=true ph="Example product"
+            fld n="audience" l="Primary audience" req=true ph="Technical buyers"
+            fld n="direction" l="Visual direction" typ=select options=["Modernist","Neo-industrial","Editorial","Technical"]
+            fld n="notes" l="Constraints" typ=textarea ph="Accessibility, trust, or brand requirements" help="State concrete constraints rather than aesthetic filler."
+            b203 "Analyze brief" typ=submit th=fill tp=confirm
+
+      dlg id="brief" title="Create a design brief" size=md tl=quiet-column tsf=paper tr=utility
+        txt "Define the route job, audience, visual direction, and non-negotiable constraints."
+        frm demo=true sub="Create brief" ok="Brief created"
+          fld n="brief-name" l="Brief name" req=true ph="Product launch"
+          fld n="brief-kind" l="Route job" typ=select options=["Persuade","Operate","Read","Showcase"]
+          b444 "Create brief" typ=submit th=fill tp=confirm

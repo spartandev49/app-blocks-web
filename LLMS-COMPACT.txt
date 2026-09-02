@@ -102,3 +102,14 @@ appblocks-v2 motion x731
 appblocks-v2 motion cinematic hero
 appblocks-v2 catalog carousel --json
 appblocks-v2 normalize file.ab
+
+TASTE ENGINE 5
+For visually authored work, also load LLMS-TASTE.txt.
+- Taste DNAs: t0000000-t9999999.
+- Element looks: e000000-e999999.
+- Motion 5 recipes: y00000-y99999.
+- Site: ts=t4839201 pk=saas gn=neo-industrial dv=8 mi=7 vd=4.
+- Local: tl=layout tsf=surface tr=role tty=type lk=look.
+- Motion: te=entrance tsc=scroll th=hover tp=press ta=loop tc=choreography.
+- Validate: appblocks-v2 check file.ab --strict --taste-strict.
+- Audit: appblocks-v2 audit file.ab --strict --json.

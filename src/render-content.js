@@ -56,7 +56,7 @@ function renderField(node) {
   } else {
     control = `<input ${base} type="${escapeAttribute(type)}"${node.attrs.placeholder ? ` placeholder="${escapeAttribute(node.attrs.placeholder)}"` : ""}${node.attrs.value !== undefined ? ` value="${escapeAttribute(node.attrs.value)}"` : ""}>`;
   }
-  return `<div class="${classes(node, "ab-field", type === "checkbox" ? "ab-field--check" : "")}"><label for="${escapeAttribute(id)}">${escapeHtml(node.attrs.label ?? name)}</label>${control}${node.attrs.help ? `<small>${escapeHtml(node.attrs.help)}</small>` : ""}<span class="ab-field__error" data-field-error aria-live="polite"></span></div>`;
+  return `<div class="${classes(node, "ab-field", type === "checkbox" ? "ab-field--check" : "")}"><label for="${escapeAttribute(id)}">${escapeHtml(node.attrs.label ?? name)}</label>${control}<span class="ab-field__message"><small data-field-help>${escapeHtml(node.attrs.help ?? "")}</small><span class="ab-field__error" data-field-error aria-live="polite"></span></span></div>`;
 }
 
 function renderForm(node, context) {

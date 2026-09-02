@@ -114,3 +114,31 @@ Validation proves language and selected contract invariants. It does not prove f
 - Did strict validation return no diagnostics?
 - Does the build manifest show the expected routes and a useful expansion ratio?
 - Was the generated result inspected at representative mobile and desktop widths?
+
+## Taste Engine 5 workflow
+
+For visual websites, product pages, portfolios, and redesigned application surfaces, provide `LLMS-TASTE.txt` with the base compact contract. The model should infer the route job, audience, trust level, existing brand assets, and desired visual language before selecting one Taste DNA.
+
+```ab
+st "Project" r=r7314 ts=t4839201 pk=saas gn=neo-industrial dv=8 mi=7 vd=4
+```
+
+Plan the page as a sequence before emitting blocks. A long marketing page should use at least four structural families and distinct semantic roles for focal content, evidence, artifacts, actions, utilities, navigation, and data. Real images or real screenshots are required when the product needs visual proof.
+
+Use local Taste tokens only for meaningful exceptions:
+
+```ab
+section tl=sticky-story tr=narrative
+panel tl=artifact-stage tsf=metal tr=evidence
+image tl=full-bleed tsf=photographic tr=artifact
+button th=magnetic tp=ripple
+```
+
+Validate and audit:
+
+```bash
+appblocks-v2 check generated.ab --strict --taste-strict
+appblocks-v2 audit generated.ab --strict --json
+```
+
+A score of 88 is the minimum release gate. The model must still inspect the rendered route at representative desktop and mobile widths, both themes, keyboard focus, reduced motion, and all interactive states.

@@ -818,6 +818,10 @@ function transformLine(line, state) {
   const tokens = tokenize(code);
   if (!tokens.length) return line;
   const name = tokens.shift().toLowerCase();
+  const tasteManaged = tokens.some((token) => {
+    const parts = tokenParts(token);
+    return (parts?.key === "class" || parts?.key === "cl") && /(?:^|\s)ab-t5(?:-|\s|$)/.test(String(decodeDslValue(parts.value)));
+  });
   const definition = getBlock(name);
   const classSupported = Boolean(definition?.attributes?.includes("class"));
   const output = [];
@@ -890,7 +894,7 @@ function transformLine(line, state) {
     if (raw.repeat !== undefined) resolved.repeat = raw.repeat;
     if (!validateSelection(resolved)) return line;
     selection = freeze(resolved);
-  } else {
+  } else if (!tasteManaged) {
     const marker = virtualMarker(output);
     if (marker) {
       selection = virtualSelection(name, marker);
@@ -1090,20 +1094,21 @@ export const MOTION3_RUNTIME = String.raw`
       revealNodes.forEach((element) => revealObserver.observe(element));
     }
     const scrollNodes = reduced ? [] : nodes.filter((element) => [...element.classList].some((name) => name.startsWith("ab-scroll-") && name !== "ab-scroll-none"));
+    const activeScrollNodes = new Set();
     let scheduled = 0;
     let lastScrollY = window.scrollY;
     const intensity = (element) => element.classList.contains("ab-intensity-extreme") ? 1.82 : element.classList.contains("ab-intensity-strong") ? 1.38 : element.classList.contains("ab-intensity-subtle") ? .58 : 1;
     const clamp = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value));
     const updateScrollMotion = () => {
       scheduled = 0;
+      if (document.hidden) return;
       const viewport = window.innerHeight || 1;
       const documentHeight = Math.max(1, document.documentElement.scrollHeight - viewport);
       root.style.setProperty("--ab-page-progress", clamp(window.scrollY / documentHeight, 0, 1).toFixed(4));
       const velocity = clamp((window.scrollY - lastScrollY) / 48, -1, 1);
       lastScrollY = window.scrollY;
-      scrollNodes.forEach((element) => {
+      activeScrollNodes.forEach((element) => {
         const bounds = element.getBoundingClientRect();
-        if (bounds.bottom < -viewport || bounds.top > viewport * 2) return;
         const travel = viewport + Math.max(1, bounds.height);
         const progress = clamp((viewport - bounds.top) / travel, 0, 1);
         const center = clamp((bounds.top + bounds.height / 2 - viewport / 2) / (viewport / 2 + bounds.height / 2), -1, 1);
@@ -1124,12 +1129,20 @@ export const MOTION3_RUNTIME = String.raw`
         element.style.setProperty("--ab-m3-tilt-y", element.classList.contains("ab-scroll-tilt") ? (velocity * -3 * factor).toFixed(2) + "deg" : "0deg");
         element.style.setProperty("--ab-m3-depth-rotate", element.classList.contains("ab-scroll-depth") ? (center * 3 * factor).toFixed(2) + "deg" : "0deg");
       });
+      if (activeScrollNodes.size) scheduled = window.requestAnimationFrame(updateScrollMotion);
     };
-    const scheduleScrollMotion = () => { if (!scheduled) scheduled = window.requestAnimationFrame(updateScrollMotion); };
+    const scheduleScrollMotion = () => { if (!scheduled && activeScrollNodes.size && !document.hidden) scheduled = window.requestAnimationFrame(updateScrollMotion); };
     if (scrollNodes.length) {
-      window.addEventListener("scroll", scheduleScrollMotion, { passive: true });
+      if ("IntersectionObserver" in window) {
+        const scrollObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => entry.isIntersecting ? activeScrollNodes.add(entry.target) : activeScrollNodes.delete(entry.target));
+          scheduleScrollMotion();
+        }, { rootMargin: "35% 0px 35%", threshold: 0 });
+        scrollNodes.forEach((element) => scrollObserver.observe(element));
+      } else scrollNodes.forEach((element) => activeScrollNodes.add(element));
       window.addEventListener("resize", scheduleScrollMotion, { passive: true });
-      updateScrollMotion();
+      document.addEventListener("visibilitychange", scheduleScrollMotion);
+      scheduleScrollMotion();
     }
     const finePointer = window.matchMedia("(hover:hover) and (pointer:fine)").matches;
     if (finePointer) {

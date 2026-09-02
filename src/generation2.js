@@ -210,7 +210,9 @@ export function resolveVirtualBlock(name) {
   if (!match) return null;
   const base = legacyGetBlock(match.family.target);
   const style = virtualStyle(match.number);
-  const variants = base?.variants ?? [];
+  const variants = match.family.target === "button"
+    ? (base?.variants ?? []).filter((variant) => variant !== "icon")
+    : (base?.variants ?? []);
   const attrs = {};
   if (variants.length) attrs.variant = variants[match.number % variants.length];
   if (blockSupports(base, "sticky") && match.number % 3 === 0) attrs.sticky = true;
