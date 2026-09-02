@@ -25,13 +25,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Build Motion Engine 3 showcase
-        run: node bin/appblocks-v2.js build examples/motion-showcase.ab --out public --base /app-blocks-web/ --strict
-      - name: Build impressive AppBlocks test site
-        run: node bin/appblocks-v2.js build examples/impressive-test.ab --out public/test --base /app-blocks-web/test/ --strict
+      - name: Reset generated site
+        run: rm -rf public
+      - name: Build Taste Engine 5 public proof
+        run: node bin/appblocks-v2.js build examples/taste-showcase.ab --out public --base /app-blocks-web/ --strict --taste-strict
+      - name: Preserve Motion Engine 3 showcase
+        run: node bin/appblocks-v2.js build examples/motion-showcase.ab --out public/motion --base /app-blocks-web/motion/ --strict
       - name: Preserve Generation 2 showcase
         run: node bin/appblocks-v2.js build examples/generation2-showcase.ab --out public/v2 --base /app-blocks-web/v2/ --strict
-      - name: Build documentation showcase
+      - name: Preserve the previous visual stress test
+        run: node bin/appblocks-v2.js build examples/impressive-test.ab --out public/test --base /app-blocks-web/test/ --strict
+      - name: Build canonical documentation showcase
         run: node bin/appblocks.js build examples/showcase.appblocks --out public/docs --base /app-blocks-web/docs/ --strict
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
