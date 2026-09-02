@@ -1,0 +1,501 @@
+st "EIDOLON" theme=signal lang=en r=r8421 p=p47 f=f221 s=s07 sf=u03 mo=m11 dn=d0 sd=z6 primary="#ff5c35" secondary="#8b5cf6" background="#07080b" foreground="#f4efe6" font-display="Didot, Bodoni, Georgia, serif" font-body="Avenir, 'Avenir Next', Helvetica, Arial, sans-serif" font-mono="'SFMono-Regular', Consolas, monospace" fx=cinematic
+  meta description="EIDOLON is a fictional speculative-habitat studio used to test the full visual and motion range of AppBlocks Web." author=spartandev49 theme-color="#07080b"
+
+  h731 logo="EIDOLON / 01" href="/" sticky=true theme-toggle=true fx="nav en:fall cx:children"
+    nav l="Primary navigation"
+      ln "Work" h="/work/" hx=underline
+      ln "Method" h="/method/" hx=underline
+      ln "Lab" h="/lab/" hx=underline
+      ln "Brief" h="/brief/" hx=underline
+    b731 "Enter the lab" h="/lab/" i=arrow hx=magnetic px=ripple
+
+  ft407 logo="EIDOLON" note="A fictional concept studio built entirely as an AppBlocks Web test."
+    nav l="Explore"
+      ln "Selected work" h="/work/"
+      ln "Design method" h="/method/"
+      ln "Habitat lab" h="/lab/"
+    nav l="Project"
+      ln "AppBlocks source" h="https://github.com/spartandev49/app-blocks-web"
+      ln "Documentation" h="/docs/"
+    txt "No external images, animation library, framework or custom JavaScript was used for this website." t=muted
+
+  pg "/" title="EIDOLON — Architecture for Unwritten Worlds" description="A cinematic fictional studio website generated from compact AppBlocks source."
+    hr942 v=split fx="hero en:clip-up sx:depth cx:hero du:cinematic ix:extreme"
+      bdg "Speculative habitat studio" v=accent i=spark lx=glow
+      eye "Earth / orbit / elsewhere" i=bolt
+      ttl "We design places for lives that do not exist yet." lvl=1
+      txt "EIDOLON is a fictional spatial practice exploring orbital commons, climate refuges and impossible interiors. This entire experience is a stress test of AppBlocks Web—structure, typography, motion, interactions and responsive behavior from compact source." sz=large
+      b731 "View selected worlds" h="/work/" i=arrow hx=magnetic px=ripple
+      b203 "Start a fictional brief" h="/brief/" hx=shine px=compress
+      vis v=orbit l="An abstract orbital habitat system" fx="media en:zoom sx:parallax-y hx:tilt lx=float du:cinematic ix:strong"
+
+    sc873 id="signal" fx="section en:rise sx:reveal cx:cascade du=slow"
+      eye "The premise"
+      ttl "The brief begins after the obvious answer ends." lvl=2
+      txt "We treat every project as a small world: a system of light, ritual, movement, weather, sound and social gravity. The result is less a building than a believable future someone could choose to inhabit."
+      sts v=cards cx=wave
+        stat val="04" l="World systems" detail="Light, climate, movement and encounter" fx="card en:pop hx:spotlight"
+        stat val="12" l="Spatial scenes" detail="From threshold to horizon" fx="card en:scale-up hx:tilt"
+        stat val="01" l="Coherent fiction" detail="Every decision supports the same world" fx="card en:rise hx:glow"
+        stat val="0" l="Custom animation libraries" detail="Motion supplied by AppBlocks" fx="card en:fade hx:shine"
+
+    cols v=wide-left a=center fx="section en:clip-up sx:parallax-y cx:cascade ix=strong"
+      stk gap=lg
+        eye "Worldbuilding as architecture"
+        ttl "Design the rules before the rooms." lvl=2
+        txt "A strong atmosphere is not decoration. It is the visible consequence of a hidden system. We define the system first, then let form, material and interaction emerge from it."
+        lst cx=list
+          it "Name the emotional climate."
+          it "Define the rules of movement and encounter."
+          it "Prototype thresholds before floor plans."
+          it "Test the world at human scale."
+        b444 "Read the method" h="/method/" hx=arrow px=push
+      browser-frame fx="media en:scale-up sx:depth hx:spotlight du=cinematic"
+        tool
+          eye "Habitat signal / live model"
+          hdn "Nomad Ring 07"
+          bdg "World coherent" v=success lx=pulse
+        mets cx=grid
+          met val="72%" l="Shared horizon" change="Public views remain dominant" progress=72
+          met val="18m" l="Social interval" change="Maximum walk between commons" progress=84
+          met val="3.2×" l="Daylight variation" change="Simulated orbital rhythm" progress=67
+        ch v=bars l="Spatial character" unit="%"
+          bar l="Collective" val=92
+          bar l="Quiet" val=76
+          bar l="Adaptive" val=88
+          bar l="Monumental" val=61
+        status "Fictional design telemetry generated locally for the demonstration." v=info
+
+    feature-grid fx="section en:rise sx:reveal cx:grid du=slow"
+      eye "A complete atmosphere"
+      ttl "Every sense receives a design instruction." lvl=2
+      txt "The studio model treats architecture as a layered operating system rather than a collection of isolated objects."
+      feat i=layers sp=wide fx="card en:clip-left hx:lift"
+        hdn "Light behaves like weather"
+        txt "Brightness, colour temperature and shadow depth change with the social rhythm of each space."
+        bdg "Temporal material" v=accent
+      feat i=grid fx="card en:scale-up hx:tilt"
+        hdn "Thresholds carry narrative"
+        txt "Every transition explains where you are leaving, what you are entering and how your body should change."
+      feat i=trend fx="card en:rise hx:spotlight"
+        hdn "Movement reveals the world"
+        txt "Routes are composed as sequences of compression, release, orientation and surprise."
+      feat i=shield sp=wide fx="card en:fade hx=glow"
+        hdn "The fiction survives reality"
+        txt "The world remains legible under accessibility constraints, reduced motion, small screens and ordinary browser output."
+        b118 "Inspect the live lab" h="/lab/" hx=shine px=compress
+
+    sc264 id="work" fx="section en:clip-up sx:scale cx:cascade du=slow"
+      eye "Selected fictional studies"
+      ttl "Four worlds. Four different laws of living." lvl=2
+      txt "Each project is invented for this demonstration. The diversity tests whether one compact language can produce distinct visual and narrative identities without abandoning a coherent system."
+      carousel cl="ab-surface-1" fx="collection en:clip-left sx:reveal cx:children du=slow"
+        it cl="ab-surface-10 ab-shape-7 ab-shadow-6" fx="card en:rise hx:spotlight"
+          bdg "ORBIT / 01" v=accent
+          hdn "Nomad Ring"
+          txt "A rotating civic habitat where every private room opens toward a shared horizon."
+          b731 "Open project" h="/work/#nomad" hx=magnetic px=ripple
+        it cl="ab-surface-6 ab-shape-13 ab-shadow-3" fx="card en:scale-up hx:tilt"
+          bdg "OCEAN / 02" v=success
+          hdn "Tidal Archive"
+          txt "A coastal memory institution designed to flood gracefully and reveal its collections by season."
+          b444 "Open project" h="/work/#tidal" hx=shine px=compress
+        it cl="ab-surface-8 ab-shape-20 ab-shadow-7" fx="card en:clip-right hx:border-draw"
+          bdg "DESERT / 03" v=warning
+          hdn "Red Dune Commons"
+          txt "A shaded civic spine that turns extreme heat into a daily choreography of gathering."
+          b907 "Open project" h="/work/#dune" hx=arrow px=push
+        it cl="ab-surface-3 ab-shape-3 ab-shadow-2" fx="card en:pop hx:glow"
+          bdg "POLAR / 04" v=danger
+          hdn "Night Embassy"
+          txt "A diplomatic retreat organized around darkness, aurora and long-duration attention."
+          b203 "Open project" h="/work/#night" hx=fill px=depress
+
+    steps v=timeline fx="section en:rise sx:reveal cx:list"
+      eye "From fiction to form"
+      ttl "A four-act design sequence." lvl=2
+      step number="01" fx="card en:clip-left hx:lift"
+        hdn "Observe"
+        txt "Collect rituals, contradictions, climate pressures and overlooked forms of joy."
+      step number="02" fx="card en:clip-right hx:spotlight"
+        hdn "Distort"
+        txt "Change one assumption until familiar life produces an unfamiliar spatial requirement."
+      step number="03" fx="card en:rise hx:tilt"
+        hdn "Prototype"
+        txt "Build the smallest scene that can prove the world feels coherent at human scale."
+      step number="04" fx="card en:pop hx:glow"
+        hdn "Inhabit"
+        txt "Test the system through movement, choice, failure, accessibility and time."
+
+    sc619 fx="section en:clip-up sx:depth cx:cascade du=cinematic ix=strong"
+      cols v=equal a=center
+        phone-frame fx="media en:slide-right sx:parallax-y hx:tilt lx=float"
+          stk
+            bdg "Responsive world" v=success
+            hdn "The atmosphere survives the viewport."
+            txt "The same hierarchy, contrast, rhythm and interaction intent is preserved on a narrow screen."
+            b731 "Open mobile brief" h="/brief/" px=ripple
+        stk gap=lg
+          eye "The test behind the fiction"
+          ttl "No hand-authored front-end escape hatch." lvl=2
+          txt "This site uses semantic blocks, generated design recipes and finite motion tokens. AppBlocks supplies the browser implementation, focus behavior, responsive layout and reduced-motion path."
+          co v=tip title="What to inspect"
+            txt "Scroll slowly, hover the project surfaces, press the calls to action, switch the theme and open the lab on both desktop and mobile."
+          b118 "Read the AppBlocks documentation" h="/docs/" hx=arrow px=compress
+
+    call v=ink fx="cta en:zoom sx:reveal cx:hero ix=extreme"
+      eye "A world begins with one rule"
+      ttl "Describe the life you want the space to make possible." lvl=2
+      txt "Open the fictional brief or enter the habitat lab. Both routes are functional local demonstrations generated from the same compact source file."
+      b731 "Start the brief" h="/brief/" hx=magnetic px=ripple
+      b444 "Enter the lab" h="/lab/" hx=shine px=compress
+
+  pg "/work/" title="Selected Worlds — EIDOLON" description="Four fictional speculative habitat studies."
+    hr314 v=editorial fx="hero en:wipe-up sx:parallax-y cx:stack du:cinematic ix:strong"
+      bdg "Selected worlds / 2026" v=accent
+      eye "Four studies in unfamiliar living"
+      ttl "Architecture becomes believable when the world has rules." lvl=1
+      txt "These fictional studies test radically different climates, rituals and scales while using the same AppBlocks design and motion system." sz=large
+      b731 "Open the habitat lab" h="/lab/" hx=magnetic px=ripple
+      vis v=grid l="A grid of speculative habitat systems" fx="media en:scale-up sx:rotate lx=gradient du=slow"
+
+    sc101 id="nomad" fx="section en:clip-up sx:depth cx:cascade du=slow"
+      cols v=wide-right a=center
+        stk gap=lg
+          bdg "ORBIT / 01" v=accent
+          ttl "Nomad Ring" lvl=2
+          txt "A rotating civic habitat arranged around a continuous public horizon. Private rooms remain compact; the shared edge receives the best light, gardens and views."
+          lst cx=list
+            it "Public horizon before private panorama"
+            it "Gravity changes become spatial landmarks"
+            it "Commons repeat every eighteen minutes of walking"
+          b203 "Model this world" h="/lab/" hx=shine px=compress
+        fr842 fx="media en:zoom sx:parallax-x hx:spotlight lx=breathe"
+          eye "World rule 01"
+          hdn "The horizon belongs to everyone."
+          txt "Every major route returns residents to a collective view before reaching a private destination."
+          ch v=distribution l="Program distribution" unit="%"
+            bar l="Commons" val=42
+            bar l="Living" val=28
+            bar l="Gardens" val=18
+            bar l="Systems" val=12
+
+    sc202 id="tidal" fx="section en:clip-left sx:parallax-y cx:cascade du=slow"
+      cols v=wide-left a=center
+        fr507 fx="media en:scale-up sx:depth hx:tilt lx=float"
+          eye "World rule 02"
+          hdn "Water edits the building."
+          txt "Seasonal flooding changes the accessible archive, making absence and return part of the institution."
+          mets
+            met val="4" l="Seasonal states" change="Dry, rising, high and retreating" progress=80
+            met val="62%" l="Floodable ground" change="Designed for graceful occupation" progress=62
+        stk gap=lg
+          bdg "OCEAN / 02" v=success
+          ttl "Tidal Archive" lvl=2
+          txt "A coastal memory institution where collections move upward as water rises. The lower building becomes a public wetland rather than a failed dry room."
+          lst cx=list
+            it "Flooding treated as programme, not interruption"
+            it "Collections reveal themselves by season"
+            it "Public routes follow the changing waterline"
+          b444 "See the method" h="/method/" hx=arrow px=push
+
+    sc303 id="dune" fx="section en:clip-right sx:scale cx:cascade du=slow"
+      cols v=wide-right a=center
+        stk gap=lg
+          bdg "DESERT / 03" v=warning
+          ttl "Red Dune Commons" lvl=2
+          txt "A civic spine for extreme heat. Daily life migrates between deep shade, evaporative courtyards and night terraces as the temperature changes."
+          lst cx=list
+            it "Programme follows the thermal clock"
+            it "Shade is the primary public material"
+            it "Night circulation becomes civic theatre"
+          b907 "Open the fictional brief" h="/brief/" hx=border-draw px=push
+        fr608 fx="media en:pop sx:tilt hx:spotlight lx=glow"
+          eye "World rule 03"
+          hdn "The city wakes twice."
+          txt "Morning and night receive different routes, uses, colours and forms of public encounter."
+          ch v=bars l="Daily occupation" unit="%"
+            bar l="Dawn" val=68
+            bar l="Midday" val=24
+            bar l="Dusk" val=82
+            bar l="Night" val=94
+
+    sc404 id="night" fx="section en:fade sx:blur cx:cascade du=cinematic"
+      cols v=wide-left a=center
+        fr709 fx="media en:zoom sx:depth hx:glow lx=breathe"
+          eye "World rule 04"
+          hdn "Darkness is a shared resource."
+          txt "Light is rationed and directed so attention can expand toward the sky, conversation and long-duration thought."
+          sts v=rail
+            stat val="8 lx" l="Public light ceiling" detail="Fictional study value"
+            stat val="14 h" l="Night sequence" detail="Winter operating rhythm"
+        stk gap=lg
+          bdg "POLAR / 04" v=danger
+          ttl "Night Embassy" lvl=2
+          txt "A diplomatic retreat for regions shaped by long darkness. Rooms are organized by attention span rather than conventional department."
+          lst cx=list
+            it "Light intensity signals social expectation"
+            it "Long rooms support long conversations"
+            it "Aurora views remain collective"
+          b118 "Return home" h="/" hx=underline px=compress
+
+    call v=ink fx="cta en:pop sx:reveal cx:hero"
+      eye "Choose a world rule"
+      ttl "The lab turns one sentence into a spatial system." lvl=2
+      txt "Use the local habitat composer to select climate, social rhythm and motion profile."
+      b731 "Enter the habitat lab" h="/lab/" hx=magnetic px=ripple
+
+  pg "/method/" title="Method — EIDOLON" description="A fictional worldbuilding-first spatial design method."
+    hr521 v=centered fx="hero en:clip-up sx:depth cx:hero du:cinematic ix:strong"
+      bdg "Method / four acts" v=accent
+      eye "Worldbuilding before object-making"
+      ttl "Design the operating system of a place." lvl=1
+      txt "The method moves from observation to distortion, prototype and inhabitation. Each act reduces arbitrary styling and increases the coherence of the final world." sz=large
+      b444 "Start a fictional brief" h="/brief/" hx=shine px=compress
+
+    steps v=cards fx="section en:rise sx:reveal cx:grid du=slow"
+      step number="01" fx="card en:clip-left hx:spotlight"
+        hdn "Observe the existing ritual"
+        txt "Document how people actually wait, gather, avoid, celebrate, repair and recover."
+      step number="02" fx="card en:clip-right hx:tilt"
+        hdn "Distort one assumption"
+        txt "Change climate, gravity, ownership, duration or social convention until a new spatial need appears."
+      step number="03" fx="card en:scale-up hx:shine"
+        hdn "Prototype one decisive scene"
+        txt "Build the threshold, room or route that best proves the world is emotionally and operationally coherent."
+      step number="04" fx="card en:pop hx:glow"
+        hdn "Inhabit the consequences"
+        txt "Test accessibility, boredom, conflict, maintenance, weather, movement and long-term change."
+
+    spl v=source-result fx="section en:wipe-up sx:parallax-y cx:cascade du=slow"
+      stk gap=lg
+        eye "Compact source, complete consequence"
+        ttl "The same principle drives AppBlocks itself." lvl=2
+        txt "A short semantic instruction selects an entire tested consequence: layout, visual treatment, motion, focus behavior and responsive adaptation."
+        lst cx=list
+          it "One site recipe coordinates colour, type, shape and material."
+          it "One motion profile coordinates entrances and interactions."
+          it "Exact component IDs preserve variation without verbose styling."
+          it "Strict validation keeps the output inspectable."
+      terminal-window label="eidolon.ab" language=appblocks fx="media en:scale-up sx:depth hx:spotlight"
+        code "st \"EIDOLON\" r=r8421 fx=cinematic"
+        code "  pg \"/\" title=\"EIDOLON\""
+        code "    hr942 fx=\"hero sx:depth\""
+        code "      ttl \"Unwritten worlds\" lvl=1"
+        code "      b731 \"Enter\" h=\"/lab/\" hx=magnetic px=ripple"
+
+    comparison id="comparison" fx="section en:rise sx:reveal cx:cascade"
+      ttl "From generic page to authored world" lvl=2
+      txt "The design method and the AppBlocks test share the same objective: replace disconnected decoration with a small number of coherent rules."
+      tbl l="Approach comparison"
+        col key=decision l="Decision"
+        col key=generic l="Generic approach"
+        col key=world l="World-system approach"
+        row
+          cell key=decision "Visual style"
+          cell key=generic "Choose isolated trends"
+          cell key=world "Derive form from one emotional climate"
+        row
+          cell key=decision "Motion"
+          cell key=generic "Animate available elements"
+          cell key=world "Use movement to explain hierarchy and space"
+        row
+          cell key=decision "Responsive behavior"
+          cell key=generic "Compress the desktop layout"
+          cell key=world "Preserve the narrative under a new geometry"
+        row
+          cell key=decision "Accessibility"
+          cell key=generic "Audit after design"
+          cell key=world "Treat constraints as part of the world rules"
+
+    faq-list fx="section en:clip-up sx:reveal cx:list"
+      eye "Method notes"
+      ttl "Questions the system should answer." lvl=2
+      qu "Is the worldbuilding real architecture?"
+        txt "For this website it is fictional creative direction. The method is presented as a design exercise, not as a claim about completed buildings or clients."
+      qu "Does motion replace hierarchy?"
+        txt "No. Motion reinforces hierarchy, feedback and spatial understanding. The page remains legible with motion disabled."
+      qu "Was custom CSS written for this site?"
+        txt "No project-specific CSS or JavaScript was added. The site selects AppBlocks recipes, semantic blocks and finite motion tokens."
+      qu "Can the output run without AppBlocks?"
+        txt "Yes. The compiler emits ordinary HTML, CSS and JavaScript files with no production runtime dependency."
+
+    call v=ink fx="cta en:zoom sx:depth cx:hero"
+      eye "Test the process"
+      ttl "Turn one strange premise into a complete world." lvl=2
+      txt "The habitat lab is a local interactive demonstration of forms, charts, tabs, dialogs and command-palette behavior."
+      b731 "Open the lab" h="/lab/" hx=magnetic px=ripple
+
+  pg "/brief/" title="Begin a Brief — EIDOLON" description="A local fictional project brief demonstrating AppBlocks forms and interactions."
+    hr118 v=editorial fx="hero en:wipe-up sx:parallax-y cx:stack du:slow"
+      bdg "Fictional enquiry" v=accent
+      eye "No message leaves your browser"
+      ttl "Describe the life before describing the building." lvl=1
+      txt "This form is a local interaction test. It validates inputs, handles a file field and returns an accessible success state without sending data anywhere." sz=large
+
+    sc488 fx="section en:rise sx:reveal cx:cascade"
+      cols v=wide-left a=start
+        pnl v=raised fx="card en:clip-left hx:spotlight"
+          hdn "World brief"
+          txt "Start with a premise strong enough to change ordinary spatial decisions."
+          fm842 demo=true sub="Create fictional brief" ok="Brief captured locally" cx=cascade
+            fld n=name l="Your name" req=true ph="Logan"
+            fld n=world l="World premise" req=true ph="A city where darkness is protected"
+            fld n=climate l="Primary climate pressure" typ=select
+              opt "Extreme heat" val=heat
+              opt "Seasonal flooding" val=flood
+              opt "Long darkness" val=darkness
+              opt "Variable gravity" val=gravity
+              opt "No climate pressure" val=none
+            fld n=scale l="Project scale" typ=select
+              opt "One decisive room" val=room
+              opt "A public building" val=building
+              opt "A neighbourhood system" val=neighbourhood
+              opt "An orbital habitat" val=orbit
+            range n=strangeness l="Desired strangeness" min=0 max=100 val=72
+            file-drop n=reference l="Optional reference file" accept=".pdf,.png,.jpg,.jpeg"
+            toggle n=motion l="Include cinematic motion study" checked=true
+        stk gap=lg fx="section en:clip-right sx:parallax-y cx:cascade"
+          eye "A useful premise contains tension"
+          ttl "Specific enough to change a decision. Open enough to create discovery." lvl=2
+          txt "Examples: a library that floods by season; a city that wakes twice; a habitat where the horizon is public; an embassy designed around long attention."
+          co v=note title="Privacy for this test"
+            txt "The form uses demo mode. It does not submit to a server, store data or send email."
+          fr196 fx="card en:scale-up hx:tilt lx=float"
+            bdg "Prompt specimen" v=success
+            hdn "Design a place where silence is shared, not private."
+            txt "This premise changes acoustics, circulation, social expectation and the meaning of a threshold."
+
+    call v=ink fx="cta en:pop sx:reveal cx:hero"
+      eye "Prefer to explore first?"
+      ttl "Open the habitat lab and compose a world from structured choices." lvl=2
+      b444 "Enter the lab" h="/lab/" hx=shine px=compress
+
+  pg "/lab/" title="Habitat Lab — EIDOLON" description="A functional local application for composing a fictional habitat world." layout=app
+    dashboard-shell n="EIDOLON habitat lab" fx=application
+      side logo="EIDOLON / LAB" l="Lab navigation"
+        ln "Composer" h="/lab/" i=grid cur=true
+        ln "World rules" h="#rules" i=layers
+        ln "Scenes" h="#scenes" i=trend
+        ln "Method" h="/method/" i=code
+      tool fx="nav en:fall cx:children"
+        eye "Habitat composer / local mode"
+        ttl "Build a believable world from a few rules." lvl=1
+        txt "This application route demonstrates restrained motion, data surfaces, forms, tabs, dialogs, local actions and keyboard interaction."
+        b731 "New world" i=plus dlg=world hx=magnetic px=ripple
+        b118 "Generate dossier" act="toast:Fictional dossier prepared locally" hx=shine px=compress
+      status "Demonstration data only. No project, customer, analysis or generated dossier leaves the browser." v=info en=fade
+
+      metric-grid cx=grid
+        met val="04" l="Active world rules" change="Climate, social rhythm, light and movement" progress=80 en=rise hx=lift
+        met val="12" l="Spatial scenes" change="Thresholds through horizon" progress=72 en=rise hx=spotlight
+        met val="87%" l="Narrative coherence" change="Fictional local score" t=success progress=87 en=rise hx=glow
+        met val="03" l="Open contradictions" change="Useful design tension" t=warning progress=42 en=rise hx=tilt
+
+      tabs id="lab-tabs" l="Habitat lab views" fx=data
+        tab id="composer" l="Composer" sel=true
+          gr v=two cx=grid
+            fr842 fx="media en:scale-up hx:spotlight"
+              hdn "Current world"
+              txt "Nomad Ring is a rotating civic habitat where the horizon is treated as common property."
+              ch v=bars l="World character" unit="%"
+                bar l="Collective" val=92
+                bar l="Adaptive" val=86
+                bar l="Quiet" val=74
+                bar l="Monumental" val=58
+              b203 "Rebalance world" act="toast:World balance adjusted locally" hx=fill px=depress
+            pnl v=raised fx="card en:rise hx:lift"
+              hdn "Compose another variation"
+              fm314 demo=true sub="Apply world rules" ok="World rules applied" cx=cascade
+                fld n=climate l="Climate" typ=select
+                  opt "Variable gravity" val=gravity
+                  opt "Long darkness" val=darkness
+                  opt "Extreme heat" val=heat
+                  opt "Seasonal flooding" val=flood
+                fld n=social l="Social rhythm" typ=select
+                  opt "Continuous commons" val=continuous
+                  opt "Twice-daily city" val=twice
+                  opt "Long attention" val=attention
+                  opt "Seasonal migration" val=migration
+                range n=collective l="Collective intensity" min=0 max=100 val=82
+                range n=motion l="Motion intensity" min=0 max=100 val=64
+                toggle n=horizon l="Keep the best horizon public" checked=true
+        tab id="rules" l="World rules"
+          kb l="World-rule pipeline" fx="collection cx:grid"
+            lane n="Premise" count=2
+              crd fx="card en:rise hx:spotlight"
+                bdg "Active" v=accent
+                hdn "The horizon is common property"
+                txt "Prime views belong to circulation, gardens and shared rooms."
+              crd fx="card en:rise hx:tilt"
+                bdg "Active" v=success
+                hdn "Gravity is a landmark"
+                txt "Changes in gravity mark districts and public thresholds."
+            lane n="Consequence" count=2
+              crd fx="card en:rise hx:shine"
+                bdg "Resolved" v=success
+                hdn "Private rooms turn inward"
+                txt "Personal space gains depth and acoustic control instead of panorama."
+              crd fx="card en:rise hx:glow"
+                bdg "Explore" v=warning
+                hdn "Commons repeat by walking time"
+                txt "No resident should travel more than eighteen minutes between shared horizons."
+            lane n="Contradiction" count=1
+              crd fx="card en:pop hx:border-draw"
+                bdg "Open" v=danger
+                hdn "Public view versus quiet retreat"
+                txt "The world must protect solitude without privatizing the horizon."
+        tab id="scenes" l="Spatial scenes"
+          tb507 id="scene-records" l="Fictional spatial scenes" empty="No scenes found" fx=data
+            col key=scene l="Scene"
+            col key=rule l="World rule"
+            col key=emotion l="Emotional climate"
+            col key=status l="Status" a=center
+            col key=coherence l="Coherence" a=right
+            row
+              cell key=scene "Arrival aperture"
+              cell key=rule "Gravity is a landmark"
+              cell key=emotion "Anticipation"
+              cell key=status
+                bdg "Resolved" v=success
+              cell key=coherence "94%"
+            row
+              cell key=scene "Shared horizon walk"
+              cell key=rule "The horizon is public"
+              cell key=emotion "Collective calm"
+              cell key=status
+                bdg "Prototype" v=accent
+              cell key=coherence "88%"
+            row
+              cell key=scene "Inward sleeping cell"
+              cell key=rule "Privacy gains depth"
+              cell key=emotion "Protected quiet"
+              cell key=status
+                bdg "Review" v=warning
+              cell key=coherence "76%"
+            row
+              cell key=scene "Zero-gravity forum"
+              cell key=rule "Movement creates encounter"
+              cell key=emotion "Playful uncertainty"
+              cell key=status
+                bdg "Explore" v=danger
+              cell key=coherence "63%"
+
+      dlg id=world title="Create a fictional world" fx=modal
+        txt "This dialog operates locally and demonstrates validation, focus return and animated modal behavior."
+        fm731 demo=true sub="Create world" ok="Fictional world created" cx=cascade
+          fld n=name l="World name" req=true ph="Aurora Commons"
+          fld n=premise l="One-sentence premise" req=true ph="A settlement where artificial light is rationed"
+          fld n=setting l="Setting" typ=select
+            opt "Earth" val=earth
+            opt "Ocean" val=ocean
+            opt "Polar" val=polar
+            opt "Orbit" val=orbit
+            opt "Elsewhere" val=elsewhere
+          range n=intensity l="Speculative intensity" min=0 max=100 val=68
+          toggle n=cinematic l="Use cinematic motion profile" checked=true
+
+      command-palette id=commands title="EIDOLON command palette" fx=modal
+        txt "Press Control-K or Command-K anywhere in the lab to open this local command surface."
+        frm demo=true sub="Run command" ok="Command queued locally"
+          search n=query l="Search commands" ph="Try new world, export, theme or reduce motion" req=true

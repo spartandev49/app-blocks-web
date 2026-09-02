@@ -27,6 +27,8 @@ jobs:
           node-version: 20
       - name: Build Motion Engine 3 showcase
         run: node bin/appblocks-v2.js build examples/motion-showcase.ab --out public --base /app-blocks-web/ --strict
+      - name: Build impressive AppBlocks test site
+        run: node bin/appblocks-v2.js build examples/impressive-test.ab --out public/test --base /app-blocks-web/test/ --strict
       - name: Preserve Generation 2 showcase
         run: node bin/appblocks-v2.js build examples/generation2-showcase.ab --out public/v2 --base /app-blocks-web/v2/ --strict
       - name: Build documentation showcase
