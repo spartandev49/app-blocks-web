@@ -1,0 +1,43 @@
+name: Correct impressive test layout
+
+on:
+  push:
+    branches: [feature/impressive-test-site]
+
+permissions:
+  contents: write
+
+jobs:
+  correct:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/impressive-test-site
+      - name: Correct the layout contract
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("examples/impressive-test.ab")
+          source = path.read_text(encoding="utf-8")
+          replacements = {
+              '    sc873 fx="section en:rise sx:reveal cx:cascade du=slow"':
+                  '    sc873 id="signal" fx="section en:rise sx:reveal cx:cascade du=slow"',
+              '    spl v=wide-left id="signal" fx="section en:clip-up sx:parallax-y cx:cascade ix=strong"':
+                  '    cols v=wide-left a=center fx="section en:clip-up sx:parallax-y cx:cascade ix=strong"',
+          }
+          for old, new in replacements.items():
+              if old not in source:
+                  raise SystemExit(f"Expected source line not found: {old}")
+              source = source.replace(old, new, 1)
+          path.write_text(source, encoding="utf-8")
+          PY
+      - name: Commit the correction
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add examples/impressive-test.ab
+          git commit -m "Fix the impressive test layout contract"
+          git push origin HEAD:feature/impressive-test-site
