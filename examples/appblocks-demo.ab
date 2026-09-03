@@ -1,4 +1,4 @@
-st "ForgeOS" theme=forge lang=en r=r7314 ts=t7621843 pk=saas gn=neo-industrial dv=9 mi=8 vd=5
+st "ForgeOS" theme=signal lang=en r=r7314 ts=t7621843 pk=saas gn=neo-industrial dv=9 mi=8 vd=5
   meta description="ForgeOS is a fictional product demo built entirely in AppBlocks Web to showcase responsive structure, motion, forms, pricing, and application UI." theme-color="#0d0f0e"
 
   h042 logo="ForgeOS" href="/" sticky=true theme-toggle=true tl=asymmetric-nav tr=navigation te=fall tc=sequence
@@ -91,7 +91,7 @@ st "ForgeOS" theme=forge lang=en r=r7314 ts=t7621843 pk=saas gn=neo-industrial d
       img src="https://picsum.photos/seed/forgeos-material-03/1000/1000" alt="Architectural steel structure viewed as a geometric grid" width=1000 height=1000 tsf=photographic th=image-zoom
       img src="https://picsum.photos/seed/forgeos-material-04/1200/800" alt="Dark industrial panel with illuminated switches and labels" width=1200 height=800 tsf=photographic th=image-zoom
 
-    price id="plans" v=contrast tl=comparison-rail tr=action te=stagger-rise tsc=reveal tc=grid
+    price id="plans" v=cards tl=comparison-rail tr=action te=stagger-rise tsc=reveal tc=grid
       ttl "Choose how much surface area you need." lvl=2 tty=display
       txt "Fictional pricing for this demonstration. No purchase flow is connected."
       tier n="Prototype" price="$0" period="demo"
@@ -118,13 +118,13 @@ st "ForgeOS" theme=forge lang=en r=r7314 ts=t7621843 pk=saas gn=neo-industrial d
 
     fq tl=quiet-column tsf=paper tr=narrative te=rise tsc=reveal
       ttl "What this demo is proving." lvl=2 tty=display
-      qu q="Is the site actually authored in AppBlocks?"
+      qu "Is the site actually authored in AppBlocks?"
         txt "Yes. The source is examples/appblocks-demo.ab and the repository workflow compiles it with appblocks-v2 into static browser output."
-      qu q="Is ForgeOS a real company?"
+      qu "Is ForgeOS a real company?"
         txt "No. ForgeOS, its plans, and all console data are fictional demonstration content created to exercise the library without inventing real customer claims."
-      qu q="Does the output need AppBlocks at runtime?"
+      qu "Does the output need AppBlocks at runtime?"
         txt "No. AppBlocks compiles to ordinary browser files, so the generated site does not require the compiler or a frontend framework after build."
-      qu q="Does the console do anything?"
+      qu "Does the console do anything?"
         txt "Yes. It demonstrates local tabs, dialogs, buttons, toast actions, a sortable/filterable table, metrics, and other generated interaction states."
 
     call v=ink tl=closing-band tsf=ink tr=action te=soft-pop tsc=reveal tc=hero
@@ -210,7 +210,7 @@ st "ForgeOS" theme=forge lang=en r=r7314 ts=t7621843 pk=saas gn=neo-industrial d
               cell key=score
                 txt "91"
               cell key=status
-                bdg "Queued" v=info
+                bdg "Queued" v=neutral
 
         tab id="queue" l="Queue"
           kb l="Operational workflow" tl=horizontal-rail tr=data
@@ -240,8 +240,8 @@ st "ForgeOS" theme=forge lang=en r=r7314 ts=t7621843 pk=saas gn=neo-industrial d
         frm id="new-run-form" sub="toast:Demo run created locally" ok="Demo run created"
           fld n="name" l="Run name" typ=text ph="Example: Responsive inspection" req=true
           fld n="type" l="Run type" typ=select req=true
-            opt val="audit" l="Audit"
-            opt val="build" l="Build"
-            opt val="inspect" l="Inspect"
+            opt "Audit" val="audit"
+            opt "Build" val="build"
+            opt "Inspect" val="inspect"
           fld n="notes" l="Notes" typ=textarea ph="Describe what this demonstration run should show."
           b203 "Create run" typ=submit th=magnetic tp=confirm
