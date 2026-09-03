@@ -31,7 +31,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat .layout-payload/part-* | base64 --decode > /tmp/appblocks-v0.4.1.patch.xz
+          cat .layout-payload/chunk-* | base64 --decode > /tmp/appblocks-v0.4.1.patch.xz
           echo "$(cat .layout-payload/SHA256)  /tmp/appblocks-v0.4.1.patch.xz" | sha256sum -c -
           xz --decompress --stdout /tmp/appblocks-v0.4.1.patch.xz > /tmp/appblocks-v0.4.1.patch
       - name: Apply systemic fixes to the current main tree
