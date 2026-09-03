@@ -1,0 +1,247 @@
+st "ForgeOS" theme=forge lang=en r=r7314 ts=t7621843 pk=saas gn=neo-industrial dv=9 mi=8 vd=5
+  meta description="ForgeOS is a fictional product demo built entirely in AppBlocks Web to showcase responsive structure, motion, forms, pricing, and application UI." theme-color="#0d0f0e"
+
+  h042 logo="ForgeOS" href="/" sticky=true theme-toggle=true tl=asymmetric-nav tr=navigation te=fall tc=sequence
+    nav l="Primary navigation"
+      ln "System" h="/#system"
+      ln "Workflow" h="/#workflow"
+      ln "Plans" h="/#plans"
+      ln "Console" h="/console/"
+    b203 "Open console" h="/console/" i=arrow th=magnetic tp=ripple
+
+  ft033 logo="ForgeOS" note="A fictional product site generated from compact AppBlocks source." tl=closing-statement tr=navigation
+    nav l="Product"
+      ln "System" h="/#system"
+      ln "Workflow" h="/#workflow"
+      ln "Plans" h="/#plans"
+    nav l="Demo"
+      ln "Console" h="/console/"
+      ln "AppBlocks Web" h="https://github.com/spartandev49/app-blocks-web"
+    txt "Demonstration content only. No customers, performance claims, or external services are implied." t=muted
+
+  pg "/" title="ForgeOS — operational software without the usual sprawl" description="A complete fictional SaaS marketing site built in AppBlocks Web." tl=editorial-axis
+    hr017 v=split tl=artifact-first tsf=metal tr=focal te=cinematic tsc=depth tc=hero tdu=cinematic
+      eye "Operational software, compressed"
+      ttl "One control plane for work that refuses to stay simple." lvl=1 tty=display
+      txt "ForgeOS is a fictional operations platform used here to demonstrate what AppBlocks Web can generate from compact semantic source: art direction, responsive layout, motion, controls, data UI, and complete interaction states." sz=large
+      b203 "Explore the system" h="/#system" v=solid th=magnetic tp=ripple
+      b444 "Open live console" h="/console/" v=outline th=fill tp=compress
+      img src="https://picsum.photos/seed/forgeos-control-room/1400/1050" alt="Industrial control room with illuminated panels and structural metal framing" width=1400 height=1050 loading=eager tsf=photographic tr=artifact te=image-reveal tsc=image-scale th=image-zoom
+
+    proof id="system" v=rail tl=ledger tsf=linework tr=evidence te=rise tsc=reveal
+      ttl "The interface changes posture with the job." lvl=2 tty=display
+      txt "This route deliberately avoids repeating one card template. Evidence, narrative, artifacts, controls, and actions each receive a different composition while sharing one visual DNA."
+      sts v=rail tl=technical-grid tr=data tc=grid
+        stat val="1" l="AppBlocks source" detail="The semantic .ab file is the authored interface." tty=numeral
+        stat val="2" l="Routes" detail="Marketing site and operational console." tty=numeral
+        stat val="0" l="Frontend dependencies" detail="Compiled output runs as ordinary browser files." tty=numeral
+        stat val="100%" l="Demo content" detail="Claims and data are explicitly fictional." tty=numeral
+
+    features v=bento tl=modular-bento tr=supporting te=stagger-rise tsc=reveal tc=grid
+      ttl "A full product language, not a pile of components." lvl=2 tty=display
+      txt "The compiler coordinates hierarchy, typography, geometry, surfaces, responsive collapse, interaction feedback, and reduced-motion behavior."
+      feat i=layers sp=wide tl=artifact-stage tsf=metal tr=evidence th=spotlight
+        hdn "Art direction from one address"
+        txt "A stable Taste DNA drives page architecture, palette, type, geometry, material, and rhythm while local roles keep sections distinct."
+      feat i=trend tl=horizontal-rail tsf=tonal tr=narrative th=focus
+        hdn "Motion with a reason"
+        txt "Entrances establish hierarchy, scroll effects support spatial storytelling, and controls respond with role-aware hover and press behavior."
+      feat i=grid tl=technical-grid tsf=blueprint tr=data th=border-trace
+        hdn "Application-grade primitives"
+        txt "Tables, tabs, dialogs, forms, metrics, kanban, navigation, and stateful controls compile from semantic blocks."
+      feat i=shield sp=wide tl=quiet-column tsf=paper tr=utility th=quiet
+        hdn "Constraints are part of the product"
+        txt "Accessibility, focus treatment, responsive behavior, finite motion, and strict validation are compiler-owned instead of optional cleanup work."
+
+    spl id="workflow" v=media-right tl=split-studio tr=narrative te=unmask tsc=parallax-y
+      img src="https://picsum.photos/seed/forgeos-machining-floor/1200/900" alt="Precision machining workspace with tools, metal surfaces, and directional lighting" width=1200 height=900 tsf=photographic tr=artifact te=image-reveal tsc=image-scale th=image-zoom
+      stk gap=lg
+        ttl "The page reads like a system unfolding." lvl=2 tty=display
+        txt "Instead of stacking interchangeable sections, the route moves through evidence, bento composition, split narrative, workflow sequence, pricing, and a decisive closing band."
+        lst
+          it "Semantic source stays compact"
+          it "Visual roles stay differentiated"
+          it "Motion follows hierarchy"
+          it "Mobile behavior is generated"
+        b731 "Inspect the console" h="/console/" th=arrow tp=push
+
+    sec tl=editorial-stack tsf=canvas tr=narrative te=rise tsc=word-reveal
+      cols v=wide-left a=start
+        stk gap=lg tr=focal
+          eye "From brief to browser"
+          ttl "Write intent. Compile the expensive parts." lvl=2 tty=display
+          txt "AppBlocks makes the model choose product meaning and structure while the compiler handles the repetitive implementation work."
+        steps v=timeline tr=narrative tc=sequence
+          step number="01" i=search
+            hdn "Read the product"
+            txt "Resolve route purpose, audience, trust requirements, visual language, and the acceptable level of experimentation."
+          step number="02" i=spark
+            hdn "Choose direction"
+            txt "Select a deterministic design recipe and Taste DNA, then set design variance, motion intensity, and visual density."
+          step number="03" i=layers
+            hdn "Compose semantic blocks"
+            txt "Use the largest meaningful blocks for heroes, features, pricing, forms, data surfaces, and application structure."
+          step number="04" i=shield
+            hdn "Compile under constraints"
+            txt "Strict checks catch invalid structure and Taste rules before generated browser files are published."
+
+    gal v=masonry tl=gallery-wall tr=artifact te=stagger-rise tsc=reveal tc=grid
+      img src="https://picsum.photos/seed/forgeos-material-01/900/1200" alt="Close-up industrial material study with machined metal texture" width=900 height=1200 tsf=photographic th=image-zoom
+      img src="https://picsum.photos/seed/forgeos-material-02/1200/900" alt="Workshop desk with technical drawings and precision tools" width=1200 height=900 tsf=photographic th=image-zoom
+      img src="https://picsum.photos/seed/forgeos-material-03/1000/1000" alt="Architectural steel structure viewed as a geometric grid" width=1000 height=1000 tsf=photographic th=image-zoom
+      img src="https://picsum.photos/seed/forgeos-material-04/1200/800" alt="Dark industrial panel with illuminated switches and labels" width=1200 height=800 tsf=photographic th=image-zoom
+
+    price id="plans" v=contrast tl=comparison-rail tr=action te=stagger-rise tsc=reveal tc=grid
+      ttl "Choose how much surface area you need." lvl=2 tty=display
+      txt "Fictional pricing for this demonstration. No purchase flow is connected."
+      tier n="Prototype" price="$0" period="demo"
+        txt "For inspecting the compiled experience."
+        lst
+          it "Marketing route"
+          it "Interactive console"
+          it "Responsive generated output"
+        b118 "Use demo" h="/console/" th=lift tp=compress
+      tier n="Studio" price="$29" period="fictional / month" featured=true
+        txt "Example plan showing a highlighted commercial tier."
+        lst
+          it "Everything in Prototype"
+          it "Example workflow views"
+          it "Example audit controls"
+        b203 "Select Studio" act="toast:Demo only — no purchase was made" th=magnetic tp=confirm
+      tier n="Scale" price="$99" period="fictional / month"
+        txt "Example plan for demonstrating pricing hierarchy."
+        lst
+          it "Everything in Studio"
+          it "Example team controls"
+          it "Example operational views"
+        b444 "Select Scale" act="toast:Demo only — no purchase was made" th=fill tp=ripple
+
+    fq tl=quiet-column tsf=paper tr=narrative te=rise tsc=reveal
+      ttl "What this demo is proving." lvl=2 tty=display
+      qu q="Is the site actually authored in AppBlocks?"
+        txt "Yes. The source is examples/appblocks-demo.ab and the repository workflow compiles it with appblocks-v2 into static browser output."
+      qu q="Is ForgeOS a real company?"
+        txt "No. ForgeOS, its plans, and all console data are fictional demonstration content created to exercise the library without inventing real customer claims."
+      qu q="Does the output need AppBlocks at runtime?"
+        txt "No. AppBlocks compiles to ordinary browser files, so the generated site does not require the compiler or a frontend framework after build."
+      qu q="Does the console do anything?"
+        txt "Yes. It demonstrates local tabs, dialogs, buttons, toast actions, a sortable/filterable table, metrics, and other generated interaction states."
+
+    call v=ink tl=closing-band tsf=ink tr=action te=soft-pop tsc=reveal tc=hero
+      ttl "The shortest source should still ship a complete experience." lvl=2 tty=display
+      txt "Open the console next. It uses the same visual DNA but shifts from persuasion to dense operational work."
+      b907 "Open the console" h="/console/" th=shine tp=confirm
+
+  pg "/console/" title="ForgeOS operational console" description="A functional fictional AppBlocks application route." layout=app tl=workbench
+    app n="ForgeOS console" tl=workbench tr=utility te=fade
+      side logo="ForgeOS" l="Console navigation" tl=command-nav tr=navigation
+        ln "Overview" h="/console/" i=grid cur=true
+        ln "Runs" h="#runs" i=trend
+        ln "Queue" h="#queue" i=layers
+        ln "Marketing site" h="/" i=arrow
+      tool tl=ledger tr=utility te=fall
+        ttl "Operations console" lvl=1 tty=display
+        txt "Local fictional data used to demonstrate AppBlocks application UI."
+        b118 "Run audit" act="toast:Demo audit completed" i=shield th=focus tp=confirm
+        b731 "New run" dlg=new-run i=plus th=magnetic tp=ripple
+      status "Demo mode. Changes are local to this generated page and do not call a backend." v=info
+
+      mets v=rail tl=technical-grid tr=data tc=grid
+        met val="12" l="Active runs" change="Fictional demonstration value" progress=60 tty=numeral
+        met val="4" l="Queued" change="Fictional demonstration value" progress=40 tty=numeral
+        met val="98%" l="Checks passing" change="Fictional demonstration value" progress=98 tty=numeral
+        met val="3" l="Operators" change="Fictional demonstration value" progress=30 tty=numeral
+
+      tabs id="console-tabs" l="Console views" tl=workbench tr=navigation
+        tab id="overview" l="Overview" sel=true
+          gr v=two tl=split-studio
+            pnl v=raised tl=artifact-stage tsf=metal tr=evidence te=unmask tsc=image-scale th=spotlight
+              hdn "Current control surface"
+              txt "The console preserves the same geometry and material language as the marketing route while lowering motion on dense utility surfaces."
+              img src="https://picsum.photos/seed/forgeos-console-artifact/1200/700" alt="Industrial control panel used as a visual artifact in the ForgeOS console" width=1200 height=700 tsf=photographic tr=artifact
+            pnl v=plain tl=quiet-column tsf=linework tr=data
+              hdn "System activity"
+              actv l="Recent fictional events"
+                evt time="09:02" i=shield
+                  hdn "Validation completed"
+                  txt "All demonstration blocks passed their local state checks."
+                evt time="08:47" i=trend
+                  hdn "Run promoted"
+                  txt "Example run F-204 moved from review to ready."
+                evt time="08:31" i=layers
+                  hdn "Queue reordered"
+                  txt "Example priority order changed after a local interaction."
+
+          tbl id="runs" l="Recent runs" filt=true sort=true tl=dense-cockpit tsf=paper tr=data
+            col key=run l="Run" sort=true
+            col key=type l="Type"
+            col key=owner l="Owner"
+            col key=score l="Score" a=right sort=true
+            col key=status l="Status"
+            row
+              cell key=run
+                txt "F-204"
+              cell key=type
+                txt "Release"
+              cell key=owner
+                txt "Demo operator A"
+              cell key=score
+                txt "98"
+              cell key=status
+                bdg "Ready" v=success
+            row
+              cell key=run
+                txt "F-203"
+              cell key=type
+                txt "Audit"
+              cell key=owner
+                txt "Demo operator B"
+              cell key=score
+                txt "94"
+              cell key=status
+                bdg "Review" v=warning
+            row
+              cell key=run
+                txt "F-202"
+              cell key=type
+                txt "Build"
+              cell key=owner
+                txt "Demo operator C"
+              cell key=score
+                txt "91"
+              cell key=status
+                bdg "Queued" v=info
+
+        tab id="queue" l="Queue"
+          kb l="Operational workflow" tl=horizontal-rail tr=data
+            lane n="Queued" count=2
+              crd tl=quiet-column tsf=paper
+                hdn "F-205 / Validate"
+                txt "Check the fictional release package and generated routes."
+              crd tl=quiet-column tsf=paper
+                hdn "F-206 / Inspect"
+                txt "Review responsive states for the example console."
+            lane n="In review" count=2
+              crd tl=offset tsf=tonal
+                hdn "F-203 / Audit"
+                txt "Review the example visual and interaction audit output."
+              crd tl=offset tsf=tonal
+                hdn "F-207 / Content"
+                txt "Verify demonstration labels remain explicit and non-deceptive."
+            lane n="Ready" count=2
+              crd tl=technical-grid tsf=blueprint
+                hdn "F-204 / Release"
+                txt "Ready for the fictional publish step."
+              crd tl=technical-grid tsf=blueprint
+                hdn "F-201 / Snapshot"
+                txt "Responsive snapshot set completed in the demo workflow."
+
+      dlg id="new-run" title="Create demonstration run"
+        frm id="new-run-form" sub="toast:Demo run created locally" ok="Demo run created"
+          fld n="name" l="Run name" typ=text ph="Example: Responsive inspection" req=true
+          fld n="type" l="Run type" typ=select req=true
+            opt val="audit" l="Audit"
+            opt val="build" l="Build"
+            opt val="inspect" l="Inspect"
+          fld n="notes" l="Notes" typ=textarea ph="Describe what this demonstration run should show."
+          b203 "Create run" typ=submit th=magnetic tp=confirm
