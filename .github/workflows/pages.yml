@@ -29,6 +29,8 @@ jobs:
         run: rm -rf public
       - name: Build Taste Engine 5 public proof
         run: node bin/appblocks-v2.js build examples/taste-showcase.ab --out public --base /app-blocks-web/ --strict --taste-strict
+      - name: Build AppBlocks product demo
+        run: node bin/appblocks-v2.js build examples/appblocks-demo.ab --out public/demo --base /app-blocks-web/demo/ --strict --taste-strict
       - name: Preserve Motion Engine 3 showcase
         run: node bin/appblocks-v2.js build examples/motion-showcase.ab --out public/motion --base /app-blocks-web/motion/ --strict
       - name: Preserve Generation 2 showcase
