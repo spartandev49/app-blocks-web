@@ -1,9 +1,11 @@
-name: Publish AppBlocks Web layout resilience fix
+name: Publish AppBlocks Web 0.4.1 layout resilience fix
 
 on:
   push:
     branches:
       - fix/layout-resilience-v0.4.1
+    paths:
+      - .layout-payload/READY
   workflow_dispatch:
 
 permissions:
@@ -25,9 +27,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Apply systemic AppBlocks layout fixes
-        run: python scripts/apply-layout-resilience-hotfix.py
-      - name: Verify source, generated output, Taste quality, and responsive geometry
+      - name: Reconstruct and verify the source patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .layout-payload/part-* | base64 --decode > /tmp/appblocks-v0.4.1.patch.xz
+          echo "$(cat .layout-payload/SHA256)  /tmp/appblocks-v0.4.1.patch.xz" | sha256sum -c -
+          xz --decompress --stdout /tmp/appblocks-v0.4.1.patch.xz > /tmp/appblocks-v0.4.1.patch
+      - name: Apply systemic fixes to the current main tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout -B appblocks-v0.4.1-publish origin/main
+          git apply --index --binary /tmp/appblocks-v0.4.1.patch
+          git diff --cached --check
+      - name: Verify source, generated output, Taste quality, and layout contracts
         run: npm run verify
       - name: Inspect publishable package
         run: npm pack --dry-run --ignore-scripts
@@ -36,21 +51,13 @@ jobs:
         run: |
           rm -rf public .appblocks-generation2 .appblocks-motion .appblocks-taste .verification .verification-final
           rm -f app-blocks-web-*.tgz
-      - name: Publish verified clean commit directly to main
+      - name: Publish verified commit directly to main
         shell: bash
         run: |
           set -euo pipefail
-          git fetch origin main
-          rm -f scripts/apply-layout-resilience-hotfix.py
-          git checkout origin/main -- .github/workflows
-          rm -f .github/workflows/layout-fix-snapshot.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git diff --cached --check
-          tree="$(git write-tree)"
-          parent="$(git rev-parse origin/main)"
-          commit="$(printf '%s\n\n%s\n' \
-            'Publish AppBlocks Web 0.4.1 layout resilience fixes' \
-            'Enforce component-compatible layouts, intrinsic responsive geometry, safe typography, balanced metrics, resilient footers and application shells, and browser-level regression auditing.' \
-            | git commit-tree "$tree" -p "$parent")"
-          git push origin "$commit:refs/heads/main"
-          echo "Published commit $commit to main" >> "$GITHUB_STEP_SUMMARY"
+          git commit -m "Publish AppBlocks Web 0.4.1 layout resilience fixes"
+          git push origin HEAD:main
