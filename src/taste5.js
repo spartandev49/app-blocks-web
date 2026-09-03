@@ -437,24 +437,59 @@ const ROLE_BY_BLOCK = freeze({
   columns: "supporting", divider: "quiet", spacer: "quiet", list: "narrative", item: "supporting"
 });
 
-const LAYOUT_BY_BLOCK = freeze({
+export const BLOCK_LAYOUT_COMPATIBILITY = freeze({
+  page: MACROSTRUCTURES,
+  main: ["auto", "editorial-stack", "quiet-column", "workbench", "long-document"],
   hero: HERO_ARCHITECTURES,
   header: NAV_ARCHITECTURES,
   footer: FOOTER_ARCHITECTURES,
-  features: ["modular-bento", "technical-grid", "index-list", "artifact-stage", "horizontal-rail"],
-  gallery: ["gallery-wall", "masonry", "horizontal-rail", "layered-collage", "full-bleed"],
-  pricing: ["ledger", "comparison-rail", "offset", "technical-grid"],
-  testimonials: ["editorial-stack", "horizontal-rail", "offset", "layered-collage"],
-  steps: ["sticky-story", "ledger", "index-list", "counterflow"],
-  proof: ["artifact-stage", "ledger", "offset", "full-bleed"],
-  cta: ["closing-band", "cinematic", "quiet-column", "full-bleed"],
-  table: ["dense-cockpit", "ledger", "technical-grid"],
-  form: ["quiet-column", "workbench", "technical-grid"],
-  "app-shell": ["workbench", "dense-cockpit", "technical-grid"],
-  kanban: ["horizontal-rail", "dense-cockpit", "workbench"],
-  article: ["quiet-column", "editorial-stack", "ledger"],
-  section: BLOCK_LAYOUTS
+  section: BLOCK_LAYOUTS,
+  grid: [
+    "auto", "modular-bento", "technical-grid", "horizontal-rail", "layered-collage",
+    "ledger", "masonry", "split-studio", "index-list", "workbench", "dense-cockpit",
+    "quiet-column", "comparison-rail", "gallery-wall", "offset", "counterflow"
+  ],
+  stack: ["auto", "editorial-stack", "quiet-column", "offset", "index-list", "closing-band"],
+  columns: [
+    "auto", "asymmetric-split", "split-studio", "media-left", "media-right",
+    "artifact-stage", "sticky-story", "counterflow", "quiet-column", "editorial-stack"
+  ],
+  panel: [
+    "auto", "editorial-stack", "quiet-column", "offset", "media-left", "media-right",
+    "artifact-stage", "closing-band"
+  ],
+  article: ["auto", "quiet-column", "editorial-stack", "ledger", "long-document"],
+  prose: ["auto", "quiet-column", "editorial-stack", "ledger", "long-document"],
+  features: ["auto", "modular-bento", "technical-grid", "index-list", "horizontal-rail"],
+  gallery: ["auto", "gallery-wall", "masonry", "horizontal-rail", "layered-collage", "full-bleed"],
+  pricing: ["auto", "ledger", "comparison-rail", "offset", "technical-grid"],
+  testimonials: ["auto", "editorial-stack", "horizontal-rail", "offset", "layered-collage"],
+  steps: ["auto", "sticky-story", "ledger", "index-list", "counterflow"],
+  proof: ["auto", "artifact-stage", "ledger", "offset", "full-bleed"],
+  cta: ["auto", "closing-band", "cinematic", "quiet-column", "full-bleed"],
+  table: ["auto", "dense-cockpit", "ledger", "technical-grid"],
+  form: ["auto", "quiet-column", "workbench", "technical-grid"],
+  "app-shell": ["auto", "workbench", "dense-cockpit", "technical-grid"],
+  sidebar: ["auto", ...NAV_ARCHITECTURES],
+  toolbar: ["auto", "ledger", "quiet-column", "workbench"],
+  tabs: ["auto", "workbench", "quiet-column", "horizontal-rail"],
+  kanban: ["auto", "horizontal-rail", "dense-cockpit", "workbench"],
+  card: ["auto", "quiet-column", "editorial-stack", "offset"],
+  feature: ["auto", "quiet-column", "editorial-stack", "offset"],
+  image: ["auto", ...ASSET_TREATMENTS],
+  visual: ["auto", ...ASSET_TREATMENTS],
+  dialog: ["auto", "quiet-column", "workbench"]
 });
+
+export function layoutsForBlock(blockName) {
+  const canonical = String(blockName ?? "").toLowerCase();
+  return BLOCK_LAYOUT_COMPATIBILITY[canonical] ?? freeze(["auto"]);
+}
+
+export function isLayoutCompatible(blockName, layout) {
+  if (layout === undefined || layout === null || layout === "") return true;
+  return layoutsForBlock(blockName).includes(String(layout));
+}
 
 function pick(values, seed) {
   return values[Math.abs(seed) % values.length];
@@ -464,8 +499,9 @@ export function defaultTasteForBlock(profile, blockName, line = 1, explicit = {}
   const canonical = String(blockName ?? "section").toLowerCase();
   const seed = hashString(`${profile.dna.id}:${canonical}:${line}`);
   const role = normalizeEnum(explicit.role, TASTE_ROLES, ROLE_BY_BLOCK[canonical] ?? "supporting");
-  const layoutPool = LAYOUT_BY_BLOCK[canonical] ?? BLOCK_LAYOUTS;
-  const layout = normalizeEnum(explicit.layout, [...BLOCK_LAYOUTS, ...MACROSTRUCTURES, ...HERO_ARCHITECTURES, ...NAV_ARCHITECTURES, ...FOOTER_ARCHITECTURES], pick(layoutPool, seed));
+  const layoutPool = layoutsForBlock(canonical);
+  const explicitLayout = isLayoutCompatible(canonical, explicit.layout) ? explicit.layout : undefined;
+  const layout = normalizeEnum(explicitLayout, layoutPool, pick(layoutPool, seed));
   const look = resolveElementLook(explicit.look ?? (seed % ELEMENT_LOOK_COUNT));
   const surface = normalizeEnum(explicit.surface, SURFACE_LANGUAGES, look?.surface.name ?? profile.surface.name);
   let type = normalizeEnum(explicit.type, TYPE_VOICES, "auto");

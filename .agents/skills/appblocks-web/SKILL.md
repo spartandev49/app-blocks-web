@@ -91,7 +91,8 @@ Compact aliases are encouraged when they remain readable. Use two spaces per nes
 
 ## 5. Assign visual roles
 
-Use local overrides only when the global Taste DNA needs a meaningful exception:
+Use local overrides only when the global Taste DNA needs a meaningful exception. Layout tokens are structural contracts, not decoration: never place page-scale grids such as `technical-grid`, `ledger`, `dense-cockpit`, or `horizontal-rail` on a leaf panel or card. Query or inspect `layoutsForBlock()` / `isLayoutCompatible()` before applying `tl`.
+
 
 ```ab
 proof tl=artifact-stage tsf=metal tr=evidence

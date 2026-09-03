@@ -18,9 +18,9 @@ async function text(path) {
   return readFile(new URL(path, root), "utf8");
 }
 
-test("Taste Engine 5 ships as the coherent AppBlocks Web 0.4 release", async () => {
+test("Taste Engine 5 ships as the coherent AppBlocks Web 0.4.1 release", async () => {
   const metadata = JSON.parse(await text("package.json"));
-  assert.equal(VERSION, "0.4.0");
+  assert.equal(VERSION, "0.4.1");
   assert.equal(metadata.version, VERSION);
   assert.equal(metadata.types, "./src/index-v5.d.ts");
   assert.equal(metadata.exports["./taste"].import, "./src/taste5.js");

@@ -111,7 +111,7 @@ st "AppBlocks Studio" theme=signal lang=en r=r7314 ts=t4839201 pk=saas gn=neo-in
           hdn "Display voice" tty=shout
           txt "Large type uses deliberate width, tracking, weight, and measure rather than size alone."
           qt "The compiler supplies discipline. The product still supplies meaning." by="AppBlocks design contract" tty=quote
-        pnl v=plain tl=ledger tsf=terminal tr=data
+        pnl v=plain tl=quiet-column tsf=terminal tr=data
           hdn "Operational voice" tty=mono
           txt "Data, labels, and code use a separate register with tabular alignment and restrained motion."
           code "ts=t4839201 dv=8 mi=7 vd=4" language=appblocks
@@ -131,7 +131,7 @@ st "AppBlocks Studio" theme=signal lang=en r=r7314 ts=t4839201 pk=saas gn=neo-in
         cd907 tl=closing-band tsf=ink tr=action th=shine
           hdn "Ink"
           txt "Decisive calls to action with guaranteed contrast."
-        pnl v=plain tl=gallery-wall tsf=tonal tr=artifact th=image-zoom
+        pnl v=plain tl=editorial-stack tsf=tonal tr=artifact th=image-zoom
           img src="https://picsum.photos/seed/appblocks-surface-sample/1000/700" alt="Material surface sample under soft light" width=1000 height=700
 
     sec tl=horizontal-rail tr=action te=rise tsc=reveal
@@ -174,7 +174,7 @@ st "AppBlocks Studio" theme=signal lang=en r=r7314 ts=t4839201 pk=saas gn=neo-in
               hdn "Selected visual DNA"
               txt "t4839201 coordinates the page architecture, type system, palette, geometry, surfaces, and section rhythm."
               img src="https://picsum.photos/seed/appblocks-workspace-artifact/1200/700" alt="Abstract architectural product artifact used in the workspace" width=1200 height=700 tl=editorial-crop tsf=photographic tr=artifact
-            pnl v=plain tl=ledger tsf=linework tr=data
+            pnl v=plain tl=quiet-column tsf=linework tr=data
               hdn "Current checks"
               actv l="Taste audit activity"
                 evt time="Now" i=shield

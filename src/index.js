@@ -56,6 +56,7 @@ export {
 export {
   ASSET_TREATMENTS,
   BLOCK_LAYOUTS,
+  BLOCK_LAYOUT_COMPATIBILITY,
   ELEMENT_LOOK_COUNT,
   ENTER_MOTIONS as TASTE_ENTER_MOTIONS,
   FOOTER_ARCHITECTURES,
@@ -81,6 +82,8 @@ export {
   TYPOGRAPHY_SYSTEMS,
   auditTasteSource,
   defaultTasteForBlock,
+  isLayoutCompatible,
+  layoutsForBlock,
   resolveElementLook,
   resolveTasteDNA,
   resolveTasteProfile,

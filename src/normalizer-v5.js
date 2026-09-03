@@ -23,6 +23,8 @@ import {
   TYPE_VOICES,
   auditTasteSource,
   defaultTasteForBlock,
+  isLayoutCompatible,
+  layoutsForBlock,
   resolveElementLook,
   resolveTasteDNA,
   resolveTasteProfile
@@ -329,6 +331,14 @@ function transformLine(line, lineNumber, profile, state) {
         lineNumber,
         localKey === "look" ? `Use e000000 through e${String(ELEMENT_LOOK_COUNT - 1).padStart(6, "0")}.` : "Use an allowlisted Taste value from LLMS-TASTE.txt."
       ));
+    } else if (localKey === "layout" && LAYOUT_ELIGIBLE_BLOCKS.has(canonical) && !isLayoutCompatible(canonical, value)) {
+      const compatible = layoutsForBlock(canonical).filter((entry) => entry !== "auto").slice(0, 8);
+      state.diagnostics.push(diagnostic(
+        `Taste layout '${String(value)}' is not compatible with ${canonical}.`,
+        lineNumber,
+        compatible.length ? `Use ${compatible.join(", ")}, or move the structural layout to a compatible container.` : "Remove the local layout override."
+      ));
+      delete explicit.layout;
     }
   }
 

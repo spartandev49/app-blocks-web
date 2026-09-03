@@ -2,6 +2,13 @@
 
 All notable changes are documented here. The project follows semantic versioning.
 
+## 0.4.1
+
+- Harden Taste Engine layouts against narrow-container collapse, implicit grid tracks, character-column typography, split metrics, empty card height, footer overlap, and mobile application-shell overflow.
+- Add block-specific layout compatibility APIs and source-located diagnostics for unsafe structural layout assignments.
+- Make statistics count-aware and non-breaking, route section layouts through intrinsic component containers, and strengthen mobile footer/sidebar/table behavior.
+- Update the AppBlocks Web agent skill with mandatory layout-contract checks.
+
 ## 0.4.0 - 2026-09-02
 
 - Added Taste Engine 5 with 10,000,000 deterministic coordinated visual DNAs (`t0000000` through `t9999999`).

@@ -5,6 +5,11 @@ export type PageKind =
 export type TasteMode = "light" | "dark" | "auto";
 export type TasteRole = "auto" | "focal" | "supporting" | "quiet" | "utility" | "evidence" | "navigation" | "action" | "artifact" | "data" | "narrative" | "status";
 
+
+export const BLOCK_LAYOUT_COMPATIBILITY: Readonly<Record<string, readonly string[]>>;
+export function layoutsForBlock(blockName: string): readonly string[];
+export function isLayoutCompatible(blockName: string, layout?: string | null): boolean;
+
 export interface TasteNamedAxis {
   id: string;
   index: number;

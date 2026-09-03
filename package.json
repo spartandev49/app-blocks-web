@@ -1,6 +1,6 @@
 {
   "name": "app-blocks-web",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "An LLM-native compact language and deterministic Taste Engine for complete, visually distinct, animated websites and web applications.",
   "type": "module",
   "types": "./src/index-v5.d.ts",
@@ -56,11 +56,12 @@
     "test:motion": "node --test ./test/motion3.test.js",
     "benchmark": "node ./scripts/benchmark.js",
     "audit": "node ./scripts/static-audit.js",
-    "verify": "npm run check && npm test && npm run audit && npm run build:showcase && npm run build:generation2 && npm run build:motion && npm run build:taste && npm run audit:taste && npm run benchmark",
+    "verify": "npm run check && npm test && npm run audit && npm run build:showcase && npm run build:generation2 && npm run build:motion && npm run build:taste && npm run audit:taste && npm run audit:layout && npm run benchmark",
     "prepack": "npm run verify",
     "build:taste": "node ./bin/appblocks-v2.js build ./examples/taste-showcase.ab --out ./.appblocks-taste --strict --taste-strict",
     "test:taste": "node --test ./test/taste5.test.js ./test/motion5.test.js ./test/taste5-cli.test.js ./test/taste5-release.test.js",
-    "audit:taste": "node ./scripts/taste-audit.js"
+    "audit:taste": "node ./scripts/taste-audit.js",
+    "audit:layout": "node ./scripts/layout-contract-audit.js"
   },
   "keywords": [
     "llm",

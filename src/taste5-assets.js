@@ -227,6 +227,228 @@ function motionRules() {
 `;
 }
 
+function resilienceRules() {
+  return `
+/* AppBlocks 0.4.1 intrinsic layout and typography safety */
+html[data-ab-taste-engine="5"] :where(
+  .ab-t5,.ab-t5>*,.ab-main>*,.ab-section>*,.ab-hero>*,.ab-proof>*,.ab-grid>*,.ab-columns>*,
+  .ab-panel>*,.ab-card>*,.ab-feature>*,.ab-stat>*,.ab-metric>*,.ab-tier>*,.ab-footer>*,
+  .ab-steps__list>li,.ab-steps__list>li>*,.ab-app-shell>*,.ab-app-main>*,.ab-tabpanel>*
+){min-inline-size:0;max-inline-size:100%}
+html[data-ab-taste-engine="5"] :where(h1,h2,h3,h4,h5,h6,.ab-title,.ab-heading,.ab-brand){
+  overflow-wrap:normal!important;word-break:normal!important;hyphens:none!important;max-inline-size:100%;text-wrap:balance
+}
+html[data-ab-taste-engine="5"] :where(p,li,small,.ab-text){overflow-wrap:break-word;word-break:normal}
+html[data-ab-taste-engine="5"] :where(pre,code,.ab-code-block,.ab-code){overflow-wrap:anywhere;word-break:break-word}
+
+/* Viewport section spacing belongs only to direct page children. Nested semantic blocks stay intrinsic. */
+html[data-ab-taste-engine="5"] .ab-main :where(
+  .ab-section,.ab-features,.ab-steps,.ab-split,.ab-pricing,.ab-testimonials,.ab-faq,.ab-proof,
+  .ab-cta,.ab-gallery,.ab-article,.ab-logos,.ab-stats,.ab-metrics
+){width:auto!important;max-inline-size:100%;margin-inline:0!important;padding-block:0!important}
+html[data-ab-taste-engine="5"] .ab-main>:where(
+  .ab-section,.ab-features,.ab-steps,.ab-split,.ab-pricing,.ab-testimonials,.ab-faq,.ab-proof,
+  .ab-cta,.ab-gallery,.ab-article,.ab-logos,.ab-stats,.ab-metrics
+){width:min(calc(100% - 2*var(--t5-gutter)),var(--t5-max-width))!important;margin-inline:auto!important;padding-block:var(--t5-section-pad)!important}
+
+html[data-ab-taste-engine="5"] :where(
+  .ab-main,.ab-app-main,.ab-section,.ab-panel,.ab-card,.ab-feature,.ab-tier,.ab-dialog__body,
+  .ab-tabpanel,.ab-proof,.ab-stats,.ab-metrics,.ab-features__grid,.ab-steps__list,.ab-footer,
+  .ab-grid,.ab-columns,[class*="ab-t5-layout-"]
+){container-type:inline-size;min-inline-size:0;max-inline-size:100%}
+
+/* Semantic section wrappers do not become arbitrary twelve-column or horizontal flex canvases. */
+html[data-ab-taste-engine="5"] :where(.ab-section,.ab-features,.ab-steps,.ab-pricing,.ab-testimonials)[class*="ab-t5-layout-"]{
+  display:block!important;grid-template-columns:none!important;grid-template-rows:none!important;columns:auto!important
+}
+
+/* Intrinsic structural tracks: never create a zero-width content column. */
+html[data-ab-taste-engine="5"] :where(.ab-grid--two,.ab-grid--three,.ab-grid--four){
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr))!important;grid-auto-rows:auto!important
+}
+html[data-ab-taste-engine="5"] .ab-grid{align-items:start!important}
+html[data-ab-taste-engine="5"] .ab-grid>:where(.ab-panel,.ab-card,.ab-tier){align-self:start!important}
+html[data-ab-taste-engine="5"] :where(.ab-columns,.ab-columns--wide-left,.ab-columns--wide-right){
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,23rem),1fr))!important;align-items:start
+}
+html[data-ab-taste-engine="5"] .ab-columns--sidebar{
+  grid-template-columns:minmax(min(100%,14rem),.32fr) minmax(min(100%,24rem),1fr)!important;align-items:start
+}
+html[data-ab-taste-engine="5"] :where(
+  .ab-grid,.ab-columns,.ab-panel
+):is(.ab-t5-layout-artifact-stage,.ab-t5-layout-technical-grid,.ab-t5-layout-modular-bento,
+     .ab-t5-layout-dense-cockpit,.ab-t5-layout-workbench,.ab-t5-layout-workspace-canvas,
+     .ab-t5-layout-layered-collage,.ab-t5-layout-split-studio,.ab-t5-layout-horizontal-rail,
+     .ab-t5-layout-gallery-wall,.ab-t5-layout-comparison-rail,.ab-t5-layout-masonry){
+  display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr))!important;
+  grid-auto-flow:row!important;grid-auto-rows:auto!important;align-items:start;overflow:visible!important
+}
+html[data-ab-taste-engine="5"] :where(
+  .ab-grid,.ab-columns,.ab-panel
+):is(.ab-t5-layout-artifact-stage,.ab-t5-layout-technical-grid,.ab-t5-layout-modular-bento,
+     .ab-t5-layout-dense-cockpit,.ab-t5-layout-workbench,.ab-t5-layout-workspace-canvas,
+     .ab-t5-layout-layered-collage,.ab-t5-layout-split-studio,.ab-t5-layout-horizontal-rail,
+     .ab-t5-layout-gallery-wall,.ab-t5-layout-comparison-rail,.ab-t5-layout-masonry)>*{
+  grid-column:auto!important;grid-row:auto!important;translate:none;rotate:none;min-inline-size:0;max-inline-size:100%
+}
+html[data-ab-taste-engine="5"] :where(.ab-grid,.ab-columns,.ab-panel):is(.ab-t5-layout-ledger,.ab-t5-layout-index-list){
+  display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))!important;grid-auto-rows:auto!important
+}
+html[data-ab-taste-engine="5"] :where(.ab-grid,.ab-columns,.ab-panel):is(.ab-t5-layout-ledger,.ab-t5-layout-index-list)>*{
+  grid-column:auto!important;grid-row:auto!important;min-inline-size:0;padding-inline:0!important
+}
+html[data-ab-taste-engine="5"] .ab-panel.ab-t5-layout-artifact-stage>:last-child{min-block-size:0!important}
+
+/* Collection layouts are applied to their collection grids, not to lead copy. */
+html[data-ab-taste-engine="5"] .ab-features__grid{
+  display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr))!important;
+  grid-auto-flow:row!important;grid-auto-rows:auto!important;align-items:start
+}
+html[data-ab-taste-engine="5"] :where(.ab-pricing__grid,.ab-testimonials__grid){
+  display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr))!important;grid-auto-rows:auto!important
+}
+html[data-ab-taste-engine="5"] :where(.ab-feature,.ab-card,.ab-panel,.ab-tier,.ab-stat,.ab-metric){
+  min-block-size:0!important;block-size:auto!important;aspect-ratio:auto!important;align-content:start
+}
+html[data-ab-taste-engine="5"] .ab-feature{display:flex!important;flex-direction:column;justify-content:flex-start}
+html[data-ab-taste-engine="5"] .ab-feature__mark{margin:0 0 1rem!important;flex:none}
+html[data-ab-taste-engine="5"] .ab-feature :where(h2,h3,.ab-title,.ab-heading){margin-block-start:0!important}
+html[data-ab-taste-engine="5"] .ab-features__grid>*{grid-column:auto!important;grid-row:auto!important}
+html[data-ab-taste-engine="5"] .ab-features__grid>.ab-span-wide{grid-column:span 2!important}
+html[data-ab-taste-engine="5"] .ab-features__grid>.ab-span-full{grid-column:1/-1!important}
+html[data-ab-taste-engine="5"] .ab-features__grid:has(>:nth-child(5):last-child)>:nth-child(5){grid-column:span 2!important}
+
+/* Proof and statistics keep readable tracks and intact values. */
+html[data-ab-taste-engine="5"] .ab-proof{
+  display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,24rem),1fr))!important;
+  grid-auto-rows:auto!important;align-items:start;gap:clamp(2rem,5vw,5rem)
+}
+html[data-ab-taste-engine="5"] .ab-proof>*{grid-column:auto!important;grid-row:auto!important;min-inline-size:0}
+html[data-ab-taste-engine="5"] :where(.ab-stats,.ab-metrics){
+  display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr))!important;
+  grid-auto-flow:row!important;grid-auto-rows:auto!important;align-items:stretch
+}
+html[data-ab-taste-engine="5"] :where(.ab-stats,.ab-metrics):has(>:nth-child(4):last-child){
+  grid-template-columns:repeat(2,minmax(0,1fr))!important
+}
+html[data-ab-taste-engine="5"] :where(.ab-stat,.ab-metric){overflow:hidden;container-type:inline-size}
+html[data-ab-taste-engine="5"] :where(.ab-stat>strong,.ab-metric>strong){
+  display:block;inline-size:100%;max-inline-size:100%;white-space:nowrap!important;overflow-wrap:normal!important;
+  word-break:normal!important;font-variant-numeric:tabular-nums;font-size:clamp(1.55rem,10cqi,3.35rem)!important;
+  letter-spacing:-.055em;line-height:.95
+}
+html[data-ab-taste-engine="5"] :where(.ab-stat>small,.ab-metric>small){display:block;max-inline-size:32ch}
+
+/* Steps use a readable intrinsic card width and a non-zero copy track. */
+html[data-ab-taste-engine="5"] .ab-steps__list{
+  display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr))!important;
+  grid-auto-flow:row!important;grid-auto-rows:auto!important;inline-size:100%!important
+}
+html[data-ab-taste-engine="5"] .ab-steps__list>li{
+  display:grid!important;grid-template-columns:minmax(2.75rem,max-content) minmax(0,1fr)!important;
+  grid-auto-rows:auto!important;min-block-size:0!important;padding:clamp(1.1rem,2.4vw,2rem)!important;
+  align-items:start;align-content:start
+}
+html[data-ab-taste-engine="5"] .ab-steps__list>li>*{grid-column:auto!important;grid-row:auto!important;min-inline-size:0}
+html[data-ab-taste-engine="5"] .ab-step__number{align-self:start;white-space:nowrap}
+
+/* Controls remain controls even when authored inside a rail. */
+html[data-ab-taste-engine="5"] :where(.ab-button,.ab-icon-button){
+  inline-size:auto!important;min-inline-size:0;max-inline-size:100%;block-size:auto!important;min-block-size:2.75rem!important;
+  aspect-ratio:auto!important;padding:.72rem 1rem!important;align-self:start;justify-content:center;white-space:nowrap
+}
+html[data-ab-taste-engine="5"] .ab-grid.ab-t5-layout-horizontal-rail>:where(.ab-button,.ab-icon-button){
+  flex:none!important;inline-size:auto!important;min-block-size:2.75rem!important
+}
+html[data-ab-taste-engine="5"] .ab-actions{min-inline-size:0;flex-wrap:wrap}
+
+/* Footer structure overrides decorative look recipes and preserves independent tracks. */
+html[data-ab-taste-engine="5"] .ab-footer{
+  display:grid!important;grid-template-columns:minmax(0,2fr) repeat(2,minmax(10rem,1fr))!important;
+  align-items:start!important;gap:clamp(2rem,4vw,4rem)!important;border-radius:0!important;
+  overflow:visible!important;container-type:inline-size
+}
+html[data-ab-taste-engine="5"] .ab-footer[class*="ab-t5-shape-"]{border-radius:0!important}
+html[data-ab-taste-engine="5"] .ab-footer>*{position:static!important;inset:auto!important;grid-column:auto!important;grid-row:auto!important;min-inline-size:0}
+html[data-ab-taste-engine="5"] .ab-footer__brand .ab-brand{
+  display:block!important;inline-size:100%!important;max-inline-size:100%;font-size:clamp(2rem,7cqi,5.25rem)!important;
+  line-height:.9!important;letter-spacing:-.065em!important;overflow-wrap:normal!important;word-break:normal!important;
+  white-space:normal!important
+}
+html[data-ab-taste-engine="5"] .ab-footer__brand .ab-brand span{
+  display:block!important;inline-size:100%!important;max-inline-size:100%;white-space:normal!important;overflow-wrap:normal!important
+}
+html[data-ab-taste-engine="5"] .ab-footer__brand p{max-inline-size:34ch}
+html[data-ab-taste-engine="5"] .ab-footer nav{min-inline-size:0;position:static!important}
+html[data-ab-taste-engine="5"] .ab-footer__meta{
+  grid-column:1/-1!important;grid-row:auto!important;position:static!important;display:flex;flex-wrap:wrap
+}
+html[data-ab-taste-engine="5"] .ab-t5-footer-closing-statement{
+  grid-template-columns:minmax(0,2fr) repeat(2,minmax(10rem,1fr))!important
+}
+
+/* Application shells, panels, tabs and tables stay inside the available inline size. */
+html[data-ab-taste-engine="5"] .ab-app-shell{
+  grid-template-columns:minmax(13rem,18rem) minmax(0,1fr)!important;max-inline-size:100%;overflow:clip
+}
+html[data-ab-taste-engine="5"] :where(.ab-sidebar,.ab-app-main,.ab-toolbar,.ab-toolbar__actions,.ab-tabs,.ab-tabpanel,.ab-table-card){
+  min-inline-size:0;max-inline-size:100%
+}
+html[data-ab-taste-engine="5"] .ab-table-card{overflow-x:auto!important;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+html[data-ab-taste-engine="5"] .ab-table-card table{inline-size:100%;min-inline-size:42rem}
+html[data-ab-taste-engine="5"] .ab-activity li{grid-template-columns:1.5rem minmax(0,1fr)!important}
+html[data-ab-taste-engine="5"] .ab-activity li>*{min-inline-size:0}
+
+@media (max-width:64rem){
+  html[data-ab-taste-engine="5"] .ab-app-shell{grid-template-columns:minmax(4.75rem,5rem) minmax(0,1fr)!important}
+}
+@media (max-width:48rem){
+  html[data-ab-taste-engine="5"] :where(.ab-columns,.ab-columns--wide-left,.ab-columns--wide-right,.ab-columns--sidebar,.ab-proof){
+    grid-template-columns:minmax(0,1fr)!important
+  }
+  html[data-ab-taste-engine="5"] :where(.ab-grid,.ab-columns,.ab-panel)[class*="ab-t5-layout-"]>*{
+    grid-column:1!important;grid-row:auto!important;translate:none!important;rotate:none!important
+  }
+  html[data-ab-taste-engine="5"] .ab-features__grid{grid-template-columns:minmax(0,1fr)!important}
+  html[data-ab-taste-engine="5"] .ab-features__grid>.ab-span-wide{grid-column:1!important}
+  html[data-ab-taste-engine="5"] :where(.ab-stats,.ab-metrics),
+  html[data-ab-taste-engine="5"] :where(.ab-stats,.ab-metrics):has(>:nth-child(4):last-child){
+    grid-template-columns:minmax(0,1fr)!important
+  }
+  html[data-ab-taste-engine="5"] .ab-steps__list{grid-template-columns:minmax(0,1fr)!important}
+  html[data-ab-taste-engine="5"] .ab-footer,
+  html[data-ab-taste-engine="5"] .ab-t5-footer-closing-statement{
+    grid-template-columns:minmax(0,1fr)!important;inline-size:calc(100% - 2rem)!important;gap:1.5rem!important
+  }
+  html[data-ab-taste-engine="5"] .ab-footer>*{grid-column:1!important}
+  html[data-ab-taste-engine="5"] .ab-footer__meta{flex-direction:column!important;align-items:flex-start}
+  html[data-ab-taste-engine="5"] .ab-app-shell{display:block!important;overflow:visible!important}
+  html[data-ab-taste-engine="5"] .ab-sidebar{
+    position:relative!important;inset:auto!important;inline-size:100%!important;block-size:auto!important;
+    min-block-size:0!important;max-block-size:none!important;display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;overflow:visible!important;
+    border-inline-end:0!important;border-block-end:1px solid var(--t5-line)!important
+  }
+  html[data-ab-taste-engine="5"] .ab-sidebar nav{
+    grid-column:1/-1;display:flex!important;flex-wrap:wrap!important;gap:.35rem!important;margin:0!important;overflow-x:auto!important
+  }
+  html[data-ab-taste-engine="5"] .ab-sidebar .ab-brand span,
+  html[data-ab-taste-engine="5"] .ab-sidebar .ab-link span{display:inline!important}
+  html[data-ab-taste-engine="5"] .ab-sidebar__foot{display:none!important}
+  html[data-ab-taste-engine="5"] .ab-app-main{padding:1rem!important}
+  html[data-ab-taste-engine="5"] .ab-toolbar{display:flex!important;flex-direction:column!important;align-items:stretch!important}
+  html[data-ab-taste-engine="5"] .ab-toolbar__actions{inline-size:100%!important;display:flex;flex-wrap:wrap;overflow:visible!important}
+  html[data-ab-taste-engine="5"] .ab-table-card table{min-inline-size:36rem}
+}
+@media (max-width:25.875rem){
+  html[data-ab-taste-engine="5"] .ab-steps__list>li{grid-template-columns:2.4rem minmax(0,1fr)!important;padding:1rem!important}
+  html[data-ab-taste-engine="5"] .ab-sidebar nav{flex-wrap:nowrap!important}
+  html[data-ab-taste-engine="5"] .ab-sidebar .ab-link{flex:0 0 auto}
+  html[data-ab-taste-engine="5"] .ab-footer__brand .ab-brand{font-size:clamp(2rem,14cqi,3.75rem)!important}
+}
+`;
+}
+
 export function buildTasteCss(profile) {
   const palette = profile.palette;
   const geometry = GEOMETRY_TOKENS[profile.geometry.name] ?? GEOMETRY_TOKENS.soft;
@@ -293,7 +515,7 @@ ${layoutRules()}
 ${architectureRules()}
 ${extendedCompositionRules()}
 
-html[data-ab-taste-engine="5"] .ab-t5:not(.ab-link):not(.ab-button):not(.ab-title):not(.ab-heading):not(.ab-text):not(.ab-eyebrow):not(.ab-image):not(.ab-icon){padding:var(--t5-local-pad,inherit);gap:var(--t5-local-gap,inherit)}
+html[data-ab-taste-engine="5"] .ab-t5[class*="ab-t5-density-"]:not(.ab-link):not(.ab-button):not(.ab-title):not(.ab-heading):not(.ab-text):not(.ab-eyebrow):not(.ab-image):not(.ab-icon){padding:var(--t5-local-pad);gap:var(--t5-local-gap)}
 html[data-ab-taste-engine="5"] :where(.ab-card,.ab-feature,.ab-tier,.ab-panel,.ab-testimonial,.ab-metric,.ab-stat,.ab-lane){position:relative;min-width:0;border-radius:var(--t5-radius);transition:transform var(--t5-normal) var(--t5-ease),box-shadow var(--t5-normal) ease,border-color var(--t5-fast) ease;background:var(--t5-local-bg,var(--t5-surface));color:var(--t5-local-ink,var(--t5-ink))}
 html[data-ab-taste-engine="5"] .ab-t5-role-focal{position:relative;z-index:2}
 html[data-ab-taste-engine="5"] .ab-t5-role-evidence:where(.ab-proof,.ab-quote,.ab-testimonial,.ab-panel,.ab-callout){border-inline-start:clamp(2px,.35vw,5px) solid var(--t5-accent);padding-inline-start:max(var(--t5-local-pad,1rem),1rem)}
@@ -374,6 +596,8 @@ ${motionRules()}
 @media (prefers-reduced-motion:reduce){html[data-ab-taste-engine="5"]{scroll-behavior:auto}.js .ab-t5-motion,.js .ab-t5-motion[class*="ab-t5-enter-"]{opacity:1!important;transform:none!important;translate:none!important;scale:1!important;rotate:0deg!important;filter:none!important;clip-path:none!important;transition:none!important;animation:none!important}.ab-t5-loop-float,.ab-t5-loop-breathe,.ab-t5-loop-pulse,.ab-t5-loop-bob,.ab-t5-loop-sway,.ab-t5-loop-shimmer,.ab-t5-loop-gradient,.ab-t5-loop-spin,.ab-t5-loop-glow,.ab-t5-loop-dash,.ab-t5-loop-marquee>*,.ab-t5-loop-drift,.ab-t5-loop-orbit,.ab-t5-loop-scan::after{animation:none!important}.ab-t5-hover-magnetic,.ab-t5-hover-tilt{transform:none!important}}
 @media (forced-colors:active){html[data-ab-taste-engine="5"] :where(.ab-button,.ab-card,.ab-panel,.ab-tier,.ab-field input,.ab-field textarea,.ab-field select){border:1px solid CanvasText!important}.ab-button--solid{background:ButtonFace!important;color:ButtonText!important}}
 @media print{html[data-ab-taste-engine="5"] .ab-header,html[data-ab-taste-engine="5"] .ab-footer,html[data-ab-taste-engine="5"] .ab-button{display:none!important}.ab-t5-motion{opacity:1!important;transform:none!important;translate:none!important;filter:none!important}.ab-section,.ab-article{break-inside:avoid}}
+
+${resilienceRules()}
 `;
 }
 
@@ -386,6 +610,7 @@ export const TASTE5_RUNTIME = String.raw`
   ready(() => {
     const root = document.documentElement;
     if (root.dataset.abTasteEngine !== "5") return;
+    document.querySelectorAll(".ab-t5[class*='ab-motion-']").forEach((element) => element.classList.add("is-ab-visible"));
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reduced = () => media.matches || root.dataset.motion === "off";

@@ -27,7 +27,7 @@ async function compileFixture(name) {
 
 test("generation 2 and motion engine 3 remain coherent inside the 0.4 Taste release", async () => {
   const metadata = await packageMetadata();
-  assert.equal(VERSION, "0.4.0");
+  assert.equal(VERSION, "0.4.1");
   assert.equal(metadata.version, VERSION);
   assert.equal(metadata.types, "./src/index-v5.d.ts");
   assert.equal(metadata.bin.appblocks, "./bin/appblocks.js");
